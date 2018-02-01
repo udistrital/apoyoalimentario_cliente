@@ -150,4 +150,8 @@ input {
     .movil span {
         color: red;
     }
+    .alert {
+        margin: 0 1em;
+        padding: 0;
+    }
 }

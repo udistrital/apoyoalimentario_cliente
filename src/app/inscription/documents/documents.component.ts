@@ -106,7 +106,7 @@ export class DocumentsComponent implements OnInit {
       if (_result != null && _result.nombre.length > 0) {
            item.size = _result.longitud;
            item.date = _result.fecha;
-           item.filedb = _result.nombre;
+           item.filedb = 'Ya ha cargado un archivo';
            this.dataFromDB.push({name: item.filedb});
            if (item.required=="si"){
             this._inscriptionComplete.documentUploaded++;

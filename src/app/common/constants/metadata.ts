@@ -34,7 +34,7 @@ export class Metadata {
         '},{' +
         '"name": "PersonasACargo",' +
         '"type": "file",' +
-        '"description": "Personas a cargo ?????",' +
+        '"description": "Personas a cargo",' +
         '"file": "",' +
         '"required": "no"' +
         '},{' +
@@ -58,7 +58,7 @@ export class Metadata {
         '},{' +
         '"name": "PatologiaAlimenticia",' +
         '"type": "file",' +
-        '"description": "Patologica de nutrición o alimentaria",' +
+        '"description": "Patología de nutrición o alimentaria",' +
         '"file": "",' +
         '"required": "no"' +
         '},{' +

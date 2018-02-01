@@ -49,9 +49,14 @@ header {
     p {
         width: 100%;
     }
-    select {
-        width: 50%;
-        margin: auto;
+
+    .col1, .col2 {
+        width: 100%;
+    }
+
+    .alert {
+        margin: 0 1em;
+        padding: 0;
     }
 } 
 

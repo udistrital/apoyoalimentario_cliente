@@ -12,7 +12,7 @@
 <div class="main" *ngFor="let archives of fileInformationLocalComponent">
   <div *ngIf="archives.required === 'si'">
   <div class="col1">
-      <a *ngIf="archives.name === 'FormatoInscripcion'" href="../assets/Formulario de Adjudicación Subsidio.pdf" download="Formulario de Adjudicación Subsidio.pdf"><img src="../assets/downloadIcon.png" title="Descargar Formulario de Adjudicación de Subsidio"></a>
+      <a *ngIf="archives.name === 'FormatoInscripcion'" href="./assets/Formulario de Adjudicación Subsidio.pdf" download="Formulario de Adjudicación Subsidio.pdf"><img src="../assets/downloadIcon.png" title="Descargar Formulario de Adjudicación de Subsidio"></a>
       <p>{{archives.description}}</p>
   </div>
   <div class="col2">
@@ -21,7 +21,6 @@
         <div class="btn btn-primary">Import file...</div>
     </label>
     <span><strong>{{archives.filedb}}</strong></span>
-    <span *ngIf="archives.size > 0" >{{archives.size/1024  +' Kb'}} </span>
   </div>
   </div>
 </div>

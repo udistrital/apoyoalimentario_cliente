@@ -19,6 +19,7 @@ div.wrapper {
     box-shadow: 0 0 10px rgba(0,0,0,.15);
     overflow: hidden;
     text-align: center;
+    left: 0;
   }
     
   nav.vertical > ul {
@@ -87,6 +88,12 @@ div.wrapper {
     padding: 0;
   }
 
+  .error {
+    position:fixed;
+    z-index: 1;
+    top: 0;
+    left: calc(27rem + 2px);
+  }
   .error h6 {
     clear: both;
   }
@@ -121,6 +128,8 @@ div.wrapper {
   .checkboxes {
     clear: both;
   }
+
+  
   @media screen and (max-width: 500px){
                     
     div.wrapper {
@@ -143,7 +152,7 @@ div.wrapper {
     }
   
     .interfaces {
-      height: 45%;
+      height: 95%;
       border-top: 3px solid black;
       border-right: none;
       border-bottom: none;
@@ -160,6 +169,7 @@ div.wrapper {
 
     .error {
       width: 100%;
+      left: 0;
     }
 
     .menu_bar {

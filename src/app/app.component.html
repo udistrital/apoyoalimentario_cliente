@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="menu_bar" (click)="main()">
-      <a class="btn_menu"><span class="icon-menu"><img src="../assets/menuIcon.png"/></span>Opciones</a>
+      <a class="btn_menu"><span class="icon-menu"><img src="./assets/menuIcon.png"/></span>Opciones</a>
   </div>
   <nav class="vertical">
     <div>
@@ -37,8 +37,8 @@
   <div class="checkboxes">
     <form>
       <select (change)="ChangeMenu($event.target.value)">
-        <option value="0">Nada</option>
-        <option value="1" selected="selected">Adminstrador</option>
+        <option value="0" selected="selected">Nada</option>
+        <option value="1">Adminstrador</option>
         <option value="2">Verificador</option>
         <option value="3">Estudiante</option>
       </select>
