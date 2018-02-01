@@ -1,0 +1,28 @@
+<header name="arriba">
+  <h1>Información Económica</h1>
+</header>
+<div class="alert alert-warning">
+    <strong>Señor ESTUDIANTE</strong>
+    <p>LOS DOCUMENTOS DEBEN TENER LAS SIGUIENTES CARACTERISTICAS:</p>
+    <p>- FORMATO PDF <strong>LEGIBLES</strong></p>
+    <p>- TAMAÑO MENOR A 500 Kb</p>
+    <p>RECUERDE QUE LA CARTA DE SOLICITUD, EL FORMULARIO, LA CERTIFICACIÓN LABORAL <strong>ESTAR FIRMADAS.</strong></p>
+</div>
+<form>
+<div class="main" *ngFor="let archives of fileInformationLocalComponent">
+  <div *ngIf="archives.required === 'si'">
+  <div class="col1">
+      <a *ngIf="archives.name === 'FormatoInscripcion'" href="../assets/Formulario de Adjudicación Subsidio.pdf" download="Formulario de Adjudicación Subsidio.pdf"><img src="../assets/downloadIcon.png" title="Descargar Formulario de Adjudicación de Subsidio"></a>
+      <p>{{archives.description}}</p>
+  </div>
+  <div class="col2">
+    <label class="import-file">
+        <input class="hidden from-control" type="file" (change)="upload($event,archives.name)">
+        <div class="btn btn-primary">Import file...</div>
+    </label>
+    <span><strong>{{archives.filedb}}</strong></span>
+    <span *ngIf="archives.size > 0" >{{archives.size/1024  +' Kb'}} </span>
+  </div>
+  </div>
+</div>
+</form>

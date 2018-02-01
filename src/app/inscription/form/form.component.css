@@ -1,0 +1,153 @@
+.form-control {
+    padding : 0;
+}
+.btn-help{
+width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0px;
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    margin: 10px;
+}
+.modal-content{
+    top: 100px;
+}
+/*  radio   */
+.container {
+    display: table-cell;
+    position: relative;
+    padding-right: 61px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+/*          AJUSTE DE COLUMNAS          */
+.col1 {
+    float: left;
+    width: 50%;
+    padding: 0 3%;
+    font-weight: bold;
+}
+.col2 {
+    float: left;
+    width: 35%;
+}
+.col3 {
+    float: left;
+    width: 15%;
+}
+
+/*          AJUSTE GENERAL DE FILAS          */
+.main {
+    padding: 1em 0;
+    text-align: center;
+    clear: both;
+    margin-bottom: 15px;
+}
+.main2 {
+    text-align: center;
+    width: 100%;
+    clear: both;
+}
+
+.movil{
+    display: none;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+.modal-content span{
+    color: red;
+}
+
+.alert {
+    margin: 0 3em;
+}
+
+input {
+    margin-right: 10px;
+}
+.container {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+@media screen and (max-width: 500px){
+    .main ,
+    .col1{
+        width: 100%;
+        margin-bottom: 3%;
+    }
+    .col2 {
+        width: 80%;
+    }
+    .col3 {
+        width: 10%;
+    }
+    /*          FILAS           */
+    .main {
+        padding: 1.5% 0;
+        margin-bottom: 25%;
+    }
+
+    .modal-example {
+        display: none;
+    }
+    .movil {
+        display: block;
+    }
+    .movil span {
+        color: red;
+    }
+}

@@ -1,0 +1,65 @@
+<div class="container">
+    <header>
+        <h1>Configuration</h1>
+    </header>
+
+    <div class="main">
+        <strong><p>Dé una descripción para los estudiantes acerca del proceso inscripción al Apóyo Alimentario</p></strong>
+        <textarea rows="5" cols="100" class="form-control"></textarea>
+    </div>
+
+    <div class="main">
+        <strong><p>Asigne en cada sede a un usuario que verifique los estudiantes de esa sede</p></strong>
+        <div class="col1">
+            <p>Sede:</p>
+        </div>
+        <div class="col3">
+            <p>-></p>
+        </div>
+        <div class="col2">
+            <p>Usuario:</p>
+        </div>
+        <div class="col1">
+            <select class="form-control">
+                <option *ngFor="let item of facultyList" value="{{item.value}}">{{item.texto}}</option>
+            </select>
+        </div>
+        <div class="col3">
+            <p>-></p>
+        </div>
+        <div class="col2">
+            <select class="form-control">
+                <option value="">Seleccione un usuaroi</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="main">
+        <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
+        <div class="col1">
+            <select class="form-control">
+                <option *ngFor="let item of facultyList" value="{{item.value}}" (click)="addFaculty(item.value)">{{item.texto}}</option>
+            </select>
+        </div>
+        <div class="col3">
+            <p>-></p>
+        </div>
+        <div class="col2">
+            <div class="list">
+                <ul *ngFor="">
+                    <li>item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main">
+        <!-- <strong><p>Habilite o deshabilite el módulo de inscrpción</p></strong> -->
+        <div class="col1">
+            <button class="btn btn-success">HABILITAR</button>
+        </div>
+        <div class="col2">
+            <button class="btn btn-danger">DESHABILITAR</button>
+        </div>
+    </div>
+</div>

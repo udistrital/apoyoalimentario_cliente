@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core'
+import { Http, Response, Headers } from '@angular/http';
+import { Constants } from '../constants/model.constants';
+import { userRol } from '../models/userRol.model';
+import 'rxjs/add/operator/map';
+
+@Injectable()
+export class RolInformation {
+    
+    rolInfo: userRol;
+    constructor(private _http: Http, private _constants: Constants) {
+    }
+
+    public GetRolInformation(url: string) {
+        return this._http.get(this._constants.pathRol+this._constants.user)
+        .map((res: Response) => res.json());
+    }
+
+    onFail() {
+        
+    }
+}
+

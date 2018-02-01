@@ -1,0 +1,45 @@
+<div class="container">
+    <ngb-tabset>
+        <ngb-tab title="Nuevas Solicitudes">
+            <ng-template ngbTabContent>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombres</th>
+                            <th>Fecha de inscripción</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of dataInformationLocal">
+                        <tr (click)="redirect(item.codigo)">
+                            <td>{{item.codigo}}</td>
+                            <td>{{item.Nombre}}</td>
+                            <td>{{item.ultimafechainscripcion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <p *ngIf="countInformationViewedLocal !== 0">{{countInformationViewedLocal}}</p> -->
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Solicitudes Revisadas">
+            <ng-template ngbTabContent>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombres</th>
+                            <th>Fecha de inscripción</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of dataInformationViewedLocal">
+                        <tr>
+                            <td>{{item.codigo}}</td>
+                            <td>{{item.Nombre}}</td>
+                            <td>{{item.ultimafechainscripcion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>  

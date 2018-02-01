@@ -1,0 +1,61 @@
+header {
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    margin: 10px;
+}
+
+.main {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.col1, .col2 {
+    width: 50%;
+    float: left;
+    padding: 0 0.5em;
+}
+
+.col1 p {
+    box-sizing: border-box;
+    width: 85%;
+    float: left;
+}
+
+.alert {
+    margin: 0 3em;
+    padding: 0 5em;
+}
+
+.alert p {
+    float: initial;
+    width: 100%;
+}
+
+.col1 img {
+    width: 26px;
+    height: 26px;
+    float: left;
+  }
+
+  .col2 span {
+      width: 100%;
+  }
+
+  input[type=file].hidden {
+      color: transparent;
+  }
+
+@media screen and (max-width: 730px){
+    p {
+        width: 100%;
+    }
+    select {
+        width: 50%;
+        margin: auto;
+    }
+} 
+
+footer {
+    border-top: 1px solid #000000;
+    padding-left: 10%;
+}

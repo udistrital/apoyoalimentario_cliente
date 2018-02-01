@@ -1,0 +1,652 @@
+<header>
+  <h1>Información Social</h1>
+</header>
+<div class="alert alert-warning">
+    <strong>Señor ESTUDIANTE</strong>
+    <p>LA INFORMACION ingresada en los diferentes formularios pueden ser tratados por terceros y la UNIVERSIDAD no se hace responsable del uso que estos puedan darle.</p>
+</div>
+<form ngNativeValidate>
+  <!--      almuerzo o refrigerio     -->
+<div class="main" *ngIf="stateLocal === 2">
+  <div class="col1">Tipo de Apoyo Alimentario</div>
+  <div class="col2">
+    <label  class="container">Almuerzo
+      <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="A">
+      <span class="checkmark"></span>
+    </label>
+
+    <label  class="container">Refrigerio nocturno
+        <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="R">
+        <span class="checkmark"></span>
+    </label>
+   </div>
+</div>
+  <!--      CAMPO 1     -->
+  <div class="main">
+    <div class="col1">Estrato socioeconomico</div>
+    <div class="col2">
+      <select id="estrato" name="estrato" [(ngModel)]="economicInformationLocal.estrato" (change)="changeModel()" [ngModelOptions]="{standalone: true}"
+        class="form-control" required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="1">Estrato 1</option>
+        <option value="2">Estrato 2</option>
+        <option value="3">Estrato 3</option>
+        <option value="4">Estrato 4</option>
+        <option value="5">Estrato 5</option>
+        <option value="6">Estrato 6</option>
+      </select>
+    </div>
+    <div class="col3">
+      <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal1">
+        ?
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+            <div class="modal-body">
+              <p>Seleccione el estrato socioeconomico </p>
+            </div>
+            <div class="modal-example">
+              <p><strong>Ejemplo:</strong></p>
+              <p>Si su estrato socioeconomico es "Estrato 3" debe seleccionar asi:</p>
+              <img src="../assets/ejemplos/ejemploEstrato.png">
+            </div>
+            <div class="movil">
+              <p><strong>Ejemplo:</strong></p>
+              <p>Seleccione <span>Estrato 3</span> si es su caso</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 2     -->
+  <div class="main">
+    <div class="col1">Ingrese el valor de ingresos Propios o Familiares</div>
+    <div class="col2">
+      <input type="number" name="salario" placeholder="Escriba sus ingresos" min="0" (change)="changeModel()" [(ngModel)]="economicInformationLocal.ingresos" [ngModelOptions]="{standalone: true}"
+        class="form-control" required>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal2">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Ingrese el valor de sus ingresos propios o el de sus padres, o la persona bajo la que esté a cargo, <span>Debe ingresarlo con numeros exactos sin puntos ni comas</span> </p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si usted, sus padres o la persona que esté a cargo tiene ingresos de un salario minimo legal vigente ($ 781.242) debe ingresarlo asi:</p>
+                  <img src="../assets/ejemplos/ejemploIngresos.png">
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si usted, sus padres o la persona que esté a cargo tiene ingresos de un salario minimo legal vigente ($ 781.242) debe ingresarlo asi:</p>
+                  <p><span>781242</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 3     -->
+  <div class="main">
+    <div class="col1">¿Como estudiante se sostiene economicamente a sí mismo?</div>
+    <div class="col2">
+      <select name="sostenibilidad" [(ngModel)]="economicInformationLocal.sostenibilidadpropia" (change)="changeModel()" [ngModelOptions]="{standalone: true}" 
+        class="form-control" required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal3">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Seleccione la opción que corresponda a su situación</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si se sostiene economicamente a si mismo debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si se sostiene economicamente a si mismo debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 4     -->
+  <div class="main">
+    <div class="col1">¿Como estudiante sostiene el lugar en donde vive?</div>
+    <div class="col2">
+      <select name="sostiene" [(ngModel)]="economicInformationLocal.sostenibilidadhogar" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required
+      class="form-control">
+        <option value="">Seleccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal4">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Seleccione la opción que corresponda a su situación</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si sostiene economicamente el lugar donde vive debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si sostiene economicamente el lugar donde vive debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 5     -->
+  <div class="main">
+    <div class="col1">¿Vive fuera de su núcleo familiar de origen? (Papá, Mamá, Hermanos)</div>
+    <div class="col2">
+      <select name="nucleo" [(ngModel)]="economicInformationLocal.nucleofamiliar" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
+      class="form-control">
+        <option value="">Seleccion su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal5">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Seleccione la opción que corresponda a su situación</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si vive fuera de su núcleo familiar de origen debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si vive fuera de su núcleo familiar de origen debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 6     -->
+  <div class="main">
+    <div class="col1">¿Como estudiante tiene personas a cargo?</div>
+    <div class="col2">
+      <select name="cargo" [(ngModel)]="economicInformationLocal.personasacargo" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
+      class="form-control">
+        <option value="">Selccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal6">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Seleccione la opción que corresponda a su situación</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si tiene personas a cargo debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si tiene personas a cargo debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 7     -->
+  <div class="main">
+    <div class="col1">¿Vive en casa de su empleador o paga arriendo?</div>
+    <div class="col2">
+      <select name="vive" [(ngModel)]="economicInformationLocal.empleadoroarriendo" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
+      class="form-control"  required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal7">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Seleccione la opción que corresponda a su situación</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si no vive en casa propia o familiar debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si no vive en casa propia o familiar debe seleccionar la opción <span>Si</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 8     -->
+  <div class="main">
+    <div class="col1">¿Proviene de ciudades o municipios distintos a Bogotá D.C.?</div>
+    <div class="col2">
+      <select id="municipio" [(ngModel)]="economicInformationLocal.provienefuerabogota" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
+      class="form-control" required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+      <div *ngIf="economicInformationLocal.provienefuerabogota === 'si'" class="main">
+        <input type="text" id="campoMunicipi" name="campoMunicipi" (change)="changeModel()" [(ngModel)]="economicInformationLocal.ciudad" placeholder="Escriba el municipio" class="form-control"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal8">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                <div class="modal-body">
+                  <p>Si Proviene de algun lugar distinto a Bogotá D.C.</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si usted proviene de fuera de Bogotá debe seleccionar la opción <span>Si</span> y ecribir de donde proviene en el campo anexo</p>
+                  <img src="../assets/ejemplos/ejemploBogota.png">
+                </div>
+                <div class="movil">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si usted proviene de fuera de Bogotá debe seleccionar la opción <span>Si</span> y ecribir de donde proviene en el campo anexo</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 9     -->
+  <div class="main">
+    <div class="col1">Usted o su grupo familiar está certificado como población:</div>
+    <div class="col2">
+      <select name="especial" [(ngModel)]="economicInformationLocal.poblacionespecial" (change)="changeModel()" [ngModelOptions]="{standalone: true}" class="form-control" required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="N">Ninguna</option>
+        <option value="D">Desplazados</option>
+        <option value="I">Indigena</option>
+        <option value="M">Minorias Etnicas</option>
+        <option value="A">Afrodescendientes</option>
+        <option value="MC">Madre Cabeza de Hogar</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal9">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Seleccione la opción que corresponda a su situación</p>
+                  </div>
+                  <div class="modal-example">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si esta identificado con alguna de las opciones dadas debe seleccionar la opción que corresponda</p>
+                  </div>
+                  <div class="movil">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si esta identificado con alguna de las opciones dadas debe seleccionar la opción que corresponda</p>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 10     -->
+  <div class="main">
+    <div class="col1">¿Presenta algun tipo de discapacidad fisica o mental?</div>
+    <div class="col2">
+      <select name="discapacidad" [(ngModel)]="economicInformationLocal.discapacidad" (change)="changeModel()" [ngModelOptions]="{standalone: true}"   class="form-control" required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal10">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal10" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Seleccione la opción que corresponda a su situación</p>
+                  </div>
+                  <div class="modal-example">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si tiene algun tipo de discapacidad fisica o mental de cualquier tipo debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                  <div class="movil">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si tiene algun tipo de discapacidad fisica o mental de cualquier tipo debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 11     -->
+  <div class="main">
+    <div class="col1">¿Presenta alguna patología relacionada con la nutrición y/o alimentacion?</div>
+    <div class="col2">
+      <select name="patologia" [(ngModel)]="economicInformationLocal.patologiaalimenticia" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" required>
+        <option value="">Seleccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal11">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Seleccione la opción que corresponda a su situación</p>
+                  </div>
+                  <div class="modal-example">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si tiene cualquier tipo de patología relacionada a la nutrición o la alimentación debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                  <div class="movil">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si tiene cualquier tipo de patología relacionada a la nutrición o la alimentación debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 12     -->
+  <div class="main">
+    <div class="col1">¿Pertenece al Programa Ser Pilo Paga?</div>
+    <div class="col2">
+      <select name="spp" [(ngModel)]="economicInformationLocal.serpilopaga" (change)="changeModel()" [ngModelOptions]="{standalone: true}" (change)="changeModel()"  class="form-control" required>
+        <option value="">Seleccione si respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal12">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Seleccione la opción que corresponda a su situación</p>
+                  </div>
+                  <div class="modal-example">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si se vinculó a la universidad por medio del programa "Ser Pilo Paga" debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                  <div class="movil">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si se vinculó a la universidad por medio del programa "Ser Pilo Paga" debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+
+
+  <!--      CAMPO 13     -->
+  <div class="main">
+    <div class="col1">¿Pertenece al SISBEN?</div>
+    <div class="col2">
+      <select name="sisben" [(ngModel)]="economicInformationLocal.sisben" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" required>
+        <option value="">Selccione su respuesta</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="col3">
+        <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal13">
+            ?
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal13" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Seleccione la opción que corresponda a su situación</p>
+                  </div>
+                  <div class="modal-example">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si actualmente pertenece al SISBEN debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                  <div class="movil">
+                    <p><strong>Ejemplo:</strong></p>
+                    <p>Si actualmente pertenece al SISBEN debe seleccionar la opción <span>Si</span></p>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+</form>

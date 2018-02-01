@@ -1,0 +1,7 @@
+<div class="container">
+  <form name="form" ngNativeValidate>
+    <label for="text">Usuario:</label>
+    <input type="text" id="usuario" [(ngModel)]="_constants.user" [ngModelOptions]="{standalone: true}"  class="form-control" required/>
+    <button id="enviar" (click)="onClick()" class="btn btn-default">Enviar</button>
+  </form>
+</div>

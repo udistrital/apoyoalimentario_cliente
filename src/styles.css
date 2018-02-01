@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#pagina {
+	margin: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/*overflow: hidden;*/
+}
+
+.contenedor {
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+    margin: auto;
+}
+
+@media screen and (max-width: 500px){
+	.contenedor {
+        width: 100%;
+        margin: auto;
+    }
+}

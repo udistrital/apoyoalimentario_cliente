@@ -1,0 +1,97 @@
+header {
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    margin: 10px;
+}
+
+.main {
+    text-align: center;
+    margin-bottom: 15px;
+    clear: both;
+}
+
+.main2 {
+    text-align: center;
+    margin-bottom: 15px;
+    clear: both;
+    height: 100%;
+    display: block;
+}
+
+p {
+    box-sizing: border-box;
+    width: 50%;
+    float: left;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+btn {
+    margin: auto;
+}
+
+.document-content, document-hidden {
+    height: 100%;
+    width: 70%;
+    float: left;
+    display: inline;
+}
+
+.col1 {
+    float: left;
+    width: 30%;
+    padding: 10px 5px;
+}
+
+.col2 {
+    float: left;
+    width: 70%;
+}
+
+.doc {
+    position: relative;
+    width: 70%;
+    height: 0;
+    padding-bottom: 50%;
+    overflow: hidden;
+}
+
+.doc iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.active li div {
+    width: 100%;
+    height: 100%;
+    background-color: #14CFFA;
+    color: white;
+}
+@media screen and (max-width: 730px){
+    p {
+        width: 100%;
+    }
+    select {
+        width: 50%;
+        margin: auto;
+    }
+    .col1, .col2 {
+        width: 100%;
+    }
+    .main a {
+        width: 100%;
+    }
+    .doc {
+        padding-bottom: 50%;
+    }
+}
+
+footer {
+    border-top: 1px solid #000000;
+    padding-left: 10%;
+    clear: both;
+}

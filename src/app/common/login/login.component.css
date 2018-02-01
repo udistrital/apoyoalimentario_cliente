@@ -1,0 +1,19 @@
+.ventana {
+    margin: auto;
+    border: 1px solid black;
+    text-align: center;
+    width: 700px;
+    height: 150px;
+}
+
+#usuario, #contra, submit {
+    margin: 30px auto;
+    display: block;
+}
+
+@media screen and (max-width: 730px){
+    .ventana {
+        width: 100%;
+        border: none;
+    }
+}

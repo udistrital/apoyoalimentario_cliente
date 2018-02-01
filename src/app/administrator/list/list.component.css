@@ -1,0 +1,49 @@
+header {
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    margin: 10px;
+}
+
+.main {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    clear: both;
+}
+
+p {
+    box-sizing: border-box;
+    width: 50%;
+    float: left;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+
+/*      TABLE STYLES            */
+.container tbody tr:hover td{
+background-color: rgb(128, 185, 250);
+color: rgb(243, 243, 234);
+transition-delay: 0s;
+    transition-duration: 0.2s;
+    transition-property: all;
+transition-timing-function: line;
+}
+/*      END TABLE STYLES        */
+
+
+@media screen and (max-width: 730px){
+    p {
+        width: 100%;
+    }
+    select {
+        width: 50%;
+        margin: auto;
+    }
+}
+
+footer {
+    border-top: 1px solid #000000;
+    padding-left: 10%;
+    clear: both;
+}
