@@ -46,8 +46,6 @@ public PotsFiles( ) {
       this.errorFile = res.json();
       this.errorFileSplit = this.errorFile.split('/');
       this.errorFileSplit.pop();
-      // console.log(this.errorFile);
-      // console.log(this.errorFileSplit);
     });
 }
 public evaluateInformation(Information: EconomicInformation){

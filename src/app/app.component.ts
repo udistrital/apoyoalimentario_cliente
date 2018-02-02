@@ -46,7 +46,6 @@ export class AppComponent {
           this._fileService.formDataFiles = new FormData(),
           this._inscriptionComplete.PutValidationInscription().subscribe((datad)=>{
               this.response = datad.json();
-              console.log(this.response);
               //
               setTimeout(() => this._inscriptionComplete.waitService = false,0);
               if(this.response == 1) {

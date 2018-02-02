@@ -25,7 +25,10 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ng2-accordion": "0.0.15",
+    "ng2-search-filter": "^0.3.1",
+    "ngx-order-pipe": "^1.2.0",
     "rxjs": "^5.5.2",
+    "typings": "^2.1.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

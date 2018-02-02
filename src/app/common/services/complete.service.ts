@@ -51,11 +51,8 @@ export class InscriptionComplete {
     }
 
     public CountDocumentUploaded() {
-        console.log(this.selectorShowed);
-        console.log(this.documentUploaded);
         if (this.selectorShowed <= this.documentUploaded) {
             this.documentsComplete = true;
-            console.log(this.documentsComplete);
         } else {
             this.documentsComplete = false;
         }

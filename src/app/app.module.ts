@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { AccordionModule } from "ng2-accordion";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderModule } from 'ngx-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -66,7 +68,9 @@ import { Information } from './common/services/information.service';
     FormsModule,
     HttpModule,
     AccordionModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    OrderModule,
+    Ng2SearchPipeModule
   ],
   providers: [
               // Common Providers

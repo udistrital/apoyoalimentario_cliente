@@ -28,9 +28,7 @@ export class DataComponent {
 
   ngOnInit() {
     if (this._stateService.State == null){
-      console.log(this._inscriptionComplete.waitService);
       setTimeout(() => this._inscriptionComplete.waitService = true,0);
-      console.log(this._inscriptionComplete.waitService);
       this._stateService.GetInformationState().subscribe(
         data => {
           this._stateService.State = data;
@@ -109,7 +107,6 @@ export class DataComponent {
     if (this._fileService.fileInformationLocal == null) {
       this._fileService.fileInformationLocal = JSON.parse(this._metadata.uploadDocuments);
       setTimeout(() => this._inscriptionComplete.waitService = false,0);
-      console.log(this._inscriptionComplete.waitService);
       if (this._dataInformation.basicInformation == null){
         this._dataInformation.basicInformation = { nombre: '' };
         this._dataInformation.institutionalInformation ={proyecto:''};

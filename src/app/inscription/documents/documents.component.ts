@@ -64,9 +64,7 @@ export class DocumentsComponent implements OnInit {
         if(e != 'DocumentoAdicional') {
           this._inscriptionComplete.documentUploaded++;
           for(var i=0; i<=this.dataFromDB.length-1; i++) {
-            //console.log(this.dataFromDB[i]);
             if(this.dataFromDB[i].name == e) {
-              //console.log('iguales');
               this._inscriptionComplete.documentUploaded--;
             }
           }
@@ -77,7 +75,6 @@ export class DocumentsComponent implements OnInit {
   public saveDocument(event: Event) {
     if(this._fileService.formDataFiles != null && this._fileService.formDataFiles != undefined &&  this._fileService.changeModel) {
       setTimeout(() => this._inscriptionComplete.waitService = true, 0);
-      //console.log('save documents');
       this._fileService.changeModel = false;
       this._fileService.PotsFiles().subscribe(
        data => {
@@ -120,8 +117,6 @@ export class DocumentsComponent implements OnInit {
       
       this._fileService.fileInformationLocal[_count-1] = item;
     });
-    console.log(this._inscriptionComplete.selectorShowed);
-    console.log(this._inscriptionComplete.documentUploaded);
     this._inscriptionComplete.CountDocumentUploaded();
   }
   

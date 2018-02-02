@@ -12,6 +12,9 @@ import { userRol } from '../../common/models/userRol.model';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {  
+
+  key: string = 'Nombre';
+  reverse: boolean = false;
   
   dataInformationLocal: StudentData[];
   countInformationLocal: number = 0;
@@ -76,5 +79,26 @@ export class ListComponent implements OnInit {
     //console.log(e);
     this._constants.user = e;
     this._routerEvent.navigate(['/report']);
+  }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  Reload() {
+    this._information.GetInformation(this._constants.pathName + this.rolUser.sede)
+      .subscribe(data => {
+        this._information.dataInformation = data;
+        this.dataInformationLocal = this._information.dataInformation;
+        //this.countInformationLocal = this.dataInformationLocal.length;
+      });
+
+    this._information.GetInformation(this._constants.pathNameViewed + this.rolUser.sede)
+      .subscribe(data => {
+        this._information.dataInformationViewed = data;
+        this.dataInformationViewedLocal = data;
+        //this.countInformationViewedLocal = this.dataInformationViewedLocal.length;
+      });
   }
 }

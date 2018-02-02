@@ -31,6 +31,15 @@ transition-timing-function: line;
 }
 /*      END TABLE STYLES        */
 
+.btn .btn-info .btn-lg, a{
+    z-index: 100;
+}
+
+.reload {
+    position: absolute;
+    right: calc(2.5em + 2px);
+    top: calc(0.3em + 2px);
+}
 
 @media screen and (max-width: 730px){
     p {
