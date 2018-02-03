@@ -29,6 +29,16 @@ transition-delay: 0s;
     transition-property: all;
 transition-timing-function: line;
 }
+
+.container {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.type {
+    text-align: center;
+}
 /*      END TABLE STYLES        */
 
 .btn .btn-info .btn-lg, a{

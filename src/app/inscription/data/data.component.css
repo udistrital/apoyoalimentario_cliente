@@ -17,6 +17,14 @@ p {
     margin-bottom: 15px;
     text-transform: uppercase;
 }
+.mensaje p {
+    width: 100%;
+}
+
+.mensaje {
+    margin-top: 50px;
+    padding-bottom: 22%;
+}
 
 @media screen and (max-width: 730px){
     p {

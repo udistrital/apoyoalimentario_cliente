@@ -6,6 +6,7 @@ import { DataEconomicInformation } from '../../common/services/economicInformati
 import { FileService } from '../../common/services/file.service';
 import { Metadata } from '../../common/constants/metadata';
 import { InscriptionComplete } from '../../common/services/complete.service';
+import { EconomicInformation } from '../../common/models/data.model';
 
 @Component({
   selector: 'app-data',
@@ -16,6 +17,8 @@ export class DataComponent {
 
   modelBasicInformation: {} = {};
   modelInstitutionalInformation: {} = {};
+  modelEconomicInformation: {mensaje:string} = {mensaje:''};
+  mensajesplit: string[];
 
   constructor(private _constants: Constants,
               private _stateService: StateService, 
@@ -93,6 +96,8 @@ export class DataComponent {
       this._dataEconomicInformation.GetEconomicInformation().subscribe(
         data => {
           this._dataEconomicInformation.economicInformation = data;
+          this.modelEconomicInformation = data;
+          this.mensajesplit = this.modelEconomicInformation.mensaje.split('\n');
           this.InitModelDocument();
           this._fileService.evaluateInformation(this._dataEconomicInformation.economicInformation);
         },
@@ -110,9 +115,10 @@ export class DataComponent {
       if (this._dataInformation.basicInformation == null){
         this._dataInformation.basicInformation = { nombre: '' };
         this._dataInformation.institutionalInformation ={proyecto:''};
-        
-      }     
-  
+      }  
+      if (this.modelEconomicInformation == null){
+        this.modelEconomicInformation = { mensaje: '' };
+      }  
     }
   }
 }

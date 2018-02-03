@@ -129,6 +129,10 @@ div.wrapper {
     clear: both;
   }
 
+  .modal-content{
+    top: 100px;
+}
+
   
   @media screen and (max-width: 500px){
                     
@@ -210,6 +214,7 @@ div.wrapper {
   display: flex;
   justify-content : center;
   align-items : center;
+  z-index: 100;
 }
 
 /* -----------------------------------------

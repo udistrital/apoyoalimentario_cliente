@@ -7,8 +7,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Information {
    
-    dataInformation: StudentData[];
-    dataInformationViewed: StudentData[];
+    dataInformationNew: StudentData[];
+    dataInformationComplete: StudentData[];
+    dataInformationIncomplete: StudentData[];
     constructor(private _http: Http, private _constants: Constants) {
     }
 

@@ -15,8 +15,9 @@ const appRoutes: Routes = [
   { path: 'data', component: DataComponent },
   { path: 'documents', component: DocumentsComponent},
   { path: 'list', component: ListComponent },
-  { path: 'report', component: ReportComponent },
-  { path: 'configuration', component: ConfigurationComponent }
+  { path: 'verification', component: VerificationComponent },
+  { path: 'configuration', component: ConfigurationComponent },
+  { path: 'reports', component: ReportComponent}
 ];
 
 import { AppComponent } from './app.component';
@@ -28,9 +29,10 @@ import { FormComponent } from './inscription/form/form.component';
 import { DocumentsComponent } from './inscription/documents/documents.component';
 // Components Administration
 import { ListComponent } from './administrator/list/list.component';
-import { ReportComponent } from './administrator/report/report.component';
-import { SafePipe } from './administrator/report/pipeArchives.component';
+import { VerificationComponent } from './administrator/verification/verification.component';
+import { SafePipe } from './administrator/verification/pipeArchives.component';
 import { ConfigurationComponent } from './administrator/configuration/configuration.component';
+import { ReportComponent } from './administrator/report/report.component';
 // Providers
 import { Constants } from './common/constants/model.constants';
 // Inscription Providers
@@ -58,9 +60,11 @@ import { Information } from './common/services/information.service';
     DocumentsComponent,
 
     ListComponent,
-    ReportComponent,
+    VerificationComponent,
     ConfigurationComponent,
-    SafePipe
+    SafePipe,
+    VerificationComponent,
+    ReportComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

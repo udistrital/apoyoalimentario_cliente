@@ -10,6 +10,7 @@ import { DataConfiguration } from '../../common/services/configuration.service';
 export class ConfigurationComponent implements OnInit {
 
   facultyList: any;
+  userList: any;
 
   configurationLocal: ProcessConfiguration;
 
@@ -17,12 +18,16 @@ export class ConfigurationComponent implements OnInit {
               private _dataConfiguration: DataConfiguration) { }
 
   ngOnInit() {
-    this.facultyList = [{texto:"seleccione una sede",value:""},
-                        {texto:"tecno",value:"tec"},
+    this.facultyList = [{texto:"tecno",value:"tec"},
                         {texto:"ingenieria",value:"ing"},
                         {texto:"vivero",value:"viv"},
                         {texto:"macarena",value:"maca"},
                         {texto:"asab",value:"as"}];
+    this.userList = [{texto:"usuario 1",value:"u1"},
+                        {texto:"usuario 2",value:"u2"},
+                        {texto:"usuario 3",value:"u3"},
+                        {texto:"usuario 4",value:"u4"},
+                        {texto:"usuario 5",value:"u5"}];                   
   }
 
   changeModel() {

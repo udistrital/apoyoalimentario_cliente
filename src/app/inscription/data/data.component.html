@@ -88,3 +88,12 @@
     <p>{{modelBasicInformation.telefono}}</p>
   </a>
 </div>
+<div class="alert alert-danger mensaje" *ngIf="modelEconomicInformation.estadoprograma === 4">
+  <h4>Solicitud Devuelta</h4>
+  <p>Su solicitud fue devuelta por los siguiente motivos:</p>
+  <span *ngFor="let item of mensajesplit">
+      &emsp;<strong>- {{item}}</strong><br>
+  </span>
+  <p>Una vez solucionados estos errores puede enviar nuevamente su solicitud</p>
+  <p>PD: Si desea adjuntar un documento nuevamente o un documento faltante debe hacerlo en el apartado "Subir documentos" en la opción "Documentos adicionales"</p>
+</div>

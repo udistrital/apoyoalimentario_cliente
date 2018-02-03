@@ -6,6 +6,7 @@ import { InscriptionComplete } from './common/services/complete.service';
 import { Router } from '@angular/router';
 import {AccordionModule} from "ng2-accordion";
 import { DataInformation } from './common/services/basicInformation.service';
+import { RolInformation } from './common/services/rolInformation.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -22,7 +23,13 @@ export class AppComponent {
   title = 'app';
   igual: boolean = null;
   response: number;
-  constructor(private _dataInformation: DataInformation, private _dataEconomicInformation: DataEconomicInformation, private _constants: Constants, private _fileService: FileService, public _inscriptionComplete: InscriptionComplete, private _Router: Router) {
+  constructor(private _dataInformation: DataInformation, 
+              private _dataEconomicInformation: DataEconomicInformation, 
+              private _constants: Constants, 
+              private _fileService: FileService, 
+              public _inscriptionComplete: InscriptionComplete, 
+              private _Router: Router,
+              private _rolInformation: RolInformation) {
     
   }
 
@@ -39,6 +46,7 @@ export class AppComponent {
   } 
 
   private PutValidationComponent() {
+    console.log('put');
     if(this._fileService.formDataFiles != null && this._fileService.formDataFiles != undefined) {
       setTimeout(() => this._inscriptionComplete.waitService = true,0);
       this._fileService.PotsFiles().subscribe(

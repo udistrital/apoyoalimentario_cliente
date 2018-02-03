@@ -26,6 +26,7 @@ export class EconomicInformation {
     public estadoprograma: number;
     public tiposubsidio: string;
     public tipoapoyo: string;
+    public mensaje: string;
 }
 
 // Administration
@@ -33,6 +34,6 @@ export class StudentData {
     constructor() { }
     public codigo: string;
     public ultimafechainscripcion: string;
-    public estadoprograma: number;
     public nombre: string;
+    public Informacioneconomica: EconomicInformation;
 }

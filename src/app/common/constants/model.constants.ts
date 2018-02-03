@@ -16,8 +16,10 @@ export class Constants {
     pathInformation: string = 'http://192.168.1.37:8086/v1/infoapoyo/';
     pathFiles: string = 'http://192.168.1.37:8086/v1/file/';
     // API Administration
-    pathName: string = 'http://192.168.1.37:8086/v1/admin/1/';
-    pathNameViewed: string = 'http://192.168.1.37:8086/v1/admin/2/';
-    pathRol: string = "http://192.168.1.37:8086/v1/admin/";
+    pathNew: string = 'http://192.168.1.37:8086/v1/admin/1/';
+    pathComplete: string = 'http://192.168.1.37:8086/v1/admin/3/';
+    pathIncomplete: string ='http://192.168.1.37:8086/v1/admin/4/';
+    pathRol: string = 'http://192.168.1.37:8086/v1/admin/';
+    pathVerification: string = 'http://192.168.1.37:8086/v1/admin/verification/';
     
 }

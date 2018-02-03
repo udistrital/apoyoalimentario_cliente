@@ -7,8 +7,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RolInformation {
     
+    waitService: boolean;
     rolInfo: userRol;
     constructor(private _http: Http, private _constants: Constants) {
+        this.waitService = false;
     }
 
     public GetRolInformation(url: string) {

@@ -1,0 +1,230 @@
+<ngb-tabset>
+  <ngb-tab title="Información Basica">
+      <ng-template ngbTabContent>
+          <div class="main">
+              <a><p><strong>Nombres y Apellidos</strong></p></a>
+              <a><p>{{modelBasicInformation.nombre}}</p></a>
+            </div>
+                
+            <div class="main">
+              <a><p><strong>Numero de Documento</strong></p></a>
+              <a><p>{{modelBasicInformation.numero_documento}}</p></a>
+            </div>
+                
+            <div class="main">
+              <a><p><strong>Proyecto Curricular</strong></p></a>
+              <a><p>{{modelInstitutionalInformation.proyecto}}</p></a>
+            </div>
+                
+            <div class="main">
+              <a><p><strong>Facultad</strong></p></a>
+              <a><p>{{modelInstitutionalInformation.facultad}}</p></a>
+            </div>
+                
+            <div class="main">
+              <a><p><strong>Dirección de Residencia</strong></p></a>
+              <a><p>{{modelBasicInformation.direccion}}</p></a>
+            </div>
+                
+            <div class="main">
+              <a><p><strong>Localidad</strong></p></a>
+              <a><p>{{modelBasicInformation.localidad}}</p></a>
+            </div>
+                
+            <div class="main">
+              <a><p><strong>Correo Electronico</strong></a>
+              <a><p>{{modelBasicInformation.correo}}</p></a>
+            </div>
+        
+            <div class="main">
+              <a><p><strong>Telefono</strong></p></a>
+              <a><p>{{modelBasicInformation.telefono}}</p></a>
+            </div>
+          <!-- <p *ngIf="countInformationViewedLocal !== 0">{{countInformationViewedLocal}}</p> -->
+      </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Información Economica">
+      <ng-template ngbTabContent>
+          <div class="main">
+            <a><p><strong>Estrato socioeconomico</strong></p></a>
+            <a><p>{{economicInformationLocal.estrato}}</p></a>
+          </div>
+                    
+          <div class="main">
+            <a><p><strong>Valor de ingresos propios o familiares</strong></p></a>
+            <a><p>{{economicInformationLocal.ingresos}}</p></a>
+          </div>
+
+          <div class="main">
+            <a><p><strong>Valor de matricula (sin sistematización ni seguro)</strong></p></a>
+            <a><p>{{economicInformationLocal.matricula}}</p></a>
+          </div>
+                    
+          <div class="main">
+            <a><p><strong>Como estudiante se sostiene economicamente a si mismo</strong></p></a>
+            <a><p>{{economicInformationLocal.sostenibilidadpropia}}</p></a>
+          </div>
+                    
+          <div class="main">
+            <a><p><strong>Como estudiante sostiene el hogar el vive?</strong></p></a>
+            <a><p>{{economicInformationLocal.sostenibilidadhogar}}</p></a>
+          </div>
+                    
+          <div class="main">
+            <a><p><strong>Vive fuera de su nucleo familiar de origen</strong></p></a>
+            <a><p>{{economicInformationLocal.nucleofamiliar}}</p></a>
+          </div>
+                    
+          <div class="main">
+            <a><p><strong>Como estudiante tiene personas a cargo</strong></p></a>
+            <a><p>{{economicInformationLocal.personasacargo}}</p></a>
+          </div>
+                    
+          <div class="main">
+            <a><p><strong>Vive en casa del empleador o paga arriendo</strong></p></a>
+            <a><p>{{economicInformationLocal.empleadoroarriendo}}</p></a>
+          </div>
+      
+          <div class="main">
+            <a><p><strong>Proviene de ciudades o municiíos distintos a bogota</strong> </p></a>
+            <a><p>{{economicInformationLocal.provienefuerabogota}} <strong>({{economicInformationLocal.ciudad}})</strong></p></a>
+          </div>
+      
+          <div class="main">
+              <a><p><strong>Usted o su grupo famliar estan certificados como población especial</strong> </p></a>
+              <a><p>{{economicInformationLocal.poblacionespecial}}</p></a>
+          </div>
+      
+          <div class="main">
+              <a><p><strong>Presenta algun tipo de discapacidad fisica o mental</strong> </p></a>
+              <a><p>{{economicInformationLocal.discapacidad}}</p></a>
+          </div>
+      
+          <div class="main">
+              <a><p><strong>Presenta alguna patología relacionada con la alimentación y la alimentación</strong> </p></a>
+              <a><p>{{economicInformationLocal.patologiaalimenticia}}</p></a>
+          </div>
+      
+          <div class="main">
+              <a><p><strong>Pertenece a Ser Pilo Paga</strong> </p></a>
+              <a><p>{{economicInformationLocal.serpilopaga}}</p></a>
+          </div>
+      
+          <div class="main">
+              <a><p><strong>Pertenece al sisben</strong> </p></a>
+              <a><p>{{economicInformationLocal.sisben}}</p></a>
+          </div>
+      </ng-template>
+  </ngb-tab>
+
+
+  <ngb-tab title="Documentos Adjuntados">
+    <ng-template ngbTabContent>
+      <div class="main2">
+        <div class="col1">
+          <ul>
+            <li>
+              <ul href="#" *ngFor="let archives of fileDBInformation" (click)="select(archives.nombre)" [ngClass]="{active: isActive(archives.nombre)}">
+                <li>
+                    <div><span (click)="showPdf(archives.url)">{{archives.nombre}}</span></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+          <div class="col2 doc" [hidden]="!SelectedArchive">
+            <iframe [src] ="pdf | safe" type="application/pdf"
+            allowfullscreen="allowfullscreen">
+          </iframe>
+          </div>
+          <div class="col2 doc" [hidden]="SelectedArchive">
+              <strong>Seleccione documento</strong>
+          </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Resultado">
+    <ng-template ngbTabContent>
+      <div class="main">
+        <div class="col-button">
+          <a><strong><p>APOYO ALIMENTARIO CONCEDIDO:</p></strong></a>
+        </div>
+        <div class="col-button">
+            <p>RESPUESTA SI | NO</p>
+        </div>
+      </div>
+      <div class="main">
+          <div class="col-button">
+            <a><strong><p>TIPO:</p></strong></a>
+          </div>
+          <div class="col-button">
+            <p>A | B | C</p>
+          </div>
+        </div>
+      <div class="main">
+          <div class="col-button">
+            <a><strong><p>PUNTAJE:</p></strong></a>
+          </div>
+          <div class="col-button">
+            <p>PUNTAJE NNNN</p>
+          </div>
+      </div>
+      <div class="main" *ngIf="economicInformationLocal.estadoprograma === 4">
+        <a><p>{{economicInformationLocal.mensaje}}</p></a>
+      </div>
+      <div class="main">
+        <div class="col-button" *ngIf="economicInformationLocal.estadoprograma === 1">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal2">ACEPTAR</button>
+        </div>
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmationModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Apoyo Alimentario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ¿Está seguro que desea aceptar la solicitud?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="StudentComplete()">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-button" *ngIf="economicInformationLocal.estadoprograma === 1">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectionModal">RECHAZAR</button>
+        </div>
+        <!-- Rejection Modal -->
+        <div class="modal fade" id="rejectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Apoyo Alimentario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Escriba a continuación las razones por las cuales se esta rechazando la inscripción
+                <textarea id="mensaje" rows="5" cols="100" class="form-control" [(ngModel)]="_dataEconomicInformation.economicInformation.mensaje"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="StudentIncomplete()">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

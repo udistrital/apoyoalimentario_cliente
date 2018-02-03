@@ -11,6 +11,9 @@
         <li routerLink="/configuration" *ngIf="_constants.rol === '1'">
           <accordion>Configuración</accordion>
         </li>
+        <li routerLink="/reports" *ngIf="_constants.rol === '1'">
+          <accordion>Reportes</accordion>
+        </li>
         <li routerLink="/data" *ngIf="_constants.rol === '3'">
           <accordion>Datos de estudiante</accordion>
         </li>
@@ -26,8 +29,28 @@
           </accordion>
         </li>
         <li>
-          <button *ngIf="_constants.rol === '3'" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" (click)="PutValidationComponent()" class="btn btn-success">INSCRIBIR</button>
+          <button *ngIf="_constants.rol === '3'" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal">INSCRIBIR</button>
         </li>
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Apoyo Alimentario</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ¿Está seguro que desea aceptar la solicitud?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PutValidationComponent()">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
       </ul>
     </div>
     <div class="alert alert-info" *ngIf="_constants.rol === '3'">
@@ -46,7 +69,7 @@
   </div>
 </div>
   <div class="interfaces">
-  <div *ngIf="_inscriptionComplete.waitService == true" class="loading">
+  <div *ngIf="_inscriptionComplete.waitService === true || _rolInformation.waitService === true" class="loading">
   
     <!-- 2 -->
   <div class="content">

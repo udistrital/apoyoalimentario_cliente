@@ -11,18 +11,36 @@
     <div class="main">
         <strong><p>Asigne en cada sede a un usuario que verifique los estudiantes de esa sede</p></strong>
         <div class="col1">
-            <p>Sede:</p>
-        </div>
-        <div class="col3">
-            <p>-></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Sedes
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of facultyList">
+                        <td>{{item.texto}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col2">
-            <p>Usuario:</p>
-        </div>
-        <div class="col1">
-            <select class="form-control">
-                <option *ngFor="let item of facultyList" value="{{item.value}}">{{item.texto}}</option>
-            </select>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Usuarios
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of userList">
+                        <td>{{item.texto}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col3">
             <p>-></p>
