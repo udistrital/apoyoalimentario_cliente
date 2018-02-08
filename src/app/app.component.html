@@ -5,7 +5,7 @@
   <nav class="vertical">
     <div>
       <ul>
-        <li routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'">
+        <li routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" (click)="select(accordion)" [ngClass]="{active: isActive(accordion)}">
           <accordion>Solicitudes</accordion>
         </li>
         <li routerLink="/configuration" *ngIf="_constants.rol === '1'">
@@ -54,7 +54,7 @@
       </ul>
     </div>
     <div class="alert alert-info" *ngIf="_constants.rol === '3'">
-      <strong>{{_dataInformation.MessageAdmin}}</strong>
+      <strong>{{_dataInformation.MessageAdmin.mensajeestudiantes}}</strong>
     </div>
   </nav>
   <div class="checkboxes">

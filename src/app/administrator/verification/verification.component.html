@@ -152,7 +152,7 @@
           <a><strong><p>APOYO ALIMENTARIO CONCEDIDO:</p></strong></a>
         </div>
         <div class="col-button">
-            <p>RESPUESTA SI | NO</p>
+            <p>SI</p>
         </div>
       </div>
       <div class="main">
@@ -160,7 +160,7 @@
             <a><strong><p>TIPO:</p></strong></a>
           </div>
           <div class="col-button">
-            <p>A | B | C</p>
+            <p>Total</p>
           </div>
         </div>
       <div class="main">
@@ -168,12 +168,16 @@
             <a><strong><p>PUNTAJE:</p></strong></a>
           </div>
           <div class="col-button">
-            <p>PUNTAJE NNNN</p>
+            <p>65</p>
           </div>
       </div>
-      <div class="main" *ngIf="economicInformationLocal.estadoprograma === 4">
-        <a><p>{{economicInformationLocal.mensaje}}</p></a>
+      <div class="alert alert-info mensaje" *ngIf="economicInformationLocal.estadoprograma === 4">
+        <p>La solicitud fue devuelta por los siguiente motivos:</p>
+          <strong>{{economicInformationLocal.mensaje}}</strong>
       </div>
+      <!-- <div class="main" *ngIf="economicInformationLocal.estadoprograma === 4">
+        <a><p>{{economicInformationLocal.mensaje}}</p></a>
+      </div> -->
       <div class="main">
         <div class="col-button" *ngIf="economicInformationLocal.estadoprograma === 1">
           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal2">ACEPTAR</button>

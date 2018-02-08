@@ -1,3 +1,34 @@
-<p>
-  report works!
-</p>
+<!-- <script type="text/javascript" src="bower_components/ng-table-excel-export/ng-table-excel-export.min.js"></script> -->
+<table class="table table-bordered" id="reporte">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th (click)="sort('codigo')">Código
+                <span class="fa sort-icon" *ngIf="key =='codigo'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('Nombre')">Nombre
+                <span class="fa sort-icon" *ngIf="key =='Nombre'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('ultimafechainscripcion')">Fecha de inscripción
+                <span class="fa sort-icon" *ngIf="key == 'ultimafechainscripcion'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('Informacioneconomica[0].tipoapoyo')">Tipo de Apoyo
+                <span class="fa sort-icon" *ngIf="key == 'Informacioneconomica[0].tipoapoyo'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataInformationNewLocal | orderBy: key : reverse | filter: filter; let i = index">
+            <td>{{ i+1 }}</td>
+            <td>{{ item.codigo }}</td>
+            <td>{{ item.Nombre }}</td>
+            <td>{{ item.ultimafechainscripcion | date: 'medium' }}</td>
+            <td class="type">{{ item.Informacioneconomica[0].tipoapoyo }}</td>
+        </tr>          
+    </tbody>
+</table>
+
+<!-- <a type="button" (click)="tableToExcel($event,'reporte', 'W3C Example Table')" download="Schede.xlsx" class="btn btn-warning"> Excel </a> -->
+
+
+<!-- <a download="reporte.xls" (click)="return ngTableExcelExport.excel(this, 'reporte', 'Sheet Name Here')">Export to Excel</a> -->

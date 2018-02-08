@@ -131,8 +131,14 @@ div.wrapper {
 
   .modal-content{
     top: 100px;
-}
+  }
 
+  .active li accordion{
+    width: 100%;
+    height: 100%;
+    background-color: #14CFFA;
+    color: white;
+  }
   
   @media screen and (max-width: 500px){
                     

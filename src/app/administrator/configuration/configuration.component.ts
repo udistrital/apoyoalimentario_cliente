@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProcessConfiguration } from '../../common/models/configuration.model';
 import { DataConfiguration } from '../../common/services/configuration.service';
+import { DataInformation } from '../../common/services/basicInformation.service';
 
 @Component({
   selector: 'app-configuration',
@@ -15,7 +16,8 @@ export class ConfigurationComponent implements OnInit {
   configurationLocal: ProcessConfiguration;
 
   constructor(private _processConfiguration: ProcessConfiguration,
-              private _dataConfiguration: DataConfiguration) { }
+              private _dataConfiguration: DataConfiguration,
+              private _dataInformation: DataInformation) { }
 
   ngOnInit() {
     this.facultyList = [{texto:"tecno",value:"tec"},
@@ -27,7 +29,19 @@ export class ConfigurationComponent implements OnInit {
                         {texto:"usuario 2",value:"u2"},
                         {texto:"usuario 3",value:"u3"},
                         {texto:"usuario 4",value:"u4"},
-                        {texto:"usuario 5",value:"u5"}];                   
+                        {texto:"usuario 5",value:"u5"}];
+
+
+                        
+                          this._dataInformation.GetAdminInformation()
+                            .subscribe(data => {
+                              this._dataInformation.MessageAdmin = data
+                              console.log(data);
+                            },
+                            error => {
+                              console.log(error);
+                            });
+                                     
   }
 
   changeModel() {

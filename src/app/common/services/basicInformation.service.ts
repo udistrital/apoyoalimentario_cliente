@@ -8,7 +8,7 @@ export class DataInformation {
    
     basicInformation: {};
     institutionalInformation: {};
-    MessageAdmin:string;
+    MessageAdmin: {menssageestudiantes: string} = {menssageestudiantes: ''};
     constructor(private _http: Http, private _constants: Constants) {
         this.basicInformation = null;
         this.institutionalInformation = null;

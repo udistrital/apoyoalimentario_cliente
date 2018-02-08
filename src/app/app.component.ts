@@ -17,6 +17,8 @@ declare var $ :any;
 })
 export class AppComponent {
 
+  selected :any;
+
   contador = 1;
 
   menu: number;
@@ -38,6 +40,7 @@ export class AppComponent {
       this._dataInformation.GetAdminInformation()
         .subscribe(data => {
           this._dataInformation.MessageAdmin = data
+          
         },
         error => {
           console.log(error);
@@ -88,4 +91,12 @@ export class AppComponent {
       }
     });
   }
+
+  select(item) {
+    this.selected = item; 
+  };
+
+  isActive(item) {
+    return this.selected === item;
+  };
 }

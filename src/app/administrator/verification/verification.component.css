@@ -77,6 +77,18 @@ btn {
     background-color: #14CFFA;
     color: white;
 }
+
+.mensaje p {
+    width: 100%;
+}
+
+.mensaje {
+    margin-top: 50px;
+    width: 80%;
+    text-align: center;
+    left: calc(6rem + 2px);
+}
+
 @media screen and (max-width: 730px){
     p {
         width: 100%;
