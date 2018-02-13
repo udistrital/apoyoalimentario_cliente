@@ -32,6 +32,12 @@ export class Metadata {
         '"file": "",' +
         '"required": "si"' +
         '},{' +
+        '"name": "ReciboUniversidad",' +
+        '"type": "file",' +
+        '"description": "Recibo de la universidad",' +
+        '"file": "",' +
+        '"required": "si"' +
+        '},{' +
         '"name": "PersonasACargo",' +
         '"type": "file",' +
         '"description": "Personas a cargo",' +

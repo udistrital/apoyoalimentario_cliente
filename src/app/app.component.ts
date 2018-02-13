@@ -17,7 +17,7 @@ declare var $ :any;
 })
 export class AppComponent {
 
-  selected :any;
+  selected :any; 
 
   contador = 1;
 

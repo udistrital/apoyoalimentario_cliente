@@ -21,6 +21,22 @@
     </label>
    </div>
 </div>
+
+<!-- Antiguo o Nuevo en el Prgrama -->
+<div class="main">
+    <div class="col1">Antiguo o Nuevo en el Apoyo Alimentario</div>
+    <div class="col2">
+      <label  class="container">Antiguo
+        <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="Antiguo">
+        <span class="checkmark"></span>
+      </label>
+  
+      <label  class="container">Nuevo
+          <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="Nuevo">
+          <span class="checkmark"></span>
+      </label>
+     </div>
+  </div>
   <!--      CAMPO 1     -->
   <div class="main">
     <div class="col1">Estrato socioeconomico</div>
