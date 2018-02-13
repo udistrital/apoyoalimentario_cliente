@@ -17,7 +17,7 @@ export class DataComponent {
 
   modelBasicInformation: {} = {};
   modelInstitutionalInformation: {} = {};
-  modelEconomicInformation: {mensaje:string} = {mensaje:''};
+  modelEconomicInformation: {mensaje:string, estadoprograma: number} = {mensaje:'', estadoprograma: 0};
   mensajesplit: string[];
 
   constructor(private _constants: Constants,
@@ -27,6 +27,7 @@ export class DataComponent {
               private _fileService: FileService, 
               private _metadata: Metadata,
               private _inscriptionComplete: InscriptionComplete) {
+                this.modelEconomicInformation.estadoprograma = 0;
   }
 
   ngOnInit() {
@@ -117,7 +118,7 @@ export class DataComponent {
         this._dataInformation.institutionalInformation ={proyecto:''};
       }  
       if (this.modelEconomicInformation == null){
-        this.modelEconomicInformation = { mensaje: '' };
+        this.modelEconomicInformation = { mensaje: '' , estadoprograma: 0};
       }  
     }
   }

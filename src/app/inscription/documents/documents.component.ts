@@ -56,7 +56,7 @@ export class DocumentsComponent implements OnInit {
         this._fileService.fileInformationLocal.forEach((item) => { 
         _count++;
         if (item.name == e) {
-          item.filedb = e; 
+          item.filedb = fileList[0].name; 
           this._fileService.fileInformationLocal[_count-1] = item;   
         }      
         });

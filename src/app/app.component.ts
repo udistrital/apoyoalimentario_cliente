@@ -24,7 +24,7 @@ export class AppComponent {
   menu: number;
   title = 'app';
   igual: boolean = null;
-  response: number;
+  response: number = 10;
   constructor(private _dataInformation: DataInformation, 
               private _dataEconomicInformation: DataEconomicInformation, 
               private _constants: Constants, 

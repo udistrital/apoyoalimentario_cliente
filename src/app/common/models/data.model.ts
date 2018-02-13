@@ -27,6 +27,9 @@ export class EconomicInformation {
     public tiposubsidio: string;
     public tipoapoyo: string;
     public mensaje: string;
+    public telefono: string;
+    public correo: string;
+    public antiguedad: string;
 }
 
 // Administration

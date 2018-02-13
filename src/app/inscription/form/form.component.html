@@ -27,12 +27,12 @@
     <div class="col1">Antiguo o Nuevo en el Apoyo Alimentario</div>
     <div class="col2">
       <label  class="container">Antiguo
-        <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="Antiguo">
+        <input [(ngModel)]="economicInformationLocal.antiguedad"  (change)="changeModel()"  type="radio" name="antiquity" value="Antiguo">
         <span class="checkmark"></span>
       </label>
   
       <label  class="container">Nuevo
-          <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="Nuevo">
+          <input [(ngModel)]="economicInformationLocal.antiguedad"  (change)="changeModel()"  type="radio" name="antiquity" value="Nuevo">
           <span class="checkmark"></span>
       </label>
      </div>
@@ -619,7 +619,6 @@
   </div>
 
 
-
   <!--      CAMPO 13     -->
   <div class="main">
     <div class="col1">¿Pertenece al SISBEN?</div>
@@ -662,6 +661,35 @@
               </div>
             </div>
           </div>
+    </div>
+  </div>
+
+  <!-- Alerta Comunicación -->
+  <div class="alert alert-info mensaje">
+    <p>Señor ESATUDIANTE, si su correo electronico o su numero telefonico no son los que usa habitualmente, anotelos en los siguientes campos</p>
+  </div>
+  <div class="main">
+    <div class="col1">
+      <a>
+        <p>
+          <strong>Numero Telefonico:</strong> 
+        </p>
+      </a>
+    </div>
+    <div class="col2">
+      <input type="text" placeholder="Escriba su numero telefonico" [(ngModel)]="economicInformationLocal.telefono" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control"/>
+    </div>
+  </div>
+  <div class="main">
+    <div class="col1">
+      <a>
+        <p>
+          <strong>Correo Electronico:</strong> 
+        </p>
+      </a>
+    </div>
+    <div class="col2">
+        <input type="text" placeholder="Escriba su correo electronico" [(ngModel)]="economicInformationLocal.correo" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control"/>
     </div>
   </div>
 
