@@ -36,6 +36,7 @@ export class DataComponent {
       this._stateService.GetInformationState().subscribe(
         data => {
           this._stateService.State = data;
+          this._constants.initialStatus = data;
           if (this._stateService.State == 1 || this._stateService.State == 2  ) {
               this.CallServiceBasic();
               

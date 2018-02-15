@@ -123,13 +123,12 @@
       </div>
   </div>
 
-  <!-- Solicitud Rechazada -->
-<!-- <div class="alert alert-danger mensaje" *ngIf="modelEconomicInformation.estadoprograma === 4">
-  <h4>Solicitud Devuelta</h4>
-  <p>Su solicitud fue devuelta por los siguiente motivos:</p>
-  <span *ngFor="let item of mensajesplit">
-      &emsp;<strong>- {{item}}</strong><br>
-  </span>
-  <p>Una vez solucionados estos errores puede enviar nuevamente su solicitud</p>
-  <p>PD: Si desea adjuntar un documento nuevamente o un documento faltante debe hacerlo en el apartado "Subir documentos" en la opción "Documentos adicionales"</p>
-</div> -->
+  <!-- Estudiante Inactivo o Plataforma Inactiva -->
+<div class="alert alert-warning mensaje" *ngIf="_constants.initialStatus === 0">
+  <h3>Señor ESTUDIANTE no puede acceder porque está fuera de los plazos de inscripción o usted se encuentra INACTIVO</h3>
+</div>
+
+  <!-- Estudiante En Proceso -->
+  <div class="alert alert-warning mensaje" *ngIf="_constants.initialStatus === -1">
+    <h3>Señor ESTUDIANTE su solicitud se encuentra en proceso</h3>
+  </div>

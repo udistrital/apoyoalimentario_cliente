@@ -70,6 +70,9 @@ export class FormComponent implements OnInit {
   }
 
   changeModel(){ 
+    if (this.economicInformationLocal.ingresos < 100000) {
+      this.economicInformationLocal.ingresos = null;
+    }
     this._dataEconomicInformation.economicInformation = this.economicInformationLocal;
     this._inscriptionComplete.CountCompletedFields();
     this._fileService.evaluateInformation(this._dataEconomicInformation.economicInformation)

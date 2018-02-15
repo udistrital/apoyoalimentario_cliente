@@ -139,6 +139,13 @@ div.wrapper {
     background-color: #14CFFA;
     color: white;
   }
+
+  .mensaje {
+    position: absolute;
+    top: 30px;
+    left: calc(5em + 2px);
+    width: 90%;
+  }
   
   @media screen and (max-width: 500px){
                     
