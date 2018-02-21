@@ -4,8 +4,8 @@
   </div>
   <nav class="vertical">
     <div>
-      <ul>
-        <li routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" (click)="select(accordion)" [ngClass]="{active: isActive(accordion)}">
+      <ul class="unordered" (click)="function()">
+        <li class="active" routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" >
           <accordion>Solicitudes</accordion>
         </li>
         <li routerLink="/configuration" *ngIf="_constants.rol === '1'">
@@ -20,13 +20,11 @@
         <li routerLink="/form" *ngIf="_constants.rol === '3'">
           <accordion>Formulario</accordion>
         </li>
+        <li routerLink="/documents" *ngIf="_constants.rol === '3'">
+          <accordion>Subir documentos</accordion>
+        </li>
         <li *ngIf="_constants.rol === '3'">
-          <accordion>
-            <accordion-group heading="Documentos">
-              <accordion routerLink="/documents">Subir documentos</accordion>
-              <accordion><a target="_blank" href="../assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></accordion>
-            </accordion-group>
-          </accordion>
+          <accordion><a target="_blank" href="../assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></accordion>
         </li>
         <li>
           <button *ngIf="_constants.rol === '3'" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal">INSCRIBIR</button>
@@ -106,7 +104,7 @@
     </div>
 
   <div class="error" *ngIf="response === 0">
-      <div class="alert alert-danger alert-dismissable fade show" role="alert">
+      <div class="alert alert-danger alert-dismissable fade show ins" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
           <span aria-hidden="true">&times;</span>
         </button>
