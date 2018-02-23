@@ -10,6 +10,7 @@ export class Constants {
     receiptInformation: string = 'http://jbpm.udistritaloas.edu.co:8280/services/bienestarProxy/info_recibo/';
     stateInformation: string = 'http://jbpm.udistritaloas.edu.co:8280/services/bienestarProxy/info_estado/';
     institutionalInformation: string = 'http://jbpm.udistritaloas.edu.co:8280/services/bienestarProxy/info_institucional/';
+    facultyInformation: string = 'http://jbpm.udistritaloas.edu.co:8280/services/bienestarProxy/info_facultades';
     
     // API
     pathState: string = 'http://192.168.1.40:8086/v1/infoapoyo/state/'; 

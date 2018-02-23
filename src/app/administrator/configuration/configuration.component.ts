@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProcessConfiguration } from '../../common/models/configuration.model';
 import { DataConfiguration } from '../../common/services/configuration.service';
 import { DataInformation } from '../../common/services/basicInformation.service';
+import { FacultyInformation } from '../../common/services/faculty.service';
 
 @Component({
   selector: 'app-configuration',
@@ -14,34 +15,24 @@ export class ConfigurationComponent implements OnInit {
   userList: any;
 
   configurationLocal: ProcessConfiguration;
+  modelFacultyInformation: {} = {};
 
   constructor(private _processConfiguration: ProcessConfiguration,
               private _dataConfiguration: DataConfiguration,
-              private _dataInformation: DataInformation) { }
+              private _dataInformation: DataInformation,
+              private _facultyInformation: FacultyInformation) { }
 
   ngOnInit() {
-    this.facultyList = [{texto:"tecno",value:"tec"},
-                        {texto:"ingenieria",value:"ing"},
-                        {texto:"vivero",value:"viv"},
-                        {texto:"macarena",value:"maca"},
-                        {texto:"asab",value:"as"}];
-    this.userList = [{texto:"usuario 1",value:"u1"},
-                        {texto:"usuario 2",value:"u2"},
-                        {texto:"usuario 3",value:"u3"},
-                        {texto:"usuario 4",value:"u4"},
-                        {texto:"usuario 5",value:"u5"}];
-
-
-                        
-                          this._dataInformation.GetAdminInformation()
-                            .subscribe(data => {
-                              this._dataInformation.MessageAdmin = data
-                              console.log(data);
-                            },
-                            error => {
-                              console.log(error);
-                            });
-                                     
+    this.modelFacultyInformation = this._facultyInformation.facultyInformation;
+                         
+    this._dataInformation.GetAdminInformation()
+      .subscribe(data => {
+        this._dataInformation.MessageAdmin = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      });                               
   }
 
   changeModel() {

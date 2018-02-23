@@ -5,6 +5,7 @@ import { Constants } from '../../common/constants/model.constants';
 import { Router, Event, ChildActivationEnd} from '@angular/router';
 import { RolInformation } from '../../common/services/rolInformation.service';
 import { userRol } from '../../common/models/userRol.model';
+import { FacultyInformation } from '../../common/services/faculty.service';
 
 declare var jquery:any;
 declare var $ :any;
@@ -26,7 +27,11 @@ export class ListComponent implements OnInit {
   dataInformationCompleteLocal: StudentData[];
   dataInformationIncompleteLocal: StudentData[];
   rolUser: userRol;
-  constructor(private _information: Information, private _constants: Constants, private _routerEvent: Router, private _rolInformation: RolInformation) { 
+  constructor(private _information: Information, 
+              private _constants: Constants, 
+              private _routerEvent: Router, 
+              private _rolInformation: RolInformation,
+              private _facultyInformation: FacultyInformation) { 
     this.contador = 0;
   }
 
@@ -70,6 +75,7 @@ export class ListComponent implements OnInit {
         this.dataInformationNewLocal = this._information.dataInformationNew;
         console.log(data);
         this.contador++;
+        this.CallServiceFaculty();
         if(this.contador == 3) {
           setTimeout(() => this._rolInformation.waitService = false,0);
           this.contador = 0;
@@ -149,5 +155,20 @@ export class ListComponent implements OnInit {
           this.contador = 0;
         }
       });
+  }
+
+  private CallServiceFaculty() {
+    if (this._facultyInformation.facultyInformation == null){ 
+      this._facultyInformation.GetFacultyInformation()
+      .subscribe(data => {
+        if(data.infoFacultadesColleccion.infoFacultades.length > 0) {
+          this._facultyInformation.facultyInformation = data.infoFacultadesColleccion.infoFacultades;   
+          // debugger;
+        } 
+      },
+      error => {
+        console.log(error);
+      });
+    }    
   }
 }

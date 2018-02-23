@@ -43,6 +43,7 @@ import { FileService } from './common/services/file.service';
 import { Metadata } from './common/constants/metadata';
 import { InscriptionComplete } from './common/services/complete.service';
 // Administration Providers
+import { FacultyInformation } from './common/services/faculty.service';
 import { ProcessConfiguration } from './common/models/configuration.model';
 import { DataConfiguration } from './common/services/configuration.service';
 import { RolInformation } from './common/services/rolInformation.service';
@@ -90,7 +91,8 @@ import { Information } from './common/services/information.service';
               ProcessConfiguration,
               DataConfiguration,
               RolInformation,
-              Information],
+              Information,
+              FacultyInformation],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
