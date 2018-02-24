@@ -121,6 +121,11 @@ export class ListComponent implements OnInit {
     this.reverse = !this.reverse;
   }
 
+
+
+
+
+
   Reload() {
     setTimeout(() => this._rolInformation.waitService = true,0);
     this._information.GetInformation(this._constants.pathNew + this.rolUser.sede)
@@ -156,6 +161,9 @@ export class ListComponent implements OnInit {
         }
       });
   }
+
+
+  
 
   private CallServiceFaculty() {
     if (this._facultyInformation.facultyInformation == null){ 

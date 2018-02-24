@@ -5,35 +5,48 @@
 
     <div class="main">
         <strong><p>Dé una descripción para los estudiantes acerca del proceso inscripción al Apóyo Alimentario</p></strong>
-        <textarea rows="5" cols="100" class="form-control"></textarea>
+        <textarea rows="5" cols="100" [(ngModel)]="configurationLocal.mensajeestudiantes"></textarea>
     </div>
 
     <div class="main">
-        <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
-        <div class="col1">
-            <select class="form-control">
-                <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
-            </select>
-        </div>
-        <div class="col3">
-            <p>-></p>
-        </div>
-        <div class="col2">
-            <div class="list">
-                <ul *ngFor="">
-                    <li>item</li>
-                </ul>
+            <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
+            <div class="col1">
+                <select (change)="saveFaculty($event.target.value)" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
+                </select>
+                <div class="main">
+                    <button class="btn btn-primary" (click)="addFaculty()">AGREGAR</button>
+                    <button class="btn btn-danger" (click)="removeFaculty()">ELIMINAR</button>
+                </div>
+            </div>
+            <div class="col3">
+                <P>-></P>
+            </div>
+            <div class="col2">
+                <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
+                    <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
+                </div>
             </div>
         </div>
-    </div>
     
     <div class="main">
-        <!-- <strong><p>Habilite o deshabilite el módulo de inscrpción</p></strong> -->
-        <div class="col1">
-            <button class="btn btn-success">HABILITAR</button>
+        <strong><p>Habilite o deshabilite el módulo de inscripción al apoyo alimentario</p></strong>
+        <div class="alert alert-info" *ngIf="configurationLocal.moduloactivo === false">
+            <strong><p>El modulo se encuentra deshabilitado</p></strong>
         </div>
-        <div class="col2">
-            <button class="btn btn-danger">DESHABILITAR</button>
+        <div class="alert alert-info" *ngIf="configurationLocal.moduloactivo === true">
+            <strong><p>El modulo se encuentra habilitado</p></strong>
         </div>
+        <div *ngIf="configurationLocal.moduloactivo === false">
+            <button class="btn btn-success" (click)="configurationLocal.moduloactivo = true">HABILITAR</button>
+        </div>
+        <div *ngIf="configurationLocal.moduloactivo === true">
+            <button class="btn btn-danger" (click)="configurationLocal.moduloactivo = false">DESHABILITAR</button>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-success" (click)="putConfiguration()">GUARDAR CAMBIOS</button>
     </div>
 </div>
