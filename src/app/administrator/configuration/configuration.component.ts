@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProcessConfiguration } from '../../common/models/configuration.model';
 import { DataConfiguration } from '../../common/services/configuration.service';
 import { DataInformation } from '../../common/services/basicInformation.service';
+import { FacultyInformation } from '../../common/services/faculty.service';
+import { RolInformation } from '../../common/services/rolInformation.service';
 
 @Component({
   selector: 'app-configuration',
@@ -10,47 +12,52 @@ import { DataInformation } from '../../common/services/basicInformation.service'
 })
 export class ConfigurationComponent implements OnInit {
 
-  facultyList: any;
-  userList: any;
-
   configurationLocal: ProcessConfiguration;
+  modelFacultyInformation: {} = {};
+  facultySelected: string;
+  // adminConfiguration: {} = {};
 
   constructor(private _processConfiguration: ProcessConfiguration,
               private _dataConfiguration: DataConfiguration,
-              private _dataInformation: DataInformation) { }
+              private _dataInformation: DataInformation,
+              private _facultyInformation: FacultyInformation,
+              private _rolInformation: RolInformation) { }
 
   ngOnInit() {
-    this.facultyList = [{texto:"tecno",value:"tec"},
-                        {texto:"ingenieria",value:"ing"},
-                        {texto:"vivero",value:"viv"},
-                        {texto:"macarena",value:"maca"},
-                        {texto:"asab",value:"as"}];
-    this.userList = [{texto:"usuario 1",value:"u1"},
-                        {texto:"usuario 2",value:"u2"},
-                        {texto:"usuario 3",value:"u3"},
-                        {texto:"usuario 4",value:"u4"},
-                        {texto:"usuario 5",value:"u5"}];
-
-
-                        
-                          this._dataInformation.GetAdminInformation()
-                            .subscribe(data => {
-                              this._dataInformation.MessageAdmin = data
-                              console.log(data);
-                            },
-                            error => {
-                              console.log(error);
-                            });
-                                     
+    this.modelFacultyInformation = this._facultyInformation.facultyInformation;
+    this.configurationLocal = this._dataConfiguration.configuration;
   }
 
-  changeModel() {
+  saveFaculty(deviceValue) {
+    this.facultySelected = deviceValue;
+  }
+
+  addFaculty() {
+    if(this.facultySelected != "") {
+      if(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected) == -1 && this.facultySelected != undefined) {
+        this.configurationLocal.refrigerionocturno.push(this.facultySelected);
+      }
+    }
+  }
+
+  removeFaculty() {
+    if(this.facultySelected != "") {
+      if(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected) > -1 && this.facultySelected != undefined) {
+        this.configurationLocal.refrigerionocturno.splice(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected),1);
+      }
+    }
+  }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
+  putConfiguration() {
+    setTimeout(() => this._rolInformation.waitService = true,0);
     this._dataConfiguration.configuration = this.configurationLocal;
+    this._dataConfiguration.PutConfiguration()
+      .subscribe((datad)=>{
+              setTimeout(() => this._rolInformation.waitService = false,0);
+          });
   }
-
-  addFaculty(seleccion: string) {
-    console.log("entra");
-    console.log(seleccion);
-  }
-
 }

@@ -20,15 +20,29 @@ textarea {
     margin: 10px 0;
     text-align: center;
     clear: both;
+    padding: 5% 0;
 }
 
 .container {
     text-align: center;
+    width: 95%;
+}
+
+.form-control{
+    padding: 2px 6px;
+    height: calc(3rem + 2px);
 }
 
 .list {
-    height: calc(2.25rem + 2px);
     border: 1px solid black; 
+}
+
+#facultades {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    vertical-align: middle;
+    padding: 0 0;
 }
 
 p {

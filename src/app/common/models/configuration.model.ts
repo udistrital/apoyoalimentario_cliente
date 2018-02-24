@@ -1,5 +1,6 @@
 export class ProcessConfiguration {
     constructor() {}
-    public message: string;
-    public enableProcess: boolean;
+    public mensajeestudiantes: string;
+    public moduloactivo: boolean;
+    public refrigerionocturno: Array<string>;
 }

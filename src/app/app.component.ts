@@ -4,9 +4,10 @@ import { Constants } from './common/constants/model.constants';
 import { FileService } from './common/services/file.service';
 import { InscriptionComplete } from './common/services/complete.service';
 import { Router } from '@angular/router';
-import {AccordionModule} from "ng2-accordion";
+import { AccordionModule } from "ng2-accordion";
 import { DataInformation } from './common/services/basicInformation.service';
 import { RolInformation } from './common/services/rolInformation.service';
+import { DataConfiguration } from './common/services/configuration.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -25,7 +26,8 @@ export class AppComponent {
   title = 'app';
   igual: boolean = null;
   response: number = 10;
-  constructor(private _dataInformation: DataInformation, 
+  mensajeEstudiantes: {} = {};
+  constructor(private _dataConfiguration: DataConfiguration, 
               private _dataEconomicInformation: DataEconomicInformation, 
               private _constants: Constants, 
               private _fileService: FileService, 
@@ -36,11 +38,11 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    if (this._dataInformation.MessageAdmin == null) {
-      this._dataInformation.GetAdminInformation()
+    if (this._dataConfiguration.MessageAdmin == null) {
+      this._dataConfiguration.GetAdminInformation()
         .subscribe(data => {
-          this._dataInformation.MessageAdmin = data
-          
+          this._dataConfiguration.configuration = data
+          this.mensajeEstudiantes = data;
         },
         error => {
           console.log(error);
