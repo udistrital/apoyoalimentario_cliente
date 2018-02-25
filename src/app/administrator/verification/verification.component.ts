@@ -7,9 +7,9 @@ import { FileService } from '../../common/services/file.service';
 import { EconomicInformation } from '../../common/models/data.model';
 import { FileDBData } from '../../common/models/file.model';
 import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
-import { RolInformation } from '../../common/services/rolInformation.service';
 import { StateService } from '../../common/services/status.service';
 import { Information } from '../../common/services/information.service';
+import { FacultyInformation } from '../../common/services/faculty.service';
 
 @Component({
   selector: 'app-verification',
@@ -34,9 +34,9 @@ export class VerificationComponent implements OnInit {
               private _dataEconomicInformation: DataEconomicInformation,
               private _fileService: FileService,
               private _routerEvent: Router,
-              private _rolInformation: RolInformation,
               private _stateService: StateService,
-              private _information: Information) {
+              private _information: Information,
+              private _facultyInformation: FacultyInformation) {
     this.contador = 0;
   }
 
@@ -55,7 +55,7 @@ export class VerificationComponent implements OnInit {
 
   //        Basic Information
   private CallServiceBasic() {
-    setTimeout(() => this._rolInformation.waitService = true,0);
+    setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._dataInformation.basicInformation == null){ 
       this._dataInformation.GetBasicInformation()
       .subscribe(data => {
@@ -64,7 +64,7 @@ export class VerificationComponent implements OnInit {
           this._dataInformation.basicInformation = this.modelBasicInformation;
           this.contador++;
           if(this.contador == 3) {
-            setTimeout(() => this._rolInformation.waitService = false,0);
+            setTimeout(() => this._facultyInformation.waitService = false,0);
             this.contador = 0;
           }           
         } 
@@ -82,7 +82,7 @@ export class VerificationComponent implements OnInit {
           console.log(1);
           this.contador++;
           if(this.contador == 3) {
-            setTimeout(() => this._rolInformation.waitService = false,0);
+            setTimeout(() => this._facultyInformation.waitService = false,0);
             this.contador = 0;
           } 
           this.CallServiceEconomic();
@@ -130,7 +130,7 @@ export class VerificationComponent implements OnInit {
         console.log(3);
         this.contador++;
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         } 
       },

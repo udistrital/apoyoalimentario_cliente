@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Information } from '../../common/services/information.service';
 import { Constants } from '../../common/constants/model.constants';
-import { userRol } from '../../common/models/userRol.model';
 import { StudentData } from '../../common/models/data.model';
 declare const $;
 @Component({
@@ -11,7 +10,6 @@ declare const $;
 })
 export class ReportComponent implements OnInit {
 
-  rolUser: userRol;
   contador: number;
   template: string;
 
@@ -29,7 +27,7 @@ export class ReportComponent implements OnInit {
       // console.log(this.rolUser.sede);
       // console.log(this._rolInformation.rolInfo.sede);
       //    Solicitudes Nuevas
-      this._information.GetInformation(this._constants.pathNew + this.rolUser.sede)
+      this._information.GetInformation(this._constants.pathNew /*+ this.rolUser.sede*/)
       .subscribe(data => {
         this._information.dataInformationNew = data;
         this.dataInformationNewLocal = this._information.dataInformationNew;

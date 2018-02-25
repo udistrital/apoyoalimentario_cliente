@@ -6,8 +6,8 @@ import { InscriptionComplete } from './common/services/complete.service';
 import { Router } from '@angular/router';
 import { AccordionModule } from "ng2-accordion";
 import { DataInformation } from './common/services/basicInformation.service';
-import { RolInformation } from './common/services/rolInformation.service';
 import { DataConfiguration } from './common/services/configuration.service';
+import { FacultyInformation } from './common/services/faculty.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -33,7 +33,7 @@ export class AppComponent {
               private _fileService: FileService, 
               public _inscriptionComplete: InscriptionComplete, 
               private _Router: Router,
-              private _rolInformation: RolInformation) {
+              private _facultyInformation: FacultyInformation) {
     
   }
 
