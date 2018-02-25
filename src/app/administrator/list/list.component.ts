@@ -27,12 +27,13 @@ export class ListComponent implements OnInit {
   dataInformationNewLocal: StudentData[];
   dataInformationCompleteLocal: StudentData[];
   dataInformationIncompleteLocal: StudentData[];
-  facultySelected: string = '';
+  facultySelected: string;
   constructor(private _information: Information, 
               private _constants: Constants, 
               private _routerEvent: Router, 
               private _facultyInformation: FacultyInformation) { 
     this.contador = 0;
+    this.facultySelected = this._facultyInformation.facultySelected;
     this.CallServiceFaculty();
   }
 

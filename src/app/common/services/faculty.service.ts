@@ -11,6 +11,7 @@ export class FacultyInformation {
     waitService: boolean;
     constructor(private _http: Http, private _constants: Constants) {
         this.facultyInformation = null;
+        this.facultySelected = '';
         this.waitService = false;
     }
 
