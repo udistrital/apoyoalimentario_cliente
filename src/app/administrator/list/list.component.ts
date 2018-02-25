@@ -62,6 +62,7 @@ export class ListComponent implements OnInit {
       this._routerEvent.navigate(['/login']);
     }
   }
+
   GetAllInfo() {
     if(this._information.dataInformationNew == null) {
       setTimeout(() => this._facultyInformation.waitService = true,0);
@@ -176,6 +177,9 @@ export class ListComponent implements OnInit {
       error => {
         console.log(error);
       });
-    }    
+    }  else {
+      setTimeout(() => this._facultyInformation.waitService = false,0);
+      this.GetAllInfo();
+    }   
   }
 }
