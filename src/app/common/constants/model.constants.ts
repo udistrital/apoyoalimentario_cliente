@@ -21,7 +21,6 @@ export class Constants {
     pathNew: string = 'http://192.168.1.44:8086/v1/admin/1/';
     pathComplete: string = 'http://192.168.1.44:8086/v1/admin/3/';
     pathIncomplete: string ='http://192.168.1.44:8086/v1/admin/4/';
-    pathRol: string = 'http://192.168.1.44:8086/v1/admin/';
     pathVerification: string = 'http://192.168.1.44:8086/v1/admin/verification/';
     
 }

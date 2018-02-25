@@ -7,8 +7,11 @@ import 'rxjs/add/operator/map';
 export class FacultyInformation {
    
     facultyInformation: {};
+    facultySelected: string;
+    waitService: boolean;
     constructor(private _http: Http, private _constants: Constants) {
         this.facultyInformation = null;
+        this.waitService = false;
     }
 
     ngOnInit() {

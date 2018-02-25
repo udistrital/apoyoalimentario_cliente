@@ -3,7 +3,6 @@ import { ProcessConfiguration } from '../../common/models/configuration.model';
 import { DataConfiguration } from '../../common/services/configuration.service';
 import { DataInformation } from '../../common/services/basicInformation.service';
 import { FacultyInformation } from '../../common/services/faculty.service';
-import { RolInformation } from '../../common/services/rolInformation.service';
 
 @Component({
   selector: 'app-configuration',
@@ -15,13 +14,11 @@ export class ConfigurationComponent implements OnInit {
   configurationLocal: ProcessConfiguration;
   modelFacultyInformation: {} = {};
   facultySelected: string;
-  // adminConfiguration: {} = {};
 
   constructor(private _processConfiguration: ProcessConfiguration,
               private _dataConfiguration: DataConfiguration,
               private _dataInformation: DataInformation,
-              private _facultyInformation: FacultyInformation,
-              private _rolInformation: RolInformation) { }
+              private _facultyInformation: FacultyInformation) { }
 
   ngOnInit() {
     this.modelFacultyInformation = this._facultyInformation.facultyInformation;
@@ -53,11 +50,11 @@ export class ConfigurationComponent implements OnInit {
   }
 
   putConfiguration() {
-    setTimeout(() => this._rolInformation.waitService = true,0);
+    setTimeout(() => this._facultyInformation.waitService = true,0);
     this._dataConfiguration.configuration = this.configurationLocal;
     this._dataConfiguration.PutConfiguration()
       .subscribe((datad)=>{
-              setTimeout(() => this._rolInformation.waitService = false,0);
+              setTimeout(() => this._facultyInformation.waitService = false,0);
           });
   }
 }

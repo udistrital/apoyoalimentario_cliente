@@ -46,7 +46,6 @@ import { InscriptionComplete } from './common/services/complete.service';
 import { FacultyInformation } from './common/services/faculty.service';
 import { ProcessConfiguration } from './common/models/configuration.model';
 import { DataConfiguration } from './common/services/configuration.service';
-import { RolInformation } from './common/services/rolInformation.service';
 import { Information } from './common/services/information.service';
 
 
@@ -90,7 +89,6 @@ import { Information } from './common/services/information.service';
               // Administration Providers
               ProcessConfiguration,
               DataConfiguration,
-              RolInformation,
               Information,
               FacultyInformation],
   bootstrap: [AppComponent]

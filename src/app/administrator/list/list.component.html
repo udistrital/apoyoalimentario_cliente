@@ -1,4 +1,22 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="select" *ngIf="facultySelected === ''">
+    <div class="sede">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th><strong><p>Seleccione la sede a la que vaya verificar</p></strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of modelFacultyInformation" (click)="selectFaculty(item.facultad)">
+                    <td>{{item.facultad}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="container">
     <div class="reload">
         <a class="btn btn-default btn-sm" (click)="Reload()">

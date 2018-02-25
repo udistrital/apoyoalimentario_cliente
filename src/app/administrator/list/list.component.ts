@@ -3,8 +3,6 @@ import { Information } from '../../common/services/information.service';
 import { StudentData } from '../../common/models/data.model';
 import { Constants } from '../../common/constants/model.constants';
 import { Router, Event, ChildActivationEnd} from '@angular/router';
-import { RolInformation } from '../../common/services/rolInformation.service';
-import { userRol } from '../../common/models/userRol.model';
 import { FacultyInformation } from '../../common/services/faculty.service';
 
 declare var jquery:any;
@@ -22,38 +20,24 @@ export class ListComponent implements OnInit {
   key: string = 'Nombre';
   reverse: boolean = false;
   contador: number;
+
+
+  modelFacultyInformation:string[];
   
   dataInformationNewLocal: StudentData[];
   dataInformationCompleteLocal: StudentData[];
   dataInformationIncompleteLocal: StudentData[];
-  rolUser: userRol;
+  facultySelected: string = '';
   constructor(private _information: Information, 
               private _constants: Constants, 
               private _routerEvent: Router, 
-              private _rolInformation: RolInformation,
               private _facultyInformation: FacultyInformation) { 
     this.contador = 0;
+    this.CallServiceFaculty();
   }
 
   ngOnInit() {
-    if(this._rolInformation.rolInfo == null) {
-      setTimeout(() => this._rolInformation.waitService = true,0);
-    this._rolInformation.GetRolInformation(this._constants.pathRol+this._constants.user).subscribe( data => {
-      if (data != "not found") {
-        this._rolInformation.rolInfo = data;
-        this.rolUser = data;
-        console.log(data);
-        this.GetAllInfo();
-      } else {
-        this._routerEvent.navigate(['/login']);
-      }
-    }, error => {
-      this._routerEvent.navigate(['/login']);
-    });
-    } else {
-      this.rolUser = this._rolInformation.rolInfo;
-      this.GetAllInfo();
-  }
+
   }
 
   ngOnDestroy() {
@@ -61,45 +45,58 @@ export class ListComponent implements OnInit {
     this.dataInformationCompleteLocal = null;
     this.dataInformationIncompleteLocal = null;
   }
+
+  selectFaculty(faculty: string) {
+    // faculty.replace('/','-');
+    console.log(faculty);
+    this.facultySelected = faculty.replace('/','-');
+    this._facultyInformation.facultySelected = faculty.replace('/','-');
+    this.Initialize();
+  }
   
 
+  Initialize() {
+    if(this._facultyInformation.facultySelected != null) {
+      this.GetAllInfo();
+    } else {
+      this._routerEvent.navigate(['/login']);
+    }
+  }
   GetAllInfo() {
     if(this._information.dataInformationNew == null) {
-      setTimeout(() => this._rolInformation.waitService = true,0);
-      console.log(this.rolUser.sede);
-      console.log(this._rolInformation.rolInfo.sede);
+      setTimeout(() => this._facultyInformation.waitService = true,0);
       //    Solicitudes Nuevas
-      this._information.GetInformation(this._constants.pathNew + this.rolUser.sede)
+      this._information.GetInformation(this._constants.pathNew + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationNew = data;
         this.dataInformationNewLocal = this._information.dataInformationNew;
         console.log(data);
         this.contador++;
-        this.CallServiceFaculty();
+       
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         }
       });
       //    Solicitudes Aceptadas
-      this._information.GetInformation(this._constants.pathComplete + this.rolUser.sede)
+      this._information.GetInformation(this._constants.pathComplete + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationComplete = data;
         this.dataInformationCompleteLocal = data;
         this.contador++;
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         }
       });
       //    solicitude Rechazadas
-      this._information.GetInformation(this._constants.pathIncomplete + this.rolUser.sede)
+      this._information.GetInformation(this._constants.pathIncomplete + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationIncomplete = data;
         this.dataInformationIncompleteLocal = data;
         this.contador++;
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         }
       });
@@ -107,7 +104,7 @@ export class ListComponent implements OnInit {
       this.dataInformationNewLocal = this._information.dataInformationNew;
       this.dataInformationCompleteLocal =  this._information.dataInformationComplete;
       this.dataInformationIncompleteLocal =  this._information.dataInformationIncomplete;
-      this._rolInformation.waitService = false;
+      this._facultyInformation.waitService = false;
     }
   }
 
@@ -127,36 +124,36 @@ export class ListComponent implements OnInit {
 
 
   Reload() {
-    setTimeout(() => this._rolInformation.waitService = true,0);
-    this._information.GetInformation(this._constants.pathNew + this.rolUser.sede)
+    setTimeout(() => this._facultyInformation.waitService = true,0);
+    this._information.GetInformation(this._constants.pathNew + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationNew = data;
         this.dataInformationNewLocal = this._information.dataInformationNew;
         this.contador++;
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         }
       });
 
-    this._information.GetInformation(this._constants.pathComplete + this.rolUser.sede)
+    this._information.GetInformation(this._constants.pathComplete + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationComplete = data;
         this.dataInformationCompleteLocal = data;
         this.contador++;
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         }
       });
 
-      this._information.GetInformation(this._constants.pathIncomplete + this.rolUser.sede)
+      this._information.GetInformation(this._constants.pathIncomplete + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationIncomplete = data;
         this.dataInformationIncompleteLocal = data;
         this.contador++;
         if(this.contador == 3) {
-          setTimeout(() => this._rolInformation.waitService = false,0);
+          setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
         }
       });
@@ -166,12 +163,14 @@ export class ListComponent implements OnInit {
   
 
   private CallServiceFaculty() {
+    setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._facultyInformation.facultyInformation == null){ 
       this._facultyInformation.GetFacultyInformation()
       .subscribe(data => {
         if(data.infoFacultadesColleccion.infoFacultades.length > 0) {
           this._facultyInformation.facultyInformation = data.infoFacultadesColleccion.infoFacultades;   
-          // debugger;
+          this.modelFacultyInformation = data.infoFacultadesColleccion.infoFacultades;
+          setTimeout(() => this._facultyInformation.waitService = false,0);
         } 
       },
       error => {
