@@ -22,5 +22,6 @@ export class Constants {
     pathComplete: string = 'http://192.168.1.43:8086/v1/admin/3/';
     pathIncomplete: string ='http://192.168.1.43:8086/v1/admin/4/';
     pathVerification: string = 'http://192.168.1.43:8086/v1/admin/verification/';
+    pathReport: string = 'http://192.168.1.43:8086/v1/admin/report';
     
 }

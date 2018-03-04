@@ -47,6 +47,8 @@ import { FacultyInformation } from './common/services/faculty.service';
 import { ProcessConfiguration } from './common/models/configuration.model';
 import { DataConfiguration } from './common/services/configuration.service';
 import { Information } from './common/services/information.service';
+import { Report, Col } from './common/models/report.model';
+import { ReportService } from './common/services/report.service';
 
 
 
@@ -90,7 +92,8 @@ import { Information } from './common/services/information.service';
               ProcessConfiguration,
               DataConfiguration,
               Information,
-              FacultyInformation],
+              FacultyInformation,
+              ReportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,34 +1,53 @@
-<!-- <script type="text/javascript" src="bower_components/ng-table-excel-export/ng-table-excel-export.min.js"></script> -->
-<table class="table table-bordered" id="reporte">
-    <thead class="thead-light">
-        <tr>
-            <th>#</th>
-            <th (click)="sort('codigo')">Código
-                <span class="fa sort-icon" *ngIf="key =='codigo'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
-            </th>
-            <th (click)="sort('Nombre')">Nombre
-                <span class="fa sort-icon" *ngIf="key =='Nombre'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
-            </th>
-            <th (click)="sort('ultimafechainscripcion')">Fecha de inscripción
-                <span class="fa sort-icon" *ngIf="key == 'ultimafechainscripcion'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
-            </th>
-            <th (click)="sort('Informacioneconomica[0].tipoapoyo')">Tipo de Apoyo
-                <span class="fa sort-icon" *ngIf="key == 'Informacioneconomica[0].tipoapoyo'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></span>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of dataInformationNewLocal | orderBy: key : reverse | filter: filter; let i = index">
-            <td>{{ i+1 }}</td>
-            <td>{{ item.codigo }}</td>
-            <td>{{ item.Nombre }}</td>
-            <td>{{ item.ultimafechainscripcion | date: 'medium' }}</td>
-            <td class="type">{{ item.Informacioneconomica[0].tipoapoyo }}</td>
-        </tr>          
-    </tbody>
-</table>
+<div class="main">
+    <p>Seleccione el tipo de reporte que desea generar</p>
+    <select class="formm-control" (change)="saveType($event.target.value)">
+        <option value="0">Seleccione una opción</option>
+        <option value="1">Reportes Genericos</option>
+        <option value="2">Reportes Finales</option>
+    </select>
+</div>
 
-<!-- <a type="button" (click)="tableToExcel($event,'reporte', 'W3C Example Table')" download="Schede.xlsx" class="btn btn-warning"> Excel </a> -->
+<div class="main" *ngIf="report.typeReport === 1">
+        <p>Seleccione los campos que quiere incluir en el reporte</p>
+    <div class="main">
+        <select (change)="saveColumn($event.target.value)">
+            <option value="">Seleccione un campo</option>
+            <option *ngFor="let item of _reportService.columna" class="form-control" value={{item.id}}>{{item.nombre}}</option>
+        </select>
+    </div>
+    <div class="main">
+        <button class="btn btn-primary" (click)="addColumn()">AGREGAR</button>
+        <button class="btn btn-danger" (click)="removeColumn()">ELIMINAR</button>
+    </div>
+    <div class="container">
+        <table class="table table-bordered">
+            <tbody>
+                <tr *ngFor="let item of addedColumn">
+                    <td>{{item}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
-<!-- <a download="reporte.xls" (click)="return ngTableExcelExport.excel(this, 'reporte', 'Sheet Name Here')">Export to Excel</a> -->
+
+
+<div class="main" *ngIf="report.typeReport === 1">
+    <p>Seleccione la sede de la cual desea sacar los reportes</p>
+    <select (change)="saveFaculty($event.target.value)" [(ngModel)]="report.tsede" [ngModelOptions]="{standalone: true}">
+        <option selected="selected" value="">Seleccione una sede</option>
+        <option value="ALL">Todas las sedes</option>
+        <option *ngFor="let item of modelFacultyInformation" class="form-control">{{item.facultad}}</option>
+    </select>
+</div>
+
+<div class="main container">
+        <p>Escriba el nombre del archivo a generar <strong>Max. 30 caracteres</strong></p>
+    <input type="text" [(ngModel)]="report.nameSheet" (change)="savenameSheet($event.target.value)" class="form-control">
+</div>
+
+<div class="main">
+    <button class="btn btn-primary" (click)="send()">GENERAR</button>
+</div>
+{{mostrar}}

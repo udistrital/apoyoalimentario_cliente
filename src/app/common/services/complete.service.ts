@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, ResponseContentType } from '@angular/http';
 import { Constants } from '../constants/model.constants';
 import { DataEconomicInformation } from '../services/economicInformation.service';
 import { FileService } from '../services/file.service';
