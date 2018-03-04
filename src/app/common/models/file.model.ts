@@ -9,6 +9,7 @@ export class FileMainInformation {
     public date: string;
     public size: number;
     public required: string;
+    public help: string;
 }
 export class FileDBData {
     constructor(

@@ -27,6 +27,8 @@ export class AppComponent {
   igual: boolean = null;
   response: number = 10;
   mensajeEstudiantes: {} = {};
+  todayDate: string;
+
   constructor(private _dataConfiguration: DataConfiguration, 
               private _dataEconomicInformation: DataEconomicInformation, 
               private _constants: Constants, 
@@ -34,7 +36,8 @@ export class AppComponent {
               public _inscriptionComplete: InscriptionComplete, 
               private _Router: Router,
               private _facultyInformation: FacultyInformation) {
-    
+                
+    this.todayDate = Date.now().toString();
   }
 
   ngOnInit() {

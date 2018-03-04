@@ -22,7 +22,7 @@ export class VerificationComponent implements OnInit {
   contador: number;
   mensaje: string;
 
-  modelBasicInformation: {} = {};
+  modelBasicInformation: {telefono: string, correo: string, nombre: string} = {telefono: '', correo: '', nombre: ''};
   modelInstitutionalInformation: {} = {};
   fileDBInformation: FileDBData[];
   economicInformationLocal: EconomicInformation;
@@ -109,12 +109,27 @@ export class VerificationComponent implements OnInit {
         });   
   }
 
+  Transform() {
+    switch(this.economicInformationLocal.ingresos) {
+      case 1:
+        return "1 SMLV o menos";
+      case 2:
+        return "Más de 1 y hasta 2 SMLV";
+      case 3:
+        return "Más de 2 y hasta 3 SMLV";
+      case 4:
+        return "Más de 3 y hasta 4 SMLV";
+      case 5:
+        return "4 SMLV o más";
+    }
+  }
+
 
   private InitModelDocument() {
     if (this._fileService._fileInfo == null) {
       //setTimeout(() => this._inscriptionComplete.waitService = false,0);
       if (this._dataInformation.basicInformation == null){
-        this._dataInformation.basicInformation = { nombre: '' };
+        this._dataInformation.basicInformation = {telefono: '', correo: '', nombre: '' };
         this._dataInformation.institutionalInformation ={ proyecto: '' }; 
       }
     }

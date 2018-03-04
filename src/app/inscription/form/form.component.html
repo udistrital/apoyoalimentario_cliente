@@ -9,7 +9,7 @@
   <!--      almuerzo o refrigerio     -->
 <div class="main" *ngIf="stateLocal === 2">
   <div class="col1">Tipo de Apoyo Alimentario</div>
-  <div class="col2">
+  <div class="col2" *ngIf="stateLocal !== -1">
     <label  class="container">Almuerzo
       <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="A">
       <span class="checkmark"></span>
@@ -20,12 +20,17 @@
         <span class="checkmark"></span>
     </label>
    </div>
+   <!--      ESTUDIANTE INSCRITO      -->
+   <div class="col2" *ngIf="stateLocal === -1">
+     <input [(ngModel)]="economicInformatonLocal.tipoapoyo" disabled> 
+   </div>
 </div>
+
 
 <!-- Antiguo o Nuevo en el Prgrama -->
 <div class="main">
     <div class="col1">Antiguo o Nuevo en el Apoyo Alimentario</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <label  class="container">Antiguo
         <input [(ngModel)]="economicInformationLocal.antiguedad"  (change)="changeModel()"  type="radio" name="antiquity" value="Antiguo">
         <span class="checkmark"></span>
@@ -36,11 +41,18 @@
           <span class="checkmark"></span>
       </label>
      </div>
+     <!--     ESTUDIANTE INSCRITO    -->
+     <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.antiguedad}}</p>
+      </div>
   </div>
+
+
+
   <!--      CAMPO 1     -->
   <div class="main">
     <div class="col1">Estrato socioeconomico</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select id="estrato" name="estrato" [(ngModel)]="economicInformationLocal.estrato" (change)="changeModel()" [ngModelOptions]="{standalone: true}"
         class="form-control" required>
         <option value="">Seleccione su respuesta</option>
@@ -52,7 +64,11 @@
         <option value="6">Estrato 6</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.estrato}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
       <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal1">
         ?
       </button>
@@ -92,11 +108,22 @@
   <!--      CAMPO 2     -->
   <div class="main">
     <div class="col1">Ingrese el valor de ingresos Propios o Familiares</div>
-    <div class="col2">
-      <input type="number" name="salario" placeholder="Escriba sus ingresos" min="0" (change)="changeModel()" [(ngModel)]="economicInformationLocal.ingresos" [ngModelOptions]="{standalone: true}"
+    <div class="col2" *ngIf="stateLocal !== -1">
+        <select name="salario" [(ngModel)]="economicInformationLocal.ingresos" (change)="changeModel()" [ngModelOptions]="{standalone: true}" 
         class="form-control" required>
+          <option value="0">Seleccione su respuesta</option>
+          <option value="1">1 SMLV o menos</option>
+          <option value="2">Más de 1 y hasta 2 SMLV</option>
+          <option value="3">Más de 2 y hasta 3 SMLV</option>
+          <option value="4">Más de 3 y hasta 4 SMLV</option>
+          <option value="5">4 SMLV o más</option>
+      </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{Transform()}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal2">
             ?
           </button>
@@ -112,17 +139,12 @@
                   </button>
                   </div>
                 <div class="modal-body">
-                  <p>Ingrese el valor de sus ingresos propios o el de sus padres, o la persona bajo la que esté a cargo, <span>Debe ingresarlo con numeros exactos sin puntos ni comas</span> </p>
-                </div>
-                <div class="modal-example">
-                  <p><strong>Ejemplo:</strong></p>
-                  <p>Si usted, sus padres o la persona que esté a cargo tiene ingresos de un salario minimo legal vigente ($ 781.242) debe ingresarlo asi:</p>
-                  <img src="./assets/ejemplos/ejemploIngresos.png">
+                  <p>Seleccione una opción según sea su situación</p>
+                  <p><strong>SMLV</strong> = Salario Minimo Legal Vigente</p>
                 </div>
                 <div class="movil">
-                  <p><strong>Ejemplo:</strong></p>
-                  <p>Si usted, sus padres o la persona que esté a cargo tiene ingresos de un salario minimo legal vigente ($ 781.242) debe ingresarlo asi:</p>
-                  <p><span>781242</span></p>
+                    <p>Seleccione una opción según sea su situación</p>
+                    <p><strong>SMLV</strong> = Salario Minimo Legal Vigente</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
@@ -138,7 +160,7 @@
   <!--      CAMPO 3     -->
   <div class="main">
     <div class="col1">¿Como estudiante se sostiene economicamente a sí mismo?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="sostenibilidad" [(ngModel)]="economicInformationLocal.sostenibilidadpropia" (change)="changeModel()" [ngModelOptions]="{standalone: true}" 
         class="form-control" required>
         <option value="">Seleccione su respuesta</option>
@@ -146,7 +168,11 @@
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.sostenibilidadpropia}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal3">
             ?
           </button>
@@ -186,7 +212,7 @@
   <!--      CAMPO 4     -->
   <div class="main">
     <div class="col1">¿Como estudiante sostiene el lugar en donde vive?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="sostiene" [(ngModel)]="economicInformationLocal.sostenibilidadhogar" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required
       class="form-control">
         <option value="">Seleccione su respuesta</option>
@@ -194,7 +220,11 @@
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.sostenibilidadhogar}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal4">
             ?
           </button>
@@ -234,7 +264,7 @@
   <!--      CAMPO 5     -->
   <div class="main">
     <div class="col1">¿Vive fuera de su núcleo familiar de origen? (Papá, Mamá, Hermanos)</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="nucleo" [(ngModel)]="economicInformationLocal.nucleofamiliar" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
       class="form-control">
         <option value="">Seleccion su respuesta</option>
@@ -242,7 +272,11 @@
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.nucleofamiliar}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal5">
             ?
           </button>
@@ -282,7 +316,7 @@
   <!--      CAMPO 6     -->
   <div class="main">
     <div class="col1">¿Como estudiante tiene personas a cargo?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="cargo" [(ngModel)]="economicInformationLocal.personasacargo" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
       class="form-control">
         <option value="">Selccione su respuesta</option>
@@ -290,7 +324,11 @@
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.personasacargo}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal6">
             ?
           </button>
@@ -330,7 +368,7 @@
   <!--      CAMPO 7     -->
   <div class="main">
     <div class="col1">¿Vive en casa de su empleador o paga arriendo?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="vive" [(ngModel)]="economicInformationLocal.empleadoroarriendo" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
       class="form-control"  required>
         <option value="">Seleccione su respuesta</option>
@@ -338,7 +376,11 @@
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.empleadoroarriendo}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal7">
             ?
           </button>
@@ -378,7 +420,7 @@
   <!--      CAMPO 8     -->
   <div class="main">
     <div class="col1">¿Proviene de ciudades o municipios distintos a Bogotá D.C.?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select id="municipio" [(ngModel)]="economicInformationLocal.provienefuerabogota" (change)="changeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
       class="form-control" required>
         <option value="">Seleccione su respuesta</option>
@@ -390,7 +432,12 @@
           [ngModelOptions]="{standalone: true}">
       </div>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.provienefuerabogota}}</p>
+        <p>{{economicInformationLocal.municipio}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal8">
             ?
           </button>
@@ -431,7 +478,7 @@
   <!--      CAMPO 9     -->
   <div class="main">
     <div class="col1">Usted o su grupo familiar está certificado como población:</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="especial" [(ngModel)]="economicInformationLocal.poblacionespecial" (change)="changeModel()" [ngModelOptions]="{standalone: true}" class="form-control" required>
         <option value="">Seleccione su respuesta</option>
         <option value="N">Ninguna</option>
@@ -442,7 +489,11 @@
         <option value="MC">Madre Cabeza de Hogar</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.poblacionespecial}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal9">
             ?
           </button>
@@ -482,14 +533,18 @@
   <!--      CAMPO 10     -->
   <div class="main">
     <div class="col1">¿Presenta algun tipo de discapacidad fisica o mental?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="discapacidad" [(ngModel)]="economicInformationLocal.discapacidad" (change)="changeModel()" [ngModelOptions]="{standalone: true}"   class="form-control" required>
         <option value="">Seleccione su respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.discapacidad}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal10">
             ?
           </button>
@@ -529,14 +584,18 @@
   <!--      CAMPO 11     -->
   <div class="main">
     <div class="col1">¿Presenta alguna patología relacionada con la nutrición y/o alimentacion?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="patologia" [(ngModel)]="economicInformationLocal.patologiaalimenticia" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" required>
         <option value="">Seleccione su respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.patologiaalimenticia}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal11">
             ?
           </button>
@@ -576,14 +635,18 @@
   <!--      CAMPO 12     -->
   <div class="main">
     <div class="col1">¿Pertenece al Programa Ser Pilo Paga?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="spp" [(ngModel)]="economicInformationLocal.serpilopaga" (change)="changeModel()" [ngModelOptions]="{standalone: true}" (change)="changeModel()"  class="form-control" required>
         <option value="">Seleccione si respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.serpilopaga}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal12">
             ?
           </button>
@@ -622,14 +685,18 @@
   <!--      CAMPO 13     -->
   <div class="main">
     <div class="col1">¿Pertenece al SISBEN?</div>
-    <div class="col2">
+    <div class="col2" *ngIf="stateLocal !== -1">
       <select name="sisben" [(ngModel)]="economicInformationLocal.sisben" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" required>
         <option value="">Selccione su respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
       </select>
     </div>
-    <div class="col3">
+    <!--      ESTUDIANTE INSCRITO    -->
+    <div class="col2" *ngIf="stateLocal === -1">
+        <p>{{economicInformationLocal.sisben}}</p>
+      </div>
+    <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal13">
             ?
           </button>
@@ -664,9 +731,28 @@
     </div>
   </div>
 
+  <div class="main" *ngIf="stateLocal === -1">
+    <div class="col1">
+        Numero telefonico
+    </div>
+    <div class="col2">
+        {{economicInformationLocal.telefono}}
+    </div>
+  </div>
+
+  <div class="main" *ngIf="stateLocal === -1">
+      <div class="col1">
+          Correo electronico
+      </div>
+      <div class="col2">
+          {{economicInformationLocal.correo}}
+      </div>
+    </div>
+
   <!-- Alerta Comunicación -->
+  <div *ngIf="stateLocal !== -1">
   <div class="alert alert-info mensaje">
-    <p>Señor ESATUDIANTE, si su correo electronico o su numero telefonico no son los que usa habitualmente, anotelos en los siguientes campos</p>
+    <p>Señor ESATUDIANTE, si su correo electronico o su numero telefonico no son los que usa habitualmente, modifiquelos en los siguientes campos</p>
   </div>
   <div class="main">
     <div class="col1">
@@ -677,7 +763,7 @@
       </a>
     </div>
     <div class="col2">
-      <input type="text" placeholder="Escriba su numero telefonico" [(ngModel)]="economicInformationLocal.telefono" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control"/>
+      <input type="number" min="1000000" [(ngModel)]="economicInformationLocal.telefono" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.telefono}}/>
     </div>
   </div>
   <div class="main">
@@ -689,8 +775,8 @@
       </a>
     </div>
     <div class="col2">
-        <input type="text" placeholder="Escriba su correo electronico" [(ngModel)]="economicInformationLocal.correo" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control"/>
+        <input type="email" [(ngModel)]="economicInformationLocal.correo" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.correo}}/>
     </div>
   </div>
-
+</div>
 </form>

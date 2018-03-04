@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataInformation {
    
-    basicInformation: {};
+    basicInformation: {telefono: string, correo: string, nombre: string};
     institutionalInformation: {};
     
     constructor(private _http: Http, private _constants: Constants) {

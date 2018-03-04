@@ -9,10 +9,20 @@ header {
     margin-bottom: 15px;
 }
 
-.col1, .col2 {
+.col1 {
     width: 50%;
     float: left;
-    padding: 0 0.5em;
+    /*padding: 0 0.5em;*/
+}
+
+.col2 {
+    width: 45%;
+    float: left;
+}
+
+.col3 {
+    width: 5%;
+    float: left;
 }
 
 .col1 p {

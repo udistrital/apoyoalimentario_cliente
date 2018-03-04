@@ -15,7 +15,7 @@ import { EconomicInformation } from '../../common/models/data.model';
 })
 export class DataComponent {
 
-  modelBasicInformation: {} = {};
+  modelBasicInformation: {telefono: string, correo: string, nombre: string} = {telefono: '', correo: '', nombre: ''};
   modelInstitutionalInformation: {} = {};
   modelEconomicInformation: {mensaje:string, estadoprograma: number} = {mensaje:'', estadoprograma: 0};
   mensajesplit: string[];
@@ -37,7 +37,11 @@ export class DataComponent {
         data => {
           this._stateService.State = data;
           this._constants.initialStatus = data;
-          if (this._stateService.State == 1 || this._stateService.State == 2  ) {
+          // 1: almuerzo
+          // 2: almuerzo y refrigerio
+          // 3: modificación por devolucion
+          // -1: ya estan en proceso
+          if (this._stateService.State == 1 || this._stateService.State == 2  || this._stateService.State == -1 || this._stateService.State == 3) {
               this.CallServiceBasic();
               
           } else {
@@ -115,7 +119,7 @@ export class DataComponent {
       this._fileService.fileInformationLocal = JSON.parse(this._metadata.uploadDocuments);
       setTimeout(() => this._inscriptionComplete.waitService = false,0);
       if (this._dataInformation.basicInformation == null){
-        this._dataInformation.basicInformation = { nombre: '' };
+        this._dataInformation.basicInformation = {telefono: '',correo: '', nombre: ''};
         this._dataInformation.institutionalInformation ={proyecto:''};
       }  
       if (this.modelEconomicInformation == null){

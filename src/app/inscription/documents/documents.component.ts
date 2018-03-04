@@ -3,6 +3,7 @@ import { FileService } from '../../common/services/file.service';
 import { FileMainInformation, FileDBData } from '../../common/models/file.model';
 import { InscriptionComplete } from '../../common/services/complete.service';
 import { Router,Event, ChildActivationEnd } from '@angular/router';
+import { StateService } from '../../common/services/status.service';
 
 
 @Component({
@@ -13,10 +14,14 @@ import { Router,Event, ChildActivationEnd } from '@angular/router';
 export class DocumentsComponent implements OnInit {
 
   x: number;
+  stateLocal:number;
 
   dataFromDB;
   fileInformationLocalComponent: FileMainInformation[];
-  constructor(private _fileService: FileService, private _inscriptionComplete: InscriptionComplete, private _routerEvent: Router ) { 
+  constructor(private _fileService: FileService, 
+              private _inscriptionComplete: InscriptionComplete, 
+              private _routerEvent: Router,
+              private _stateService: StateService ) { 
     this.dataFromDB=[];
 
     if (!_inscriptionComplete.SaveSuscribeDoc){
@@ -28,6 +33,8 @@ export class DocumentsComponent implements OnInit {
       });
       _inscriptionComplete.SaveSuscribeDoc = true;
   }
+
+  this.stateLocal = this._stateService.State;
   }
 
   ngOnInit() {
@@ -43,8 +50,6 @@ export class DocumentsComponent implements OnInit {
   }
 
   upload(event: any,e :string) {
-    //this._inscriptionComplete.documentUploaded =  0;
-    
       let fileList: FileList = event.target.files;
         if(fileList.length > 0) { 
           this._fileService.changeModel = true;

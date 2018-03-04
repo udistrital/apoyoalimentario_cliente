@@ -3,49 +3,105 @@
         <h1>Configuration</h1>
     </header>
 
+    <!-- Mensaje que se muestra a estudiantes acerca del plazo de inscripción -->
     <div class="main">
         <strong><p>Dé una descripción para los estudiantes acerca del proceso inscripción al Apóyo Alimentario</p></strong>
         <textarea rows="5" cols="100" [(ngModel)]="configurationLocal.mensajeestudiantes"></textarea>
     </div>
 
+    <!-- Incluir sedes que pueden tener refrigeio nocturno  -->
     <div class="main">
-            <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
-            <div class="col1">
-                <select (change)="saveFaculty($event.target.value)" class="form-control">
-                    <option value="">Seleccione una opción</option>
-                    <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
-                </select>
-                <div class="main">
-                    <button class="btn btn-primary" (click)="addFaculty()">AGREGAR</button>
-                    <button class="btn btn-danger" (click)="removeFaculty()">ELIMINAR</button>
-                </div>
-            </div>
-            <div class="col3">
-                <P>-></P>
-            </div>
-            <div class="col2">
-                <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
-                    <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
-                </div>
+        <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
+        <div class="col1">
+            <select (change)="saveFaculty($event.target.value)" class="form-control">
+                <option value="">Seleccione una sede</option>
+                <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
+            </select>
+            <div class="main">
+                <button class="btn btn-primary" (click)="addFaculty()">AGREGAR</button>
+                <button class="btn btn-danger" (click)="removeFaculty()">ELIMINAR</button>
             </div>
         </div>
-    
-    <div class="main">
-        <strong><p>Habilite o deshabilite el módulo de inscripción al apoyo alimentario</p></strong>
-        <div class="alert alert-info" *ngIf="configurationLocal.moduloactivo === false">
-            <strong><p>El modulo se encuentra deshabilitado</p></strong>
+        <div class="col3">
+            <P>-></P>
         </div>
-        <div class="alert alert-info" *ngIf="configurationLocal.moduloactivo === true">
-            <strong><p>El modulo se encuentra habilitado</p></strong>
-        </div>
-        <div *ngIf="configurationLocal.moduloactivo === false">
-            <button class="btn btn-success" (click)="configurationLocal.moduloactivo = true">HABILITAR</button>
-        </div>
-        <div *ngIf="configurationLocal.moduloactivo === true">
-            <button class="btn btn-danger" (click)="configurationLocal.moduloactivo = false">DESHABILITAR</button>
+        <div class="col2">
+            <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
+                <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
+            </div>
         </div>
     </div>
 
+    <!-- Vincular usuarios a sedes para verificar -->
+    <div class="main">
+        <strong><p>Asigne los usuarios que verificaran en las distintas sedes</p></strong>
+        <div class="col1">
+            <select (change)="saveVerifier($event.target.value)" class="form-control">
+                <option value="">Seleccione un usuario</option>
+                <option *ngFor="let item of verificadores">{{item}}</option>
+            </select>
+        </div>
+        <div class="col3">
+            <P>-></P>
+        </div>
+        <div class="col2">
+            <select (change)="saveFaculty($event.target.value)" class="form-control">
+                <option value="">Seleccione una sede</option>
+                <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
+            </select>
+        </div>
+        <div class="main">
+            <button class="btn btn-primary" (click)="addVerifier()">AGREGAR</button>
+            <button class="btn btn-danger" (click)="removeVerifier()">ELIMINAR</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
+            <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
+        </div>
+    </div>
+    
+    <!-- Habilitar o deshabilitar el modulo de inscripción del apoyo alimentario -->
+    <!-- Habilitar o deshabilitar las modificaciones -->
+    <div class="main">
+        <strong><p>Habilite o deshabilite el módulo de inscripción al apoyo alimentario</p></strong>
+        <!-- Habilitar el modulo general -->
+        <div class="alert alert-danger" *ngIf="configurationLocal.moduloactivo === false">
+            <strong><p>El modulo de inscripción se encuentra <strong>deshabilitado</strong></p></strong>
+        </div>
+        <div class="alert alert-success" *ngIf="configurationLocal.moduloactivo === true">
+            <strong><p>El modulo de inscripción se encuentra <strong>habilitado</strong></p></strong>
+        </div>
+        <div *ngIf="configurationLocal.moduloactivo === false">
+            <button class="btn btn-primary" (click)="configurationLocal.moduloactivo = true && configurationLocal.modulomodified = true ">HABILITAR</button>
+        </div>
+        <div *ngIf="configurationLocal.moduloactivo === true">
+            <button class="btn btn-primary" (click)="configurationLocal.moduloactivo = false">DESHABILITAR</button>
+        </div>
+        <!-- Habilitar modificaciones -->
+        <div *ngIf="configurationLocal.moduloactivo === false">
+            <div class="alert alert-danger" *ngIf="configurationLocal.modulomodified === false">
+                <strong><p>Las modificaciones se encuentran <strong>deshabilitado</strong></p></strong>
+            </div>
+            <div class="alert alert-success" *ngIf="configurationLocal.modulomodified === true">
+                <strong><p>Las modificaciones se encuentran <strong>habilitado</strong></p></strong>
+            </div>
+            <div *ngIf="configurationLocal.modulomodified === false">
+                <button class="btn btn-primary" (click)="configurationLocal.modulomodified = true">HABILITAR</button>
+            </div>
+            <div *ngIf="configurationLocal.modulomodified === true">
+                <button class="btn btn-primary" (click)="configurationLocal.modulomodified = false">DESHABILITAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configurar Recodatorio -->
+    <div class="main">
+        <strong><p>Fecha de recordatoroi para deshabilitar el módulo de inscripción</p></strong>
+        <input type="date" name="fecha" (change)="getDate($event.target.value)" [(ngModel)]="configurationLocal.reminder">
+    </div>
+
+    <!-- Guardar cambios realizados -->
     <div>
         <button class="btn btn-success" (click)="putConfiguration()">GUARDAR CAMBIOS</button>
     </div>

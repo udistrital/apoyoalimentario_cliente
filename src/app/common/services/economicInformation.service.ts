@@ -26,8 +26,10 @@ export class DataEconomicInformation {
     }
     
     public PutEconomicInformation() {
+        debugger;
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
+        console.log(this.economicInformation);
         let url = this._constants.pathInformation+this._constants.user;
         return this._http.put(url, this.economicInformation, {headers: this.headers});
     }

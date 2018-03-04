@@ -53,7 +53,7 @@
                     
           <div class="main">
             <a><p><strong>Valor de ingresos propios o familiares</strong></p></a>
-            <a><p>{{economicInformationLocal.ingresos}}</p></a>
+            <a><p>{{Transform()}}</p></a>
           </div>
 
           <div class="main">
@@ -114,6 +114,16 @@
           <div class="main">
               <a><p><strong>Pertenece al sisben</strong> </p></a>
               <a><p>{{economicInformationLocal.sisben}}</p></a>
+          </div>
+
+          <div class="main">
+              <a><p><strong>Numero telefonico</strong> </p></a>
+              <a><p>{{economicInformationLocal.telefono}}</p></a>
+          </div>
+
+          <div class="main">
+              <a><p><strong>Correo electronico</strong> </p></a>
+              <a><p>{{economicInformationLocal.correo}}</p></a>
           </div>
       </ng-template>
   </ngb-tab>

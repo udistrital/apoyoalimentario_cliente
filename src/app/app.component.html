@@ -24,10 +24,10 @@
           <accordion>Subir documentos</accordion>
         </li>
         <li *ngIf="_constants.rol === '3'">
-          <accordion><a target="_blank" href="../assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></accordion>
+          <accordion><a target="_blank" href="./assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></accordion>
         </li>
         <li>
-          <button *ngIf="_constants.rol === '3'" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal">INSCRIBIR</button>
+          <button *ngIf="_constants.initialStatus !== -1" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal">INSCRIBIR</button>
         </li>
         <!-- Confirmation Modal -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,11 +40,11 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  ¿Está seguro que desea aceptar la solicitud?
+                  Al hacer click en "Acepto", expresamente autorizo de manera voluntaria, informada e inequivoca a la Universidad Distrital Francisco José de Caldas para el tratamiento de datos personales referentes a mi informaicón personal y economica, la cual declaro la he suministrado de forma voluntaria y es completa, confiable, exacta y veridica.
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PutValidationComponent()">Aceptar</button>
+                  <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PutValidationComponent()">Acepto</button>
                 </div>
               </div>
             </div>
@@ -53,6 +53,9 @@
     </div>
     <div class="alert alert-info" *ngIf="_constants.rol === '3'">
       <strong>{{mensajeEstudiantes.mensajeestudiantes}}</strong>
+    </div>
+    <div class="alert alert-info" *ngIf="_constants.rol === '1' && (mensajeEstudiantes.reminder === (todayDate | date:'yyyy-MM-dd'))">
+        <strong>El módulo se debe cerrar hoy</strong>
     </div>
   </nav>
   <div class="checkboxes">
@@ -127,6 +130,6 @@
 </div>
 
   <!-- Estudiante En Proceso -->
-  <div class="alert alert-warning mensaje" *ngIf="_constants.initialStatus === -1">
+  <!-- <div class="alert alert-warning mensaje" *ngIf="_constants.initialStatus === -1">
     <h3>Señor ESTUDIANTE su solicitud se encuentra en proceso</h3>
-  </div>
+  </div> -->
