@@ -10,6 +10,8 @@ import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module'
 import { StateService } from '../../common/services/status.service';
 import { Information } from '../../common/services/information.service';
 import { FacultyInformation } from '../../common/services/faculty.service';
+import { BodyEmail } from '../../common/models/email.model';
+import { EmailConfiguration } from '../../common/services/email.service';
 
 @Component({
   selector: 'app-verification',
@@ -21,6 +23,9 @@ export class VerificationComponent implements OnInit {
   selected :any;
   contador: number;
   mensaje: string;
+
+  emailtoSend: {ebody: string, etosend: string, ename: string} = {ebody: '', etosend: '', ename: ''};
+  response: any;
 
   modelBasicInformation: {telefono: string, correo: string, nombre: string} = {telefono: '', correo: '', nombre: ''};
   modelInstitutionalInformation: {} = {};
@@ -36,7 +41,8 @@ export class VerificationComponent implements OnInit {
               private _routerEvent: Router,
               private _stateService: StateService,
               private _information: Information,
-              private _facultyInformation: FacultyInformation) {
+              private _facultyInformation: FacultyInformation,
+              private _emailService: EmailConfiguration) {
     this.contador = 0;
   }
 
@@ -180,12 +186,38 @@ export class VerificationComponent implements OnInit {
   }
 
   StudentIncomplete() {
+    this.contador = 0;
     // console.log(e);
+    /* NO ES FAKE */
+    setTimeout(() => this._facultyInformation.waitService = true,0);
+    this.emailtoSend.ebody = this._dataEconomicInformation.economicInformation.mensaje;
+    this.emailtoSend.ename = this.modelBasicInformation.nombre;
+    /* ES FAKE */
+    this.emailtoSend.etosend = 'davinci1996@live.com';
+
+
+    this._emailService.SendEmail(this.emailtoSend).subscribe((data) => {
+      this.response = data;
+      this.contador++;
+      if(this.contador == 2) {
+        setTimeout(() => this._facultyInformation.waitService = false,0);
+        this.contador = 0;
+      }
+      console.log(data);
+    });
+
+
+
     this._dataEconomicInformation.economicInformation.estadoprograma = 4;
     this._stateService.ChangeState().subscribe((data) => {
       this._information.dataInformationNew = null;
       this._information.dataInformationComplete = null;
       this._information.dataInformationIncomplete = null;
+      this.contador++;
+      if(this.contador == 2) {
+        setTimeout(() => this._facultyInformation.waitService = false,0);
+        this.contador = 0;
+      }
       this._routerEvent.navigate(['/list']);
     });
   }

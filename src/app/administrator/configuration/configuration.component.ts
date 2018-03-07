@@ -3,6 +3,9 @@ import { ProcessConfiguration, Sede } from '../../common/models/configuration.mo
 import { DataConfiguration } from '../../common/services/configuration.service';
 import { DataInformation } from '../../common/services/basicInformation.service';
 import { FacultyInformation } from '../../common/services/faculty.service';
+import { EmailConfiguration } from '../../common/services/email.service';
+import { Email, BodyEmail } from '../../common/models/email.model';
+import { Constants } from '../../common/constants/model.constants';
 
 @Component({
   selector: 'app-configuration',
@@ -12,6 +15,9 @@ import { FacultyInformation } from '../../common/services/faculty.service';
 export class ConfigurationComponent implements OnInit {
 
   configurationLocal: ProcessConfiguration;
+  email: Email;
+  bodyEmail: BodyEmail;
+  testMessage: any;
   configuracionVerificadores: Sede;
   modelFacultyInformation: {} = {};
   facultySelected: string;
@@ -35,8 +41,19 @@ export class ConfigurationComponent implements OnInit {
   constructor(private _processConfiguration: ProcessConfiguration,
               private _dataConfiguration: DataConfiguration,
               private _dataInformation: DataInformation,
-              private _facultyInformation: FacultyInformation) { 
+              private _facultyInformation: FacultyInformation,
+              private _emailConfiguration: EmailConfiguration,
+              private _constants: Constants) { 
+      this.testMessage = null;
+      setTimeout(() => this._facultyInformation.waitService = true,0);
+      this._emailConfiguration.GetAdminInformation().subscribe( data => {
+        this.email = data;
+        this._emailConfiguration.email = data;
+        setTimeout(() => this._facultyInformation.waitService = false,0);
+        console.log(data);
+      });
               }
+              
 
   ngOnInit() {
     this.modelFacultyInformation = this._facultyInformation.facultyInformation;
@@ -134,6 +151,23 @@ export class ConfigurationComponent implements OnInit {
   //   }
   // }
 
+  /*      EMAIL CONFIG START      */
+  TestConnection() {
+    setTimeout(() => this._facultyInformation.waitService = true,0);
+    this._emailConfiguration.PutConfiguration(this.email, this._constants.pathTestConnection).subscribe((data) => {
+      this.testMessage = data;
+      setTimeout(() => this._facultyInformation.waitService = false,0);
+    });
+  }
+
+  SaveEmailConfiguration() {
+    setTimeout(() => this._facultyInformation.waitService = true,0);
+    this._emailConfiguration.PutConfiguration(this.email, this._constants.pathSaveEmailConfiguration).subscribe((data) => {
+      this.testMessage = data;
+      setTimeout(() => this._facultyInformation.waitService = false,0);
+    });
+  }
+  /*      EMAIL CONFIG END        */
 
   /*   RECORDTAORIO   */
   getDate(deviceValue){

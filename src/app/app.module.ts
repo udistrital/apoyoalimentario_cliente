@@ -49,6 +49,7 @@ import { DataConfiguration } from './common/services/configuration.service';
 import { Information } from './common/services/information.service';
 import { Report, Col } from './common/models/report.model';
 import { ReportService } from './common/services/report.service';
+import { EmailConfiguration } from './common/services/email.service';
 
 
 
@@ -93,7 +94,8 @@ import { ReportService } from './common/services/report.service';
               DataConfiguration,
               Information,
               FacultyInformation,
-              ReportService],
+              ReportService,
+              EmailConfiguration],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

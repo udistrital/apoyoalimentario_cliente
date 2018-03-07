@@ -1,108 +1,212 @@
-<div class="container">
-    <header>
-        <h1>Configuration</h1>
-    </header>
+<ngb-tabset>
+    <ngb-tab title="Configuración">
+        <ng-template ngbTabContent>
+            <div class="container">
+                <!-- Mensaje que se muestra a estudiantes acerca del plazo de inscripción -->
+                <div class="main">
+                    <strong><p>Dé una descripción para los estudiantes acerca del proceso inscripción al Apóyo Alimentario</p></strong>
+                    <textarea rows="5" cols="100" [(ngModel)]="configurationLocal.mensajeestudiantes"></textarea>
+                </div>
+            
+                <!-- Incluir sedes que pueden tener refrigeio nocturno  -->
+                <div class="main">
+                    <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
+                    <div class="col1">
+                        <select (change)="saveFaculty($event.target.value)" class="form-control">
+                            <option value="">Seleccione una sede</option>
+                            <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
+                        </select>
+                        <div class="main">
+                            <button class="btn btn-primary" (click)="addFaculty()">AGREGAR</button>
+                            <button class="btn btn-danger" (click)="removeFaculty()">ELIMINAR</button>
+                        </div>
+                    </div>
+                    <div class="col3">
+                        <P>-></P>
+                    </div>
+                    <div class="col2">
+                        <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
+                            <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Vincular usuarios a sedes para verificar -->
+                <div class="main">
+                    <strong><p>Asigne los usuarios que verificaran en las distintas sedes</p></strong>
+                    <div class="col1">
+                        <select (change)="saveVerifier($event.target.value)" class="form-control">
+                            <option value="">Seleccione un usuario</option>
+                            <option *ngFor="let item of verificadores">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="col3">
+                        <P>-></P>
+                    </div>
+                    <div class="col2">
+                        <select (change)="saveFaculty($event.target.value)" class="form-control">
+                            <option value="">Seleccione una sede</option>
+                            <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
+                        </select>
+                    </div>
+                    <div class="main">
+                        <button class="btn btn-primary" (click)="addVerifier()">AGREGAR</button>
+                        <button class="btn btn-danger" (click)="removeVerifier()">ELIMINAR</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
+                        <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Habilitar o deshabilitar el modulo de inscripción del apoyo alimentario -->
+                <!-- Habilitar o deshabilitar las modificaciones -->
+                <div class="main">
+                    <strong><p>Habilite o deshabilite el módulo de inscripción al apoyo alimentario</p></strong>
+                    <!-- Habilitar el modulo general -->
+                    <div class="alert alert-danger" *ngIf="configurationLocal.moduloactivo === false">
+                        <strong><p>El modulo de inscripción se encuentra <strong>deshabilitado</strong></p></strong>
+                    </div>
+                    <div class="alert alert-success" *ngIf="configurationLocal.moduloactivo === true">
+                        <strong><p>El modulo de inscripción se encuentra <strong>habilitado</strong></p></strong>
+                    </div>
+                    <div *ngIf="configurationLocal.moduloactivo === false">
+                        <button class="btn btn-primary" (click)="configurationLocal.moduloactivo = true && configurationLocal.modulomodified = true ">HABILITAR</button>
+                    </div>
+                    <div *ngIf="configurationLocal.moduloactivo === true">
+                        <button class="btn btn-primary" (click)="configurationLocal.moduloactivo = false">DESHABILITAR</button>
+                    </div>
+                    <!-- Habilitar modificaciones -->
+                    <div *ngIf="configurationLocal.moduloactivo === false">
+                        <div class="alert alert-danger" *ngIf="configurationLocal.modulomodified === false">
+                            <strong><p>Las modificaciones se encuentran <strong>deshabilitado</strong></p></strong>
+                        </div>
+                        <div class="alert alert-success" *ngIf="configurationLocal.modulomodified === true">
+                            <strong><p>Las modificaciones se encuentran <strong>habilitado</strong></p></strong>
+                        </div>
+                        <div *ngIf="configurationLocal.modulomodified === false">
+                            <button class="btn btn-primary" (click)="configurationLocal.modulomodified = true">HABILITAR</button>
+                        </div>
+                        <div *ngIf="configurationLocal.modulomodified === true">
+                            <button class="btn btn-primary" (click)="configurationLocal.modulomodified = false">DESHABILITAR</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Configurar Recodatorio -->
+                <div class="main">
+                    <strong><p>Fecha de recordatoroi para deshabilitar el módulo de inscripción</p></strong>
+                    <input type="date" name="fecha" (change)="getDate($event.target.value)" [(ngModel)]="configurationLocal.reminder">
+                </div>
+            
+                <!-- Guardar cambios realizados -->
+                <div>
+                    <button class="btn btn-success" (click)="putConfiguration()">GUARDAR CAMBIOS</button>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-tab>
 
-    <!-- Mensaje que se muestra a estudiantes acerca del plazo de inscripción -->
-    <div class="main">
-        <strong><p>Dé una descripción para los estudiantes acerca del proceso inscripción al Apóyo Alimentario</p></strong>
-        <textarea rows="5" cols="100" [(ngModel)]="configurationLocal.mensajeestudiantes"></textarea>
-    </div>
 
-    <!-- Incluir sedes que pueden tener refrigeio nocturno  -->
-    <div class="main">
-        <strong><p>Seleccione las sedes que tendran refrigerio nocturno</p></strong>
-        <div class="col1">
-            <select (change)="saveFaculty($event.target.value)" class="form-control">
-                <option value="">Seleccione una sede</option>
-                <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
-            </select>
-            <div class="main">
-                <button class="btn btn-primary" (click)="addFaculty()">AGREGAR</button>
-                <button class="btn btn-danger" (click)="removeFaculty()">ELIMINAR</button>
-            </div>
-        </div>
-        <div class="col3">
-            <P>-></P>
-        </div>
-        <div class="col2">
-            <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
-                <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
-            </div>
-        </div>
-    </div>
+    <ngb-tab title="Configuración de correo">
+        <ng-template ngbTabContent>
+            <div class="container">
+                <form ngNativeValide>
+                    <div class="main">
+                        <div class="col1">
+                            Correo electronico del remitente
+                        </div>
+                        <div class="col1">
+                            <input type="email" class="form-control" placeholder="usuario@ejemplo.com" [(ngModel)]="email.emailCon" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
 
-    <!-- Vincular usuarios a sedes para verificar -->
-    <div class="main">
-        <strong><p>Asigne los usuarios que verificaran en las distintas sedes</p></strong>
-        <div class="col1">
-            <select (change)="saveVerifier($event.target.value)" class="form-control">
-                <option value="">Seleccione un usuario</option>
-                <option *ngFor="let item of verificadores">{{item}}</option>
-            </select>
-        </div>
-        <div class="col3">
-            <P>-></P>
-        </div>
-        <div class="col2">
-            <select (change)="saveFaculty($event.target.value)" class="form-control">
-                <option value="">Seleccione una sede</option>
-                <option *ngFor="let item of modelFacultyInformation">{{item.facultad}}</option>
-            </select>
-        </div>
-        <div class="main">
-            <button class="btn btn-primary" (click)="addVerifier()">AGREGAR</button>
-            <button class="btn btn-danger" (click)="removeVerifier()">ELIMINAR</button>
-        </div>
-    </div>
-    <div class="main">
-        <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
-            <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
-        </div>
-    </div>
-    
-    <!-- Habilitar o deshabilitar el modulo de inscripción del apoyo alimentario -->
-    <!-- Habilitar o deshabilitar las modificaciones -->
-    <div class="main">
-        <strong><p>Habilite o deshabilite el módulo de inscripción al apoyo alimentario</p></strong>
-        <!-- Habilitar el modulo general -->
-        <div class="alert alert-danger" *ngIf="configurationLocal.moduloactivo === false">
-            <strong><p>El modulo de inscripción se encuentra <strong>deshabilitado</strong></p></strong>
-        </div>
-        <div class="alert alert-success" *ngIf="configurationLocal.moduloactivo === true">
-            <strong><p>El modulo de inscripción se encuentra <strong>habilitado</strong></p></strong>
-        </div>
-        <div *ngIf="configurationLocal.moduloactivo === false">
-            <button class="btn btn-primary" (click)="configurationLocal.moduloactivo = true && configurationLocal.modulomodified = true ">HABILITAR</button>
-        </div>
-        <div *ngIf="configurationLocal.moduloactivo === true">
-            <button class="btn btn-primary" (click)="configurationLocal.moduloactivo = false">DESHABILITAR</button>
-        </div>
-        <!-- Habilitar modificaciones -->
-        <div *ngIf="configurationLocal.moduloactivo === false">
-            <div class="alert alert-danger" *ngIf="configurationLocal.modulomodified === false">
-                <strong><p>Las modificaciones se encuentran <strong>deshabilitado</strong></p></strong>
-            </div>
-            <div class="alert alert-success" *ngIf="configurationLocal.modulomodified === true">
-                <strong><p>Las modificaciones se encuentran <strong>habilitado</strong></p></strong>
-            </div>
-            <div *ngIf="configurationLocal.modulomodified === false">
-                <button class="btn btn-primary" (click)="configurationLocal.modulomodified = true">HABILITAR</button>
-            </div>
-            <div *ngIf="configurationLocal.modulomodified === true">
-                <button class="btn btn-primary" (click)="configurationLocal.modulomodified = false">DESHABILITAR</button>
-            </div>
-        </div>
-    </div>
+                    <div class="main">
+                        <div class="col1">
+                            Contraseña
+                        </div>
+                        <div class="col1">
+                            <input type="password" class="form-control" placeholder="contraseña" [(ngModel)]="email.pass" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
 
-    <!-- Configurar Recodatorio -->
-    <div class="main">
-        <strong><p>Fecha de recordatoroi para deshabilitar el módulo de inscripción</p></strong>
-        <input type="date" name="fecha" (change)="getDate($event.target.value)" [(ngModel)]="configurationLocal.reminder">
-    </div>
+                    <div class="main">
+                        <div class="col1">
+                            Asunto
+                        </div>
+                        <div class="col1">
+                            <input type="text" class="form-control" placeholder="Asunto del mensaje" [(ngModel)]="email.subject" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
 
-    <!-- Guardar cambios realizados -->
-    <div>
-        <button class="btn btn-success" (click)="putConfiguration()">GUARDAR CAMBIOS</button>
+                    <div class="main">
+                        <div class="col1">
+                            Pie del mensaje
+                        </div>
+                        <div class="col1">
+                            <textarea cols="30" rows="3" class="form-control" placeholder="Enviado por Usuario" [(ngModel)]="email.text" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                    </div>
+
+                    
+                    <div class="main">
+                        <a>Mostrar Configuración Avanzada</a>
+                        <div class="main">
+                            <div class="col1">
+                                Servidor (Protocolo)
+                            </div>
+                            <div class="col2">
+                                <input type="text" placeholder="smtp.ejemplo.com" class="form-control" [(ngModel)]="email.server" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <div class="col1">
+                                Puerto
+                            </div>
+                            <div class="col2">
+                                <input type="number" class="form-control" placeholder="3128 (ejemplo)" [(ngModel)]="email.port" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <div class="col1">
+                                Seguridad
+                            </div>
+                            <div class="col2">
+                                <div class="col2">
+                                    <input type="checkbox" [(ngModel)]="email.securitySSL" id="ssl" class="form-control" [ngModelOptions]="{standalone: true}">
+                                    <label for="ssl">SSL</label>
+                                </div>
+                                <div class="col2">
+                                    <input type="checkbox" [(ngModel)]="email.securityTLS" id="tls" class="form-control" [ngModelOptions]="{standalone: true}">
+                                    <label for="tls">TLS</label>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <button class="btn btn-primary" (click)="TestConnection()">Probar Conexión</button>
+                        </div>
+
+                        <div class="main">
+                                <button class="btn btn-success" (click)="SaveEmailConfiguration()">Guardar Cambios</button>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>
+
+<div class="error" *ngIf="testMessage !== null">
+    <div class="alert2 alert-info alert-dismissable fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="testMessage = null">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <h3><strong>{{testMessage._body}}</strong></h3>
     </div>
 </div>

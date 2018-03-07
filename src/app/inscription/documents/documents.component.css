@@ -9,20 +9,23 @@ header {
     margin-bottom: 15px;
 }
 
-.col1 {
+.col1, .col2 {
     width: 50%;
     float: left;
     /*padding: 0 0.5em;*/
 }
 
-.col2 {
-    width: 45%;
-    float: left;
+.help {
+    display: none;
+    padding: 0 100em;
+    width: 90%;
+    text-align: center;
 }
-
-.col3 {
-    width: 5%;
-    float: left;
+.help p {
+    width: 90%;
+}
+.data:hover .help{
+    display: initial
 }
 
 .col1 p {

@@ -72,7 +72,6 @@ export class ListComponent implements OnInit {
       .subscribe(data => {
         this._information.dataInformationNew = data;
         this.dataInformationNewLocal = this._information.dataInformationNew;
-        console.log(data);
         this.contador++;
        
         if(this.contador == 3) {
