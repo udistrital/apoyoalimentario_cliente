@@ -54,9 +54,22 @@
                         <button class="btn btn-danger" (click)="removeVerifier()">ELIMINAR</button>
                     </div>
                 </div>
-                <div class="main">
-                    <div class="list" *ngFor="let item of configurationLocal.refrigerionocturno; let index = index; trackBy: trackByIndex;">
-                        <textarea [(ngModel)]="configurationLocal.refrigerionocturno[index]" placeholder="item" disabled="disabled" rows="2"  id="facultades"></textarea>
+                <div class="verificadores">
+                    <div class="list">
+                        <table class="table table-bordered" *ngFor="let item of configurationLocal.configuracionverificadores">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        {{item.nombre}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let verificador of item.verificadores">
+                                <tr>
+                                    <td>{{verificador}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 

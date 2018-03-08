@@ -69,3 +69,7 @@ p {
     top: 50%;
     left: 20%;
 }
+
+.verificadores table th, td {
+    text-align: center;
+}

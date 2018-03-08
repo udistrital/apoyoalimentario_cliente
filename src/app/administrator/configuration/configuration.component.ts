@@ -6,6 +6,7 @@ import { FacultyInformation } from '../../common/services/faculty.service';
 import { EmailConfiguration } from '../../common/services/email.service';
 import { Email, BodyEmail } from '../../common/models/email.model';
 import { Constants } from '../../common/constants/model.constants';
+import { unescapeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-configuration',
@@ -91,65 +92,73 @@ export class ConfigurationComponent implements OnInit {
     this.verifierSelected = deviceValue;
   }
 
-  // addVerifier() {
-  //   if(this.facultySelected != "" && this.verifierSelected != "") {
-  //     if(this.configurationLocal.configuracionverificadores == undefined || this.configurationLocal.configuracionverificadores == null) {
-  //       this.configurationLocal.configuracionverificadores = new Array<Sede>();
-  //     }
-  //     if(this.configurationLocal.configuracionverificadores.length == 0) {
-  //       this.configuracionVerificadores = new Sede(this.facultySelected, this.verifierSelected);
-  //       this.configurationLocal.configuracionverificadores.push(this.configuracionVerificadores);
-  //       console.log(this.configurationLocal.configuracionverificadores);
-  //     } else {
-  //       for(this.i = 0; this.i < this.configurationLocal.configuracionverificadores.length; this.i++) {
-  //         if(this.configurationLocal.configuracionverificadores[this.i].nombre == this.facultySelected) {
-  //           this.findFaculty = true;
-  //           if (this.findFaculty) {
-  //             console.log("Encontró la facultad");
-  //             for(this.j = 0; this.j < this.configurationLocal.configuracionverificadores[this.i].verificadores.length; this.j++) {
-  //               if(this.configurationLocal.configuracionverificadores[this.i].verificadores[this.j] == this.verifierSelected) {
-  //                 console.log("Encontró al verificador");
-  //                 this.findVerifier = true;
-  //                 break;
-  //               } else {
-  //                 this.findVerifier = false;
-  //                 this.configurationLocal.configuracionverificadores[this.i].verificadores.push(this.verifierSelected);
-  //               }
-  //             }
-  //             console.log(this.configurationLocal.configuracionverificadores);
-  //           }
-  //           break;
-  //         } else {
-  //           this.findFaculty = false;
-  //         }
-  //       }
-  //       if(!this.findFaculty) {
-  //         this.configuracionVerificadores = new Sede(this.facultySelected, this.verifierSelected);
-  //         this.configurationLocal.configuracionverificadores.push(this.configuracionVerificadores);
-  //         console.log(this.configurationLocal.configuracionverificadores);
-  //       }
-  //     }
-  //   }
-  // }
+  addVerifier() {
+    console.log(this.configurationLocal.configuracionverificadores);
+    if (this.facultySelected != undefined && this.verifierSelected != undefined) {
+      if (this.configurationLocal.configuracionverificadores == undefined || this.configurationLocal.configuracionverificadores == null){
+        this.configurationLocal.configuracionverificadores = new Array<Sede>();
+      }
+      if (this.configurationLocal.configuracionverificadores.length == 0) {
+        this.configuracionVerificadores = new Sede(this.facultySelected, this.verifierSelected);
+        this.configurationLocal.configuracionverificadores.push(this.configuracionVerificadores);
+      } else {
+        for(this.i = 0; this.i <= this.configurationLocal.configuracionverificadores.length - 1; this.i++) {
+          if (this.configurationLocal.configuracionverificadores[this.i].nombre == this.facultySelected) {
+            this.findFaculty = true;
+            break;
+          } else {
+            this.findFaculty = false;
+          }
+        }
+        if (this.findFaculty) {
+          for(this.j = 0; this.j <= this.configurationLocal.configuracionverificadores[this.i].verificadores.length - 1; this.j++) {
+            if (this.configurationLocal.configuracionverificadores[this.i].verificadores[this.j] == this.verifierSelected) {
+              this.findVerifier = true;
+              break;
+            } else {
+              this.findVerifier = false;
+            }
+          }
+          if (!this.findVerifier) {
+            this.configurationLocal.configuracionverificadores[this.i].verificadores.push(this.verifierSelected);
+          }
+        } else {
+          this.configuracionVerificadores = new Sede(this.facultySelected, this.verifierSelected);
+          this.configurationLocal.configuracionverificadores.push(this.configuracionVerificadores);
+        }
+      }
+    }
+  }
 
-  // removeVerifier() {
-  //   if(this.facultySelected != "" && this.verifierSelected != "") {
-  //     if(this.configurationLocal.configuracionverificadores !== undefined || this.configurationLocal.configuracionverificadores !== null) {
-  //       for(this.i = 0; this.i < this.configurationLocal.configuracionverificadores.length; this.i++) {
-  //         if(this.configurationLocal.configuracionverificadores[this.i].nombre == this.facultySelected) {
-  //           this.findFaculty = true;
-  //           if (this.findFaculty) {
-  //             if(this.configurationLocal.configuracionverificadores[this.i].verificadores.indexOf(this.verifierSelected) > -1) {
-  //               this.configurationLocal.configuracionverificadores[this.i].verificadores.splice(this.configurationLocal.configuracionverificadores[this.i].verificadores.indexOf(this.verifierSelected),1);
-  //             }
-  //             console.log(this.configurationLocal.configuracionverificadores);
-  //             break;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  removeVerifier() {
+    this.findFaculty = false;
+    this.findVerifier = false;
+    if(this.facultySelected != undefined && this.verifierSelected != undefined) {
+      if (this.configurationLocal.configuracionverificadores != undefined) {
+        for (this.i = 0; this.i <= this.configurationLocal.configuracionverificadores.length - 1; this.i++) {
+          if (this.configurationLocal.configuracionverificadores[this.i].nombre == this.facultySelected) {
+            this.findFaculty = true;
+            break;
+          }
+        }
+        if (this.findFaculty) {
+          if (this.configurationLocal.configuracionverificadores[this.i].verificadores.length > 0) {
+            for (this.j = 0; this.j <= this.configurationLocal.configuracionverificadores[this.i].verificadores.length -1; this.j++) {
+              if (this.configurationLocal.configuracionverificadores[this.i].verificadores[this.j] == this.verifierSelected) {
+                this.findVerifier = true;
+                break;
+              }
+            }
+            if (this.findVerifier) {
+              this.configurationLocal.configuracionverificadores[this.i].verificadores.splice(this.configurationLocal.configuracionverificadores[this.i].verificadores.indexOf(this.verifierSelected),1);
+            }
+          } else {
+            this.configurationLocal.configuracionverificadores.splice(this.i, 1);
+          }
+        }
+      }
+    }
+  }
 
   /*      EMAIL CONFIG START      */
   TestConnection() {
