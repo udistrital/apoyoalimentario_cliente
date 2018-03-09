@@ -45,6 +45,7 @@ export class ConfigurationComponent implements OnInit {
               private _facultyInformation: FacultyInformation,
               private _emailConfiguration: EmailConfiguration,
               private _constants: Constants) { 
+        this.CallServiceFaculty();
       this.testMessage = null;
       setTimeout(() => this._facultyInformation.waitService = true,0);
       this._emailConfiguration.GetAdminInformation().subscribe( data => {
@@ -52,6 +53,12 @@ export class ConfigurationComponent implements OnInit {
         this._emailConfiguration.email = data;
         setTimeout(() => this._facultyInformation.waitService = false,0);
         console.log(data);
+      });
+
+      this._dataConfiguration.GetVerifier().subscribe( data => {
+        this._dataConfiguration.sede = data;
+        this.configurationLocal.configuracionverificadores = data;
+        console.log(this._dataConfiguration.sede);
       });
               }
               
@@ -99,6 +106,7 @@ export class ConfigurationComponent implements OnInit {
         this.configurationLocal.configuracionverificadores = new Array<Sede>();
       }
       if (this.configurationLocal.configuracionverificadores.length == 0) {
+        //  LOCAL 
         this.configuracionVerificadores = new Sede(this.facultySelected, this.verifierSelected);
         this.configurationLocal.configuracionverificadores.push(this.configuracionVerificadores);
       } else {
@@ -120,9 +128,11 @@ export class ConfigurationComponent implements OnInit {
             }
           }
           if (!this.findVerifier) {
+            //  LOCAL
             this.configurationLocal.configuracionverificadores[this.i].verificadores.push(this.verifierSelected);
           }
         } else {
+          //  LOCAL
           this.configuracionVerificadores = new Sede(this.facultySelected, this.verifierSelected);
           this.configurationLocal.configuracionverificadores.push(this.configuracionVerificadores);
         }
@@ -142,7 +152,7 @@ export class ConfigurationComponent implements OnInit {
           }
         }
         if (this.findFaculty) {
-          if (this.configurationLocal.configuracionverificadores[this.i].verificadores.length > 0) {
+          if (this.configurationLocal.configuracionverificadores[this.i].verificadores.length >= 1) {
             for (this.j = 0; this.j <= this.configurationLocal.configuracionverificadores[this.i].verificadores.length -1; this.j++) {
               if (this.configurationLocal.configuracionverificadores[this.i].verificadores[this.j] == this.verifierSelected) {
                 this.findVerifier = true;
@@ -150,7 +160,13 @@ export class ConfigurationComponent implements OnInit {
               }
             }
             if (this.findVerifier) {
-              this.configurationLocal.configuracionverificadores[this.i].verificadores.splice(this.configurationLocal.configuracionverificadores[this.i].verificadores.indexOf(this.verifierSelected),1);
+              if (this.configurationLocal.configuracionverificadores[this.i].verificadores.length == 1) {
+                // this.configurationLocal.configuracionverificadores[this.i].verificadores.splice(this.configurationLocal.configuracionverificadores[this.i].verificadores.indexOf(this.verifierSelected),1);
+                this.configurationLocal.configuracionverificadores.splice(this.i,1);
+              } else {
+                this.configurationLocal.configuracionverificadores[this.i].verificadores.splice(this.configurationLocal.configuracionverificadores[this.i].verificadores.indexOf(this.verifierSelected),1);
+              }
+              //
             }
           } else {
             this.configurationLocal.configuracionverificadores.splice(this.i, 1);
@@ -158,6 +174,12 @@ export class ConfigurationComponent implements OnInit {
         }
       }
     }
+  }
+
+  /*    ACTUALIZAR  */
+  putVerifier() {
+    console.log(this.configurationLocal.configuracionverificadores);
+    this._dataConfiguration.PutVerifier(this.configurationLocal).subscribe();
   }
 
   /*      EMAIL CONFIG START      */
@@ -191,7 +213,28 @@ export class ConfigurationComponent implements OnInit {
     this._dataConfiguration.configuration = this.configurationLocal;
     this._dataConfiguration.PutConfiguration()
       .subscribe((datad)=>{
+        this.putVerifier();
               setTimeout(() => this._facultyInformation.waitService = false,0);
           });
+  }
+
+  /*  LISTAR FACULTADES ACTUALES*/
+  private CallServiceFaculty() {
+    setTimeout(() => this._facultyInformation.waitService = true,0);
+    if (this._facultyInformation.facultyInformation == null){ 
+      this._facultyInformation.GetFacultyInformation()
+      .subscribe(data => {
+        if(data.infoFacultadesColleccion.infoFacultades.length > 0) {
+          this._facultyInformation.facultyInformation = data.infoFacultadesColleccion.infoFacultades;   
+          this.modelFacultyInformation = data.infoFacultadesColleccion.infoFacultades;
+          setTimeout(() => this._facultyInformation.waitService = false,0);
+        } 
+      },
+      error => {
+        console.log(error);
+      });
+    }  else {
+      setTimeout(() => this._facultyInformation.waitService = false,0);
+    }   
   }
 }

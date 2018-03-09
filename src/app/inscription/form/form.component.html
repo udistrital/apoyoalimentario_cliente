@@ -763,7 +763,7 @@
       </a>
     </div>
     <div class="col2">
-      <input type="number" min="1000000" [(ngModel)]="economicInformationLocal.telefono" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.telefono}}/>
+      <input type="text" min="1000000" [(ngModel)]="economicInformationLocal.telefono" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.telefono}}/>
     </div>
   </div>
   <div class="main">
@@ -775,7 +775,7 @@
       </a>
     </div>
     <div class="col2">
-        <input type="email" [(ngModel)]="economicInformationLocal.correo" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.correo}}/>
+        <input type="text" [(ngModel)]="economicInformationLocal.correo" (change)="changeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.correo}}/>
     </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { StudentData } from '../../common/models/data.model';
 import { Constants } from '../../common/constants/model.constants';
 import { Router, Event, ChildActivationEnd} from '@angular/router';
 import { FacultyInformation } from '../../common/services/faculty.service';
+import { DataConfiguration } from '../../common/services/configuration.service';
 
 declare var jquery:any;
 declare var $ :any;
@@ -23,6 +24,7 @@ export class ListComponent implements OnInit {
 
 
   modelFacultyInformation:string[];
+  facultyVerifier: string[];
   
   dataInformationNewLocal: StudentData[];
   dataInformationCompleteLocal: StudentData[];
@@ -31,10 +33,19 @@ export class ListComponent implements OnInit {
   constructor(private _information: Information, 
               private _constants: Constants, 
               private _routerEvent: Router, 
-              private _facultyInformation: FacultyInformation) { 
+              private _facultyInformation: FacultyInformation,
+              private _dataConfiguration: DataConfiguration) { 
     this.contador = 0;
     this.facultySelected = this._facultyInformation.facultySelected;
-    this.CallServiceFaculty();
+    if(this._constants.user != 'A') {
+      this._dataConfiguration.GetFaculty().subscribe( data => {
+        this.facultyVerifier = data;
+        console.log(this.facultyVerifier);
+      });
+    } else {
+      this.CallServiceFaculty();
+    }
+    
   }
 
   ngOnInit() {
@@ -53,6 +64,7 @@ export class ListComponent implements OnInit {
     this.facultySelected = faculty.replace('/','-');
     this._facultyInformation.facultySelected = faculty.replace('/','-');
     this.Initialize();
+    this.Reload();
   }
   
 

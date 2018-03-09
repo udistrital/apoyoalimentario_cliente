@@ -62,6 +62,7 @@ export class FormComponent implements OnInit {
       this._dataEconomicInformation.changeModel = false;
       this._dataEconomicInformation.PutEconomicInformation().subscribe(data=>{
         console.log(this.economicInformationLocal);
+        console.log(this._dataEconomicInformation.economicInformation);
         setTimeout(() => this._inscriptionComplete.waitService = false, 0)
       },
         error => {
@@ -92,9 +93,11 @@ export class FormComponent implements OnInit {
   changeModel(){ 
     if(this.economicInformationLocal.correo == '') {
       this.economicInformationLocal.correo = this.modelBasicInformation.correo;
+      this.economicInformationLocal.correo = this.economicInformationLocal.correo.toString();
     }
     if(this.economicInformationLocal.telefono == '') {
       this.economicInformationLocal.telefono = this.modelBasicInformation.telefono;
+      this.economicInformationLocal.telefono = this.economicInformationLocal.telefono.toString();
     }
     this.economicInformationLocal.ingresos = parseInt(this.economicInformationLocal.ingresos.toString());
     this._dataEconomicInformation.economicInformation = this.economicInformationLocal;

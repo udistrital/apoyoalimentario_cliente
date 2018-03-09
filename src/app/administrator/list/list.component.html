@@ -1,7 +1,21 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="select" *ngIf="facultySelected === ''">
-    <div class="sede">
+    <div class="sede" *ngIf="_constants.user !== 'A'">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th><strong><p>Seleccione la sede a la que vaya verificar</p></strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of facultyVerifier" (click)="selectFaculty(item)">
+                    <td>{{item}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sede" *ngIf="_constants.user === 'A'">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -21,6 +35,12 @@
     <div class="reload">
         <a class="btn btn-default btn-sm" (click)="Reload()">
             <span class="glyphicon glyphicon-refresh"></span>  Actualizar
+        </a>
+    </div>
+
+    <div class="change">
+        <a class="btn btn-default btn-sm" (click)="facultySelected = ''">
+            <span class="glyphicon glyphicon-refresh"></span>  Cambiar Sede
         </a>
     </div>
     <ngb-tabset>

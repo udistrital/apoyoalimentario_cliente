@@ -17,5 +17,5 @@ export class Sede {
         this.verificadores.push(_verificador);
     }
     public nombre: string;
-    public verificadores: Array<string>; 
+    public verificadores: Array<string>;
 }

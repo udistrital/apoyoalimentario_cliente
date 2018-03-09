@@ -64,6 +64,12 @@ transition-timing-function: line;
     top: calc(0.5em + 1px);
 }
 
+.change {
+    right: calc(10em + 1px);
+    position: fixed;
+    top: calc(0.5em + 1px);
+}
+
 @media screen and (max-width: 730px){
     p {
         width: 100%;
