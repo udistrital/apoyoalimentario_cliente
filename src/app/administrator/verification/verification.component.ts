@@ -161,7 +161,6 @@ export class VerificationComponent implements OnInit {
   }
   
   showPdf(url: string){
-    // debugger;
     this.SelectedArchive = true;
     this.pdf = url;
   }

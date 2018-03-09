@@ -26,7 +26,6 @@ export class DataEconomicInformation {
     }
     
     public PutEconomicInformation() {
-        debugger;
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
         console.log(this.economicInformation);

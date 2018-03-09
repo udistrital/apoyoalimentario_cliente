@@ -4,6 +4,8 @@ import { FileMainInformation, FileDBData } from '../../common/models/file.model'
 import { InscriptionComplete } from '../../common/services/complete.service';
 import { Router,Event, ChildActivationEnd } from '@angular/router';
 import { StateService } from '../../common/services/status.service';
+declare var jquery:any;
+declare var $ :any;
 
 
 @Component({
@@ -47,6 +49,10 @@ export class DocumentsComponent implements OnInit {
         console.log(error);
       });
       this.fileInformationLocalComponent = this._fileService.fileInformationLocal;
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
   }
 
   upload(event: any,e :string) {

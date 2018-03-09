@@ -70,14 +70,14 @@ export class Metadata {
         '"description": "Discapacidad fisica o mental",' +
         '"file": "",' +
         '"required": "no",' +
-        '"help": ""' +
+        '"help": "Certificado médico que avale su condición"' +
         '},{' +
         '"name": "PatologiaAlimenticia",' +
         '"type": "file",' +
         '"description": "Patología de nutrición o alimentaria",' +
         '"file": "",' +
         '"required": "no",' +
-        '"help": ""' +
+        '"help": "Certificado médico que avale su condición"' +
         '},{' +
         '"name": "DocumentoAdicional",' +
         '"type": "file",' +
