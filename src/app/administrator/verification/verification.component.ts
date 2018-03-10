@@ -21,7 +21,7 @@ import { EmailConfiguration } from '../../common/services/email.service';
 export class VerificationComponent implements OnInit {
 
   selected :any;
-  contador: number;
+  contador: number = 0;
   mensaje: string;
 
   emailtoSend: {ebody: string, etosend: string, ename: string} = {ebody: '', etosend: '', ename: ''};
@@ -43,7 +43,6 @@ export class VerificationComponent implements OnInit {
               private _information: Information,
               private _facultyInformation: FacultyInformation,
               private _emailService: EmailConfiguration) {
-    this.contador = 0;
   }
 
   ngOnInit() {
@@ -181,7 +180,9 @@ export class VerificationComponent implements OnInit {
 
   //    CHange Student State to Verificated
   StudentComplete() {
+    console.log(this._dataEconomicInformation.economicInformation.verificadopor);
     this._dataEconomicInformation.economicInformation.estadoprograma = 3;
+    this._dataEconomicInformation.economicInformation.verificadopor = this._constants.user;
     this._stateService.ChangeState().subscribe((data) => {
       this._information.dataInformationNew = null;
       this._information.dataInformationComplete = null;
@@ -191,6 +192,7 @@ export class VerificationComponent implements OnInit {
   }
 
   StudentIncomplete() {
+    console.log(this._dataEconomicInformation.economicInformation.verificadopor);
     this.contador = 0;
     // console.log(e);
     /* NO ES FAKE */
@@ -212,6 +214,7 @@ export class VerificationComponent implements OnInit {
     });
 
     this._dataEconomicInformation.economicInformation.estadoprograma = 4;
+    this._dataEconomicInformation.economicInformation.verificadopor = this._constants.user;
     this._stateService.ChangeState().subscribe((data) => {
       this._information.dataInformationNew = null;
       this._information.dataInformationComplete = null;

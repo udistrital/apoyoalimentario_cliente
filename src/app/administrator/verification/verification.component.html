@@ -159,7 +159,7 @@
     <ng-template ngbTabContent>
       <div class="main">
         <div class="col-button">
-          <a><strong><p>APOYO ALIMENTARIO CONCEDIDO:</p></strong></a>
+          <strong><p>APOYO ALIMENTARIO CONCEDIDO:</p></strong>
         </div>
         <div class="col-button">
             <p>SI</p>
@@ -167,7 +167,7 @@
       </div>
       <div class="main">
           <div class="col-button">
-            <a><strong><p>TIPO:</p></strong></a>
+            <strong><p>TIPO:</p></strong>
           </div>
           <div class="col-button">
             <p>Total</p>
@@ -175,19 +175,25 @@
         </div>
       <div class="main">
           <div class="col-button">
-            <a><strong><p>PUNTAJE:</p></strong></a>
+            <strong><p>PUNTAJE:</p></strong>
           </div>
           <div class="col-button">
             <p>65</p>
           </div>
       </div>
+      <div class="main" *ngIf="economicInformationLocal.verificadopor !== ''">
+        <div class="col-button">
+          <p><strong>VERIFICADOR POR:</strong></p>
+        </div>
+        <div class="col-button">
+          <p>{{economicInformationLocal.verificadopor}}</p>
+        </div>
+      </div>
       <div class="alert alert-info mensaje" *ngIf="economicInformationLocal.estadoprograma === 4">
         <p>La solicitud fue devuelta por los siguiente motivos:</p>
           <strong>{{economicInformationLocal.mensaje}}</strong>
       </div>
-      <!-- <div class="main" *ngIf="economicInformationLocal.estadoprograma === 4">
-        <a><p>{{economicInformationLocal.mensaje}}</p></a>
-      </div> -->
+
       <div class="main">
         <div class="col-button" *ngIf="economicInformationLocal.estadoprograma === 1">
           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal2">ACEPTAR</button>

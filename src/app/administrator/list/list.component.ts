@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
 
   key: string = 'Nombre';
   reverse: boolean = false;
-  contador: number;
+  contador: number = 0;
   user: string;
 
 
@@ -36,22 +36,16 @@ export class ListComponent implements OnInit {
               private _routerEvent: Router, 
               private _facultyInformation: FacultyInformation,
               private _dataConfiguration: DataConfiguration) { 
-                console.log(_constants.user);
-    this.contador = 0;
     this.facultySelected = this._facultyInformation.facultySelected;
     if(this._constants.user != 'A') {
       this._dataConfiguration.GetFaculty().subscribe( data => {
         this.facultyVerifier = data;
-        console.log(this.facultyVerifier);
       });
-    } else {
-      this.CallServiceFaculty();
-    }
-    
+    } 
+    this.CallServiceFaculty();
   }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {
@@ -61,8 +55,6 @@ export class ListComponent implements OnInit {
   }
 
   selectFaculty(faculty: string) {
-    // faculty.replace('/','-');
-    console.log(faculty);
     this.facultySelected = faculty.replace('/','-');
     this._facultyInformation.facultySelected = faculty.replace('/','-');
     this.Initialize();
@@ -87,7 +79,6 @@ export class ListComponent implements OnInit {
         this._information.dataInformationNew = data;
         this.dataInformationNewLocal = this._information.dataInformationNew;
         this.contador++;
-       
         if(this.contador == 3) {
           setTimeout(() => this._facultyInformation.waitService = false,0);
           this.contador = 0;
@@ -181,7 +172,6 @@ export class ListComponent implements OnInit {
     
     setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._facultyInformation.facultyInformation == null){ 
-      console.log("Facultad nula");
       this._facultyInformation.GetFacultyInformation()
       .subscribe(data => {
         if(data.infoFacultadesColleccion.infoFacultades.length > 0) {
@@ -194,7 +184,6 @@ export class ListComponent implements OnInit {
         console.log(error);
       });
     }  else {
-      console.log("Facultad no nula");
       setTimeout(() => this._facultyInformation.waitService = false,0);
       this.GetAllInfo();
     }   
