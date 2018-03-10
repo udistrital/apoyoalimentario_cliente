@@ -30,6 +30,7 @@ export class EconomicInformation {
     public telefono: string;
     public correo: string;
     public antiguedad: string;
+    public verificadopor: string;
 }
 
 // Administration

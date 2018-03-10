@@ -54,9 +54,12 @@ export class AppComponent {
   } 
 
   private PutValidationComponent() {
-    console.log('put');
+    this.response = 10;
     if(this._fileService.formDataFiles != null && this._fileService.formDataFiles != undefined) {
-      setTimeout(() => this._inscriptionComplete.waitService = true,0);
+      console.log("Primero");
+      if (this._dataEconomicInformation.economicInformation.ingresos >= 100000 && this._dataEconomicInformation.economicInformation.ingresos != null) {
+        console.log("ingresos mayores a tales");
+        setTimeout(() => this._inscriptionComplete.waitService = true,0);
       this._fileService.PotsFiles().subscribe(
         data => {
           this._fileService.formDataFiles = new FormData(),
@@ -69,9 +72,11 @@ export class AppComponent {
               }
           });
           });
+      } else {
+        console.log("mal todo");
+        this.response = 0;
+      }
     }
-
-
   }
 
   log(event: boolean) {

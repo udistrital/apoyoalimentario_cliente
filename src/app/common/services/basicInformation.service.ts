@@ -18,14 +18,14 @@ export class DataInformation {
     ngOnInit() {
     }
 
-    public GetBasicInformation() {
-        return this._http.get(this._constants.basicInformation+this._constants.user)
+    public GetBasicInformation(user: string) {
+        return this._http.get(this._constants.basicInformation + user)
         .map((res: Response) => res.json());
       
     }
 
-    public GetInstitutionalInformation() {
-        return this._http.get(this._constants.institutionalInformation +this._constants.user)
+    public GetInstitutionalInformation(user: string) {
+        return this._http.get(this._constants.institutionalInformation + user)
         .map((res: Response) => res.json());
     }
 }

@@ -51,7 +51,6 @@ export class VerificationComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this._constants.user = '';
     this._dataInformation.basicInformation = null;
     this._dataInformation.institutionalInformation = null;
     this._fileService._fileInfo = null;
@@ -61,13 +60,16 @@ export class VerificationComponent implements OnInit {
 
   //        Basic Information
   private CallServiceBasic() {
+    
     setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._dataInformation.basicInformation == null){ 
-      this._dataInformation.GetBasicInformation()
+      this._dataInformation.GetBasicInformation(this._constants.userTemp)
       .subscribe(data => {
         if(data.datosCollection.datos.length > 0) {
+          console.log("Informacion basica");
           this.modelBasicInformation =  data.datosCollection.datos[0]; 
           this._dataInformation.basicInformation = this.modelBasicInformation;
+          console.log(this.modelBasicInformation);
           this.contador++;
           if(this.contador == 3) {
             setTimeout(() => this._facultyInformation.waitService = false,0);
@@ -80,12 +82,13 @@ export class VerificationComponent implements OnInit {
       });
     }
     if (this._dataInformation.institutionalInformation == null){ 
-      this._dataInformation.GetInstitutionalInformation()
+      this._dataInformation.GetInstitutionalInformation(this._constants.userTemp)
       .subscribe(data2 => {
+        console.log("Informacion institucional");
         if(data2.infoInstitucionalColleccion.infoInstitucional.length > 0) {
           this.modelInstitutionalInformation =  data2.infoInstitucionalColleccion.infoInstitucional[0];
           this._dataInformation.institutionalInformation = this.modelInstitutionalInformation;
-          console.log(1);
+          console.log(this.modelInstitutionalInformation);
           this.contador++;
           if(this.contador == 3) {
             setTimeout(() => this._facultyInformation.waitService = false,0);
@@ -102,12 +105,13 @@ export class VerificationComponent implements OnInit {
 
   //    Economic Information
   private CallServiceEconomic() { 
-      this._dataEconomicInformation.GetEconomicInformation().subscribe(
+      this._dataEconomicInformation.GetEconomicInformation(this._constants.userTemp).subscribe(
         data => {
+          console.log("")
           this._dataEconomicInformation.economicInformation = data;
           this.economicInformationLocal = data;
           this.InitModelDocument();
-          console.log(2);
+          console.log(this.economicInformationLocal);
           this.GetDocuments();
         },
         error => {
@@ -116,17 +120,19 @@ export class VerificationComponent implements OnInit {
   }
 
   Transform() {
-    switch(this.economicInformationLocal.ingresos) {
-      case 1:
-        return "1 SMLV o menos";
-      case 2:
-        return "Más de 1 y hasta 2 SMLV";
-      case 3:
-        return "Más de 2 y hasta 3 SMLV";
-      case 4:
-        return "Más de 3 y hasta 4 SMLV";
-      case 5:
-        return "4 SMLV o más";
+    switch(this.economicInformationLocal.poblacionespecial) {
+      case "N":
+        return "Ninguna";
+      case "D":
+        return "Desplazados";
+      case "I":
+        return "Indigena";
+      case "M":
+        return "Minorias Etnicas";
+      case "A":
+        return "Afrodescendientes";
+      case "MC":
+        return "Madre Cabeza de Hogar"
     }
   }
 
@@ -143,7 +149,7 @@ export class VerificationComponent implements OnInit {
 
   //    Documents
   private GetDocuments() {
-    this._fileService.GetFiles().subscribe(
+    this._fileService.GetFiles(this._constants.userTemp).subscribe(
       data => {
         this._fileService._fileInfo = data;
         this.fileDBInformation = data;
@@ -204,8 +210,6 @@ export class VerificationComponent implements OnInit {
       }
       console.log(data);
     });
-
-
 
     this._dataEconomicInformation.economicInformation.estadoprograma = 4;
     this._stateService.ChangeState().subscribe((data) => {

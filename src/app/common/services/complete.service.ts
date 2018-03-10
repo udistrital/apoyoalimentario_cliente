@@ -3,7 +3,6 @@ import { Http, Response, Headers, ResponseContentType } from '@angular/http';
 import { Constants } from '../constants/model.constants';
 import { DataEconomicInformation } from '../services/economicInformation.service';
 import { FileService } from '../services/file.service';
-//import { FileMainInformation, FileDBData } from '../models/file.model';
 import { EconomicInformation } from '../models/data.model';
 
 @Injectable()
@@ -17,7 +16,10 @@ export class InscriptionComplete {
     selectorShowed: number;
     headers: Headers;
 
-    constructor(private _http: Http, private _constants : Constants, private _dataEconomicInformation: DataEconomicInformation, private _fileService: FileService){
+    constructor(private _http: Http, 
+                private _constants : Constants, 
+                private _dataEconomicInformation: DataEconomicInformation, 
+                private _fileService: FileService){
         this.waitService= false;
         this.formComplete = false;
         this.documentsComplete = false;
@@ -30,10 +32,11 @@ export class InscriptionComplete {
     }
 
     public CountCompletedFields() {      
-        if (this._dataEconomicInformation.economicInformation.estrato != ''
+        if (this._dataEconomicInformation.economicInformation.antiguedad != ''
+        && this._dataEconomicInformation.economicInformation.estrato != ''
         && this._dataEconomicInformation.economicInformation.tipoapoyo != ''
-        && this._dataEconomicInformation.economicInformation.ingresos != 0
-        && this._dataEconomicInformation.economicInformation.sostenibilidadpropia
+        && this._dataEconomicInformation.economicInformation.ingresos != null
+        && this._dataEconomicInformation.economicInformation.sostenibilidadpropia != ''
         && this._dataEconomicInformation.economicInformation.sostenibilidadhogar != ''
         && this._dataEconomicInformation.economicInformation.nucleofamiliar != ''
         && this._dataEconomicInformation.economicInformation.personasacargo != ''
@@ -44,7 +47,13 @@ export class InscriptionComplete {
         && this._dataEconomicInformation.economicInformation.patologiaalimenticia != ''
         && this._dataEconomicInformation.economicInformation.serpilopaga != ''
         && this._dataEconomicInformation.economicInformation.sisben != '') {
-            this.formComplete = true;
+            if (this._dataEconomicInformation.economicInformation.provienefuerabogota == 'si' && this._dataEconomicInformation.economicInformation.ciudad != '') {
+                this.formComplete = true;
+            } else if (this._dataEconomicInformation.economicInformation.provienefuerabogota == 'no') {
+                this.formComplete = true;
+            } else {
+                this.formComplete = false;
+            }
         } else {
             this.formComplete = false;
         }

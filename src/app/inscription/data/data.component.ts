@@ -31,6 +31,10 @@ export class DataComponent {
   }
 
   ngOnInit() {
+    if (this._dataInformation.basicInformation != null && this._dataInformation.institutionalInformation != null) {
+      this.modelBasicInformation = this._dataInformation.basicInformation;
+      this.modelInstitutionalInformation = this._dataInformation.institutionalInformation;
+    }
     if (this._stateService.State == null){
       setTimeout(() => this._inscriptionComplete.waitService = true,0);
       this._stateService.GetInformationState().subscribe(
@@ -60,16 +64,9 @@ export class DataComponent {
     }
   }
 
-  ngOnDestroy() {
-    //this._stateService.State = null;
-    // this._dataInformation.basicInformation = null;
-    // this._dataInformation.institutionalInformation = null;
-    // this._inscriptionComplete.waitService = null;
-  }
-
   private CallServiceBasic() {
     if (this._dataInformation.basicInformation == null){ 
-      this._dataInformation.GetBasicInformation()
+      this._dataInformation.GetBasicInformation(this._constants.user)
       .subscribe(data => {
         if(data.datosCollection.datos.length > 0) {
           this.modelBasicInformation =  data.datosCollection.datos[0]; 
@@ -82,7 +79,7 @@ export class DataComponent {
       });
     }
     if (this._dataInformation.institutionalInformation == null){ 
-      this._dataInformation.GetInstitutionalInformation()
+      this._dataInformation.GetInstitutionalInformation(this._constants.user)
       .subscribe(data2 => {
         if(data2.infoInstitucionalColleccion.infoInstitucional.length > 0) {
           this.modelInstitutionalInformation =  data2.infoInstitucionalColleccion.infoInstitucional[0];
@@ -99,7 +96,7 @@ export class DataComponent {
 
   private CallServiceEconomic() {
     if (this._dataEconomicInformation.economicInformation == null){ 
-      this._dataEconomicInformation.GetEconomicInformation().subscribe(
+      this._dataEconomicInformation.GetEconomicInformation(this._constants.user).subscribe(
         data => {
           this._dataEconomicInformation.economicInformation = data;
           this.modelEconomicInformation = data;

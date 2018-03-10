@@ -20,8 +20,8 @@ ngOnInit() {
     
 }
 
-public GetFiles() {
-    return this._http.get(this._constants.pathFiles + this._constants.user)
+public GetFiles(user: string) {
+    return this._http.get(this._constants.pathFiles + user)
         .map((informacionArchivo) => informacionArchivo.json());
 }
 

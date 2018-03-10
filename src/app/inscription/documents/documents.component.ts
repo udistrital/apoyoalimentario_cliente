@@ -4,6 +4,7 @@ import { FileMainInformation, FileDBData } from '../../common/models/file.model'
 import { InscriptionComplete } from '../../common/services/complete.service';
 import { Router,Event, ChildActivationEnd } from '@angular/router';
 import { StateService } from '../../common/services/status.service';
+import { Constants } from '../../common/constants/model.constants';
 declare var jquery:any;
 declare var $ :any;
 
@@ -23,11 +24,11 @@ export class DocumentsComponent implements OnInit {
   constructor(private _fileService: FileService, 
               private _inscriptionComplete: InscriptionComplete, 
               private _routerEvent: Router,
-              private _stateService: StateService ) { 
+              private _stateService: StateService,
+              private _constants: Constants) { 
     this.dataFromDB=[];
 
     if (!_inscriptionComplete.SaveSuscribeDoc){
-
       _routerEvent.events.subscribe(event => {
         if (event instanceof ChildActivationEnd) {          
           this.saveDocument(event);
@@ -40,7 +41,7 @@ export class DocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._fileService.GetFiles().subscribe(
+    this._fileService.GetFiles(this._constants.user).subscribe(
       data => {
         this._fileService._fileInfo = data;
         this.PaserFiles();

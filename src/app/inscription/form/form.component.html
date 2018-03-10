@@ -20,11 +20,15 @@
         <span class="checkmark"></span>
     </label>
    </div>
-   <!--      ESTUDIANTE INSCRITO      -->
-   <div class="col2" *ngIf="stateLocal === -1">
-     <input [(ngModel)]="economicInformatonLocal.tipoapoyo" disabled> 
-   </div>
 </div>
+<!--      ESTUDIANTE INSCRITO      -->
+<div class="main" *ngIf="stateLocal === -1">
+  <div class="col1">Tipo de Apoyo Alimentario</div>
+  <div class="col2">
+    {{TransformType()}}
+  </div>
+</div>
+
 
 
 <!-- Antiguo o Nuevo en el Prgrama -->
@@ -109,19 +113,11 @@
   <div class="main">
     <div class="col1">Ingrese el valor de ingresos Propios o Familiares</div>
     <div class="col2" *ngIf="stateLocal !== -1">
-        <select name="salario" [(ngModel)]="economicInformationLocal.ingresos" (change)="changeModel()" [ngModelOptions]="{standalone: true}" 
-        class="form-control" required>
-        <option value="0">Seleccione su respuesta</option>
-          <option value="1">1 SMLV o menos</option>
-          <option value="2">Más de 1 y hasta 2 SMLV</option>
-          <option value="3">Más de 2 y hasta 3 SMLV</option>
-          <option value="4">Más de 3 y hasta 4 SMLV</option>
-          <option value="5">4 SMLV o más</option>
-      </select>
+      <input type="number" class="form-control" [(ngModel)]="economicInformationLocal.ingresos" (change)="changeModel()" [ngModelOptions]="{standalone: true}" placeholder="Escriba sus ingresos" required>
     </div>
     <!--      ESTUDIANTE INSCRITO    -->
     <div class="col2" *ngIf="stateLocal === -1">
-        <p>{{Transform()}}</p>
+        <p>{{economicInformationLocal.ingresos}}</p>
       </div>
     <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal2">
@@ -139,12 +135,18 @@
                   </button>
                   </div>
                 <div class="modal-body">
-                  <p>Seleccione una opción según sea su situación</p>
-                  <p><strong>SMLV</strong> = Salario Minimo Legal Vigente</p>
+                  <p>Escriba los ingresos según sea su situación, debe escribir el valor si el signo <span>$</span> y sin puntos ni comas</p>
+                  <p>Los ingresos minimos permitdos por este campo deben ser de $ 100.000</p>
+                </div>
+                <div class="modal-example">
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si sus ingresos o los de sus padres son de un Salario Minimo Legal Vigente Debe llenarlo asi:</p>
+                  <img src="./assets/ejemplos/ejemploIngresos.png">
                 </div>
                 <div class="movil">
-                    <p>Seleccione una opción según sea su situación</p>
-                    <p><strong>SMLV</strong> = Salario Minimo Legal Vigente</p>
+                  <p><strong>Ejemplo:</strong></p>
+                  <p>Si sus ingresos o los de sus padres son de un Salario Minimo Legal Vigente Debe llenarlo asi:</p>
+                  <img src="./assets/ejemplos/ejemploIngresos.png">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
@@ -491,7 +493,7 @@
     </div>
     <!--      ESTUDIANTE INSCRITO    -->
     <div class="col2" *ngIf="stateLocal === -1">
-        <p>{{economicInformationLocal.poblacionespecial}}</p>
+        <p>{{Transform()}}</p>
       </div>
     <div class="col3" *ngIf="stateLocal !== -1">
         <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal9">
@@ -752,7 +754,7 @@
   <!-- Alerta Comunicación -->
   <div *ngIf="stateLocal !== -1">
   <div class="alert alert-info mensaje">
-    <p>Señor ESATUDIANTE, si su correo electronico o su numero telefonico no son los que usa habitualmente, modifiquelos en los siguientes campos</p>
+    <p>Señor ESTUDIANTE, si su correo electronico o su numero telefonico no son los que usa habitualmente, modifiquelos en los siguientes campos</p>
   </div>
   <div class="main">
     <div class="col1">

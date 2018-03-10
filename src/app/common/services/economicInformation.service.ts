@@ -20,8 +20,8 @@ export class DataEconomicInformation {
     ngOnInit() {
     }
 
-    public GetEconomicInformation() {
-        return this._http.get(this._constants.pathInformation+this._constants.user)
+    public GetEconomicInformation(user: string) {
+        return this._http.get(this._constants.pathInformation + user)
         .map((informacionArchivo) => informacionArchivo.json())
     }
     

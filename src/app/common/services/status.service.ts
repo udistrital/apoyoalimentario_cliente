@@ -36,7 +36,7 @@ export class StateService {
         console.log('change');
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
-        let url = this._constants.pathVerification + this._constants.user;
+        let url = this._constants.pathVerification + this._constants.userTemp;
         return this._http.put(url, this._dataEconomicInformation.economicInformation, {headers: this.headers});
     }
 }

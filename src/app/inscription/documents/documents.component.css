@@ -58,6 +58,10 @@ header {
       color: transparent;
   }
 
+  span {
+      color: red;
+  }
+
 @media screen and (max-width: 730px){
     p {
         width: 100%;

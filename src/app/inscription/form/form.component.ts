@@ -76,17 +76,28 @@ export class FormComponent implements OnInit {
   }
 
   Transform() {
-    switch(this.economicInformationLocal.ingresos) {
-      case 1:
-        return "1 SMLV o menos";
-      case 2:
-        return "Más de 1 y hasta 2 SMLV";
-      case 3:
-        return "Más de 2 y hasta 3 SMLV";
-      case 4:
-        return "Más de 3 y hasta 4 SMLV";
-      case 5:
-        return "4 SMLV o más";
+    switch(this.economicInformationLocal.poblacionespecial) {
+      case "N":
+        return "Ninguna";
+      case "D":
+        return "Desplazados";
+      case "I":
+        return "Indigena";
+      case "M":
+        return "Minorias Etnicas";
+      case "A":
+        return "Afrodescendientes";
+      case "MC":
+        return "Madre Cabeza de Hogar"
+    }
+  }
+
+  TransformType() {
+    switch(this.economicInformationLocal.tipoapoyo) {
+      case "A":
+        return "Almuerzo";
+      case "R":
+        return "Refrigerio";
     }
   }
 
@@ -99,9 +110,15 @@ export class FormComponent implements OnInit {
       this.economicInformationLocal.telefono = this.modelBasicInformation.telefono;
       this.economicInformationLocal.telefono = this.economicInformationLocal.telefono.toString();
     }
-    this.economicInformationLocal.ingresos = parseInt(this.economicInformationLocal.ingresos.toString());
+    if (this.economicInformationLocal.ingresos < 100000) {
+      this.economicInformationLocal.ingresos = null;
+    } else {
+      this.economicInformationLocal.ingresos = parseInt(this.economicInformationLocal.ingresos.toString());
+    }
+    if (this.economicInformationLocal.provienefuerabogota == 'no') {
+      this.economicInformationLocal.ciudad = '';
+    }
     this._dataEconomicInformation.economicInformation = this.economicInformationLocal;
-    console.log(this._dataEconomicInformation.economicInformation);
     this._inscriptionComplete.CountCompletedFields();
     this._fileService.evaluateInformation(this._dataEconomicInformation.economicInformation)
     this._dataEconomicInformation.changeModel = true;

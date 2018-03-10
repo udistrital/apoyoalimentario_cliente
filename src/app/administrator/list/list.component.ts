@@ -21,6 +21,7 @@ export class ListComponent implements OnInit {
   key: string = 'Nombre';
   reverse: boolean = false;
   contador: number;
+  user: string;
 
 
   modelFacultyInformation:string[];
@@ -35,6 +36,7 @@ export class ListComponent implements OnInit {
               private _routerEvent: Router, 
               private _facultyInformation: FacultyInformation,
               private _dataConfiguration: DataConfiguration) { 
+                console.log(_constants.user);
     this.contador = 0;
     this.facultySelected = this._facultyInformation.facultySelected;
     if(this._constants.user != 'A') {
@@ -122,7 +124,7 @@ export class ListComponent implements OnInit {
   }
 
   redirect(e: string) {
-    this._constants.user = e;
+    this._constants.userTemp = e;
     this._routerEvent.navigate(['/verification']);
   }
 
@@ -176,8 +178,10 @@ export class ListComponent implements OnInit {
   
 
   private CallServiceFaculty() {
+    
     setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._facultyInformation.facultyInformation == null){ 
+      console.log("Facultad nula");
       this._facultyInformation.GetFacultyInformation()
       .subscribe(data => {
         if(data.infoFacultadesColleccion.infoFacultades.length > 0) {
@@ -190,6 +194,7 @@ export class ListComponent implements OnInit {
         console.log(error);
       });
     }  else {
+      console.log("Facultad no nula");
       setTimeout(() => this._facultyInformation.waitService = false,0);
       this.GetAllInfo();
     }   
