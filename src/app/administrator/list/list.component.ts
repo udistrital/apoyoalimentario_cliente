@@ -184,8 +184,13 @@ export class ListComponent implements OnInit {
         console.log(error);
       });
     }  else {
+      console.log("El else");
+      this.modelFacultyInformation = this._facultyInformation.facultyInformation;
+      console.log(this._facultyInformation.facultyInformation);
       setTimeout(() => this._facultyInformation.waitService = false,0);
-      this.GetAllInfo();
+      if (this.facultySelected != '') {
+        this.GetAllInfo();
+      }
     }   
   }
 }

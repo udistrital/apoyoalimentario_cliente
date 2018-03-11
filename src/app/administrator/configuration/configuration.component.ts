@@ -213,6 +213,7 @@ export class ConfigurationComponent implements OnInit {
     this._dataConfiguration.configuration = this.configurationLocal;
     this._dataConfiguration.PutConfiguration()
       .subscribe((datad)=>{
+        this.testMessage = datad;
         this.putVerifier();
               setTimeout(() => this._facultyInformation.waitService = false,0);
           });

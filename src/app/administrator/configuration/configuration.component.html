@@ -121,6 +121,15 @@
         </ng-template>
     </ngb-tab>
 
+    <div class="error" *ngIf="testMessage !== null">
+        <div class="alert2 alert-info alert-dismissable fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="testMessage = null">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h3><strong>{{testMessage._body}}</strong></h3>
+        </div>
+    </div>
+
 
     <ngb-tab title="Configuración de correo">
         <ng-template ngbTabContent>

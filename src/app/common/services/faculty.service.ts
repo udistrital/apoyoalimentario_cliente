@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class FacultyInformation {
    
-    facultyInformation: {};
+    facultyInformation: Array<string>;
     facultySelected: string;
     waitService: boolean;
     constructor(private _http: Http, private _constants: Constants) {
