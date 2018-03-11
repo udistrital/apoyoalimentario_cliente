@@ -101,7 +101,7 @@ export class ConfigurationComponent implements OnInit {
 
   addVerifier() {
     console.log(this.configurationLocal.configuracionverificadores);
-    if (this.facultySelected != undefined && this.verifierSelected != undefined) {
+    if (this.facultySelected != undefined && this.facultySelected != '' && this.verifierSelected != undefined && this.verifierSelected != '') {
       if (this.configurationLocal.configuracionverificadores == undefined || this.configurationLocal.configuracionverificadores == null){
         this.configurationLocal.configuracionverificadores = new Array<Sede>();
       }
