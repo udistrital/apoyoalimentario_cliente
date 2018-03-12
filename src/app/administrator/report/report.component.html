@@ -33,7 +33,7 @@
 
 
 
-<div class="main" *ngIf="report.typeReport === 1">
+<div class="main">
     <p>Seleccione la sede de la cual desea sacar los reportes</p>
     <select (change)="saveFaculty($event.target.value)" [(ngModel)]="report.tsede" [ngModelOptions]="{standalone: true}">
         <option selected="selected" value="">Seleccione una sede</option>

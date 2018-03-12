@@ -57,10 +57,8 @@ export class ReportComponent implements OnInit {
   }
 
   saveFaculty(deviceValue) {
-    if(deviceValue == "FACULTAD DE TECNOLOGIA - POLITECNICA / TECNOLOGICA") {
-      deviceValue = "FACULTAD DE TECNOLOGIA - POLITECNICA - TECNOLOGICA";
-    }
-    this.report.tsede = deviceValue;
+    this.report.tsede = deviceValue.replace("/","-");
+    console.log(this.report.tsede);
   }
 
   savenameSheet(deviceValue) {
