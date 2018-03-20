@@ -96,7 +96,7 @@
                             <div class="row">
                                 <div class="col-md-12" *ngIf="dataInformationCompleteLocal !== null">
                                     <h3>Buscar</h3>
-                                    <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+                                    <input class="form-control" type="text" name="search" [(ngModel)]="filter2">
                                 </div>
                             </div>
                             <div class="row">
@@ -120,7 +120,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr (click)="redirect(item.codigo)" *ngFor="let item of dataInformationCompleteLocal | orderBy: key : reverse | filter: filter; let i = index">
+                                            <tr (click)="redirect(item.codigo)" *ngFor="let item of dataInformationCompleteLocal | orderBy: key : reverse | filter: filter2; let i = index">
                                                 <td>{{ i+1 }}</td>
                                                 <td>{{ item.codigo }}</td>
                                                 <td>{{ item.Nombre }}</td>
@@ -142,7 +142,7 @@
                     <div class="row">
                         <div class="col-md-12" *ngIf="dataInformationIncompleteLocal !== null">
                             <h3>Buscar</h3>
-                            <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+                            <input class="form-control" type="text" name="search" [(ngModel)]="filter3">
                         </div>
                     </div>
                     <div class="row">
@@ -166,7 +166,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr (click)="redirect(item.codigo)" *ngFor="let item of dataInformationIncompleteLocal | orderBy: key : reverse | filter: filter; let i = index">
+                                    <tr (click)="redirect(item.codigo)" *ngFor="let item of dataInformationIncompleteLocal | orderBy: key : reverse | filter: filter3; let i = index">
                                         <td>{{ i+1 }}</td>
                                         <td>{{ item.codigo }}</td>
                                         <td>{{ item.Nombre }}</td>

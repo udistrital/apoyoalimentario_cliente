@@ -15,7 +15,7 @@
   <div *ngIf="archives.required === 'si'" class="data">
     <div class="main">
       <div class="col1" data-toggle="tooltip" title={{archives.help}} data-placement="left">
-          <a *ngIf="archives.name === 'FormatoInscripcion' && stateLocal !== -1" href="./assets/Formulario de Adjudicación Subsidio.pdf" download="Formulario de Adjudicación Subsidio.pdf"><img src="../assets/downloadIcon.png" title="Descargar Formulario de Adjudicación de Subsidio"></a>
+          <a *ngIf="archives.name === 'FormatoInscripcion' && stateLocal !== -1" href="./assets/Formulario de Adjudicación Subsidio.pdf" download="Formulario de Adjudicación Subsidio.pdf"><img src="./assets/downloadIcon.png" title="Descargar Formulario de Adjudicación de Subsidio"></a>
           <p><span *ngIf="archives.name !== 'DocumentoAdicional'">* </span>{{archives.description}}</p>
       </div>
       <div class="col2">
