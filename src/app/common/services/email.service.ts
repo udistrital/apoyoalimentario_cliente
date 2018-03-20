@@ -11,6 +11,7 @@ export class EmailConfiguration {
     
     public email: Email;
     public bodyEmail: BodyEmail;
+    public i: number;
 
     headers: Headers;
     constructor(private _http: Http, private _constants: Constants) {       
@@ -23,6 +24,8 @@ export class EmailConfiguration {
     public PutConfiguration(_email: Email, _url: string) {
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
+        _email.text = _email.text.replace('\n','<br>');
+        console.log(_email.text);
         return this._http.put(_url, _email, {headers: this.headers});
     }
 
@@ -37,6 +40,7 @@ export class EmailConfiguration {
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
         let url = this._constants.pathSendEmail;
+        _bodyemail.ebody =_bodyemail.ebody.replace('\n','<br>');
         return this._http.put(url, _bodyemail, {headers: this.headers});
     }
 }

@@ -5,16 +5,16 @@
   <nav class="vertical">
     <div>
       <ul class="unordered" (click)="function()">
-        <li class="active" routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" >
-          <accordion>Solicitudes</accordion>
-        </li>
-        <li routerLink="/configuration" *ngIf="_constants.rol === '1'">
+        <li class="active" routerLink="/configuration" *ngIf="_constants.rol === '1'">
           <accordion>Configuración</accordion>
+        </li>
+        <li routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" >
+          <accordion>Solicitudes</accordion>
         </li>
         <li routerLink="/reports" *ngIf="_constants.rol === '1'">
           <accordion>Reportes</accordion>
         </li>
-        <li routerLink="/data" *ngIf="_constants.rol === '3'">
+        <li class="active" routerLink="/data" *ngIf="_constants.rol === '3'">
           <accordion>Datos de estudiante</accordion>
         </li>
         <li routerLink="/form" *ngIf="_constants.rol === '3'">
@@ -40,7 +40,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  Al hacer click en "Acepto", expresamente autorizo de manera voluntaria, informada e inequivoca a la Universidad Distrital Francisco José de Caldas para el tratamiento de datos personales referentes a mi informaicón personal y economica, la cual declaro la he suministrado de forma voluntaria y es completa, confiable, exacta y veridica.
+                  Al hacer click en <strong>Acepto</strong>, expresamente autorizo de manera voluntaria, informada e inequivoca a la Universidad Distrital Francisco José de Caldas para el tratamiento de datos personales referentes a mi informaicón personal y economica, la cual declaro la he suministrado de forma voluntaria y es completa, confiable, exacta y veridica.
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -115,6 +115,8 @@
       </div>
   </div>
   
+
+  <!--   -->
   <div class="error" *ngIf="response === 1">
       <div class="alert alert-success alert-dismissable fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">

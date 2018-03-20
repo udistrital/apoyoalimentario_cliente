@@ -3,8 +3,21 @@
     text-align: center;
     margin-bottom: 15px;
     clear: both;
+    padding: 0 5% 0 5%;
+    text-align: center;
 }
 
 .form-control {
     padding : 0;
+    width: 90%;
+    margin: 0;
+}
+
+.col1 {
+    width: 50%;
+    float: left;
+}
+
+.container {
+    width: 100%;
 }

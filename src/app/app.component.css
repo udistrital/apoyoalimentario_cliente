@@ -81,6 +81,26 @@ div.wrapper {
     overflow-x: hidden;
     width: 74%; 
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(137, 137, 137, 1);
+} 
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(53, 53, 53, 1);
+} 
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: black;
+}
   
   a, li {
     text-decoration: none;

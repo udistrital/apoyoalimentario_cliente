@@ -8,6 +8,7 @@ export class ProcessConfiguration {
     public configuracionverificadores: Array<Sede>;
     public reminder: string;
     public modulomodified: boolean;
+    public salariominimo: number;
 }
 
 export class Sede {

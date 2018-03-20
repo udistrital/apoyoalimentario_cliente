@@ -22,7 +22,8 @@ export class VerificationComponent implements OnInit {
 
   selected :any;
   contador: number = 0;
-  mensaje: string;
+  mensaje: string[];
+  i: number;
 
   emailtoSend: {ebody: string, etosend: string, ename: string} = {ebody: '', etosend: '', ename: ''};
   response: any;
@@ -109,6 +110,7 @@ export class VerificationComponent implements OnInit {
           console.log("")
           this._dataEconomicInformation.economicInformation = data;
           this.economicInformationLocal = data;
+          this.mensaje = this.economicInformationLocal.mensaje.split('\n');
           this.InitModelDocument();
           console.log(this.economicInformationLocal);
           this.GetDocuments();
@@ -133,6 +135,27 @@ export class VerificationComponent implements OnInit {
       case "MC":
         return "Madre Cabeza de Hogar"
     }
+  }
+
+  /* Razones de devolucón */
+  Transform2() {
+    switch(this.economicInformationLocal.tiposubsidio) {
+      case "ss":
+        return "Sin subsidio";
+      case "a":
+        return "Tipo A";
+      case "b":
+        return "Tipo B";
+      case "t":
+        return "Subsidio total";
+    }
+  }
+
+  Transform3() {
+    if(this.economicInformationLocal.verificadopor == 'A') 
+      return "Administrador";
+    else
+      return this.economicInformationLocal.verificadopor;
   }
 
 
@@ -198,6 +221,7 @@ export class VerificationComponent implements OnInit {
     /* NO ES FAKE */
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this.emailtoSend.ebody = this._dataEconomicInformation.economicInformation.mensaje;
+    
     this.emailtoSend.ename = this.modelBasicInformation.nombre;
     /* ES FAKE */
     this.emailtoSend.etosend = 'davinci1996@live.com';
@@ -227,4 +251,6 @@ export class VerificationComponent implements OnInit {
       this._routerEvent.navigate(['/list']);
     });
   }
+
+  
 }

@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
     if(this._constants.rol == 3) {
       this._Router.navigate(['/data']);
     }
-    if(this._constants.rol == 1 || this._constants.rol == 2 ) {
+    if(this._constants.rol == 1) {
+      this._Router.navigate(['/configuration']);
+    }
+    if(this._constants.rol == 2) {
       this._Router.navigate(['/list']);
     }
   }

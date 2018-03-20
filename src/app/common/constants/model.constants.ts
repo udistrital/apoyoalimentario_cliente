@@ -19,7 +19,7 @@ export class Constants {
     pathInformation: string = 'http://192.168.1.43:8086/v1/infoapoyo/';
     pathFiles: string = 'http://192.168.1.43:8086/v1/file/';
     // API Administration
-    pathNew: string = 'http://192.168.1.43:8086/v1/admin/1/';
+    pathNew: string = 'http://192.168.1.43:8086/v1/admin/2/';
     pathComplete: string = 'http://192.168.1.43:8086/v1/admin/3/';
     pathIncomplete: string ='http://192.168.1.43:8086/v1/admin/4/';
     pathVerification: string = 'http://192.168.1.43:8086/v1/admin/verification/';

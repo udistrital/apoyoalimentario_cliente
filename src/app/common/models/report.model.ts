@@ -6,6 +6,8 @@ export class Report {
     public tsede: string;
     public nameSheet: string;
     public typeReport: number;
+    public periodo: number;
+    public semestre: number;
 }
 
 export class Col {

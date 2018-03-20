@@ -51,6 +51,9 @@ export class ConfigurationComponent implements OnInit {
       this._emailConfiguration.GetAdminInformation().subscribe( data => {
         this.email = data;
         this._emailConfiguration.email = data;
+        for(this.i = 0; this.i <= this.email.text.length; this.i++) {
+          this.email.text = this.email.text.replace('<br>','\n');
+      }
         setTimeout(() => this._facultyInformation.waitService = false,0);
         console.log(data);
       });

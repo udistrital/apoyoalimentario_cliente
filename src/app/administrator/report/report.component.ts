@@ -69,7 +69,12 @@ export class ReportComponent implements OnInit {
     this.report.typeReport = parseInt(deviceValue.toString());
   }
 
+  saveSemester(deviceValue) {
+    this.report.semestre = parseInt(deviceValue.toString());
+  }
+
   send() {
+    console.log(this.report);
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._reportService.GenerateReport(this.report).subscribe(data => {
 

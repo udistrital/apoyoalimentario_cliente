@@ -102,14 +102,6 @@ export class AppComponent {
     });
   }
 
-  // select(item) {
-  //   this.selected = item; 
-  // };
-
-  // isActive(item) {
-  //   return this.selected === item;
-  // };
-
   function() {
     $('.unordered li accordion').click(function(e) {
       e.preventDefault();

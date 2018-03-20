@@ -92,15 +92,6 @@ export class FormComponent implements OnInit {
     }
   }
 
-  TransformType() {
-    switch(this.economicInformationLocal.tipoapoyo) {
-      case "A":
-        return "Almuerzo";
-      case "R":
-        return "Refrigerio";
-    }
-  }
-
   changeModel(){ 
     if(this.economicInformationLocal.correo == '') {
       this.economicInformationLocal.correo = this.modelBasicInformation.correo;

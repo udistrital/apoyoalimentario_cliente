@@ -62,6 +62,12 @@ btn {
     overflow: hidden;
 }
 
+.list {
+    width: 100%;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 .doc iframe {
     position: absolute;
     top:0;
@@ -87,6 +93,10 @@ btn {
     width: 80%;
     text-align: center;
     left: calc(6rem + 2px);
+}
+
+.default {
+    border: 1px solid black;
 }
 
 @media screen and (max-width: 730px){

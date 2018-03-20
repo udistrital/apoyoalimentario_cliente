@@ -1,5 +1,5 @@
 <header>
-  <h1>Información Social</h1>
+  <h1>Información Socioeconomica</h1>
 </header>
 <div class="alert alert-warning">
     <strong>Señor ESTUDIANTE</strong>
@@ -11,12 +11,12 @@
   <div class="col1">Tipo de Apoyo Alimentario</div>
   <div class="col2" *ngIf="stateLocal !== -1">
     <label  class="container">Almuerzo
-      <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="A">
+      <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="Almuerzo">
       <span class="checkmark"></span>
     </label>
 
     <label  class="container">Refrigerio nocturno
-        <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="R">
+        <input [(ngModel)]="economicInformationLocal.tipoapoyo"  (change)="changeModel()"  type="radio" name="type" value="Refrigerio">
         <span class="checkmark"></span>
     </label>
    </div>
@@ -25,7 +25,7 @@
 <div class="main" *ngIf="stateLocal === -1">
   <div class="col1">Tipo de Apoyo Alimentario</div>
   <div class="col2">
-    {{TransformType()}}
+    {{economicInformationLocal.tipoapoyo}}
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 <div class="main">
     <p>Seleccione el tipo de reporte que desea generar</p>
-    <select class="formm-control" (change)="saveType($event.target.value)">
+    <select class="form-control" (change)="saveType($event.target.value)">
         <option value="0">Seleccione una opción</option>
         <option value="1">Reportes Genericos</option>
         <option value="2">Reportes Finales</option>
@@ -10,7 +10,7 @@
 <div class="main" *ngIf="report.typeReport === 1">
         <p>Seleccione los campos que quiere incluir en el reporte</p>
     <div class="main">
-        <select (change)="saveColumn($event.target.value)">
+        <select (change)="saveColumn($event.target.value)" class="form-control">
             <option value="">Seleccione un campo</option>
             <option *ngFor="let item of _reportService.columna" class="form-control" value={{item.id}}>{{item.nombre}}</option>
         </select>
@@ -35,11 +35,25 @@
 
 <div class="main">
     <p>Seleccione la sede de la cual desea sacar los reportes</p>
-    <select (change)="saveFaculty($event.target.value)" [(ngModel)]="report.tsede" [ngModelOptions]="{standalone: true}">
+    <select (change)="saveFaculty($event.target.value)" [(ngModel)]="report.tsede" [ngModelOptions]="{standalone: true}" class="form-control">
         <option selected="selected" value="">Seleccione una sede</option>
         <option value="ALL">Todas las sedes</option>
         <option *ngFor="let item of modelFacultyInformation" class="form-control">{{item.facultad}}</option>
     </select>
+</div>
+
+<div class="main">
+    <p>Escriba el año y semestre del cual va generar el reporte</p>
+    <div class="col1">
+        <input type="number" placeholder="Año" class="form-control" [(ngModel)]="report.periodo">
+    </div>
+    <div class="col1">
+        <select class="form-control" (change)="saveSemester($event.target.value)">
+            <option value="">Seleccione el semestre</option>
+            <option value="1">1</option>
+            <option value="3">3</option>
+        </select>
+    </div>
 </div>
 
 <div class="main container">

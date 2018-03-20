@@ -1,11 +1,17 @@
 <ngb-tabset>
-    <ngb-tab title="Configuración">
+    <ngb-tab title="Configuración de módulo">
         <ng-template ngbTabContent>
             <div class="container">
                 <!-- Mensaje que se muestra a estudiantes acerca del plazo de inscripción -->
                 <div class="main">
                     <strong><p>Dé una descripción para los estudiantes acerca del proceso inscripción al Apóyo Alimentario</p></strong>
-                    <textarea rows="5" cols="100" [(ngModel)]="configurationLocal.mensajeestudiantes"></textarea>
+                    <textarea class="form-control text" rows="5" [(ngModel)]="configurationLocal.mensajeestudiantes"></textarea>
+                </div>
+
+                <!-- Valor de Salario Minimo -->
+                <div class="main">
+                    <strong><p>Introduzca el valor actual del Salario Minimo Legal Vigente (SMLV) sin puntos ni comas</p></strong>
+                    <input type="number" class="form-control" placeholder="Valor de SMLV" [(ngModel)]="configurationLocal.salariominimo">
                 </div>
             
                 <!-- Incluir sedes que pueden tener refrigeio nocturno  -->
@@ -167,7 +173,9 @@
                             Pie del mensaje
                         </div>
                         <div class="col1">
-                            <textarea cols="30" rows="3" class="form-control" placeholder="Enviado por Usuario" [(ngModel)]="email.text" [ngModelOptions]="{standalone: true}"></textarea>
+                            <form class="form-horizontal">
+                                <textarea class="form-control text" rows="10" placeholder="Enviado por Usuario" [(ngModel)]="email.text" [ngModelOptions]="{standalone: true}"></textarea>
+                            </form>
                         </div>
                     </div>
 
