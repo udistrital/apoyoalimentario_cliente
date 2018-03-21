@@ -37,6 +37,7 @@ export class ReportComponent implements OnInit {
   saveColumn(deviceValue) {
     this.selectedColumn = parseInt(deviceValue.toString());
   }
+
   addColumn() {
     if(this.selectedColumn != null || this.selectedColumn != undefined) {
       if(this.report.columnas.indexOf(this.selectedColumn) == -1) {
@@ -54,6 +55,11 @@ export class ReportComponent implements OnInit {
         }
       } 
     }
+  }
+  removeAll() {
+    this.addedColumn.splice(0,this.addedColumn.length);
+    this.report.columnas.splice(0,this.report.columnas.length);
+    
   }
 
   saveFaculty(deviceValue) {
@@ -77,11 +83,9 @@ export class ReportComponent implements OnInit {
     console.log(this.report);
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._reportService.GenerateReport(this.report).subscribe(data => {
-
       this.exportData(data);
       setTimeout(() => this._facultyInformation.waitService = false,0);
     });
-    
   }
 
   exportData(data) {

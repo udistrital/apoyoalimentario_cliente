@@ -114,6 +114,7 @@ export class FormComponent implements OnInit {
     this._fileService.evaluateInformation(this._dataEconomicInformation.economicInformation)
     this._dataEconomicInformation.changeModel = true;
       //this.validateComplete(this.informacionEconomica);
+      console.log(this.economicInformationLocal);
   }
 
 
