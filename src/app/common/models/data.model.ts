@@ -1,9 +1,17 @@
-export class MainInformation {
-    constructor(
-        public codigo: number,
-        public fechainscripcion: string
-    ) { }
+/*Estrucutra que contiene datos de estudiante:
+    codigo
+    fecha de insscripción
+    nombre
+    instancia de informacion economica */
+export class StudentData {
+    constructor() { }
+    public codigo: string;
+    public ultimafechainscripcion: string;
+    public nombre: string;
+    public Informacioneconomica: EconomicInformation;
 }
+
+/* Estrucutura para la informacion eoconomica del estudiante (Respuestas del formulario) */
 export class EconomicInformation {
     constructor() { }
     public estrato: string;
@@ -31,13 +39,4 @@ export class EconomicInformation {
     public correo: string;
     public antiguedad: string;
     public verificadopor: string;
-}
-
-// Administration
-export class StudentData {
-    constructor() { }
-    public codigo: string;
-    public ultimafechainscripcion: string;
-    public nombre: string;
-    public Informacioneconomica: EconomicInformation;
 }

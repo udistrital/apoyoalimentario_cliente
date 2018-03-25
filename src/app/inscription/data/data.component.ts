@@ -1,12 +1,26 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+/* Modelos */
 import { Constants } from '../../common/constants/model.constants';
+import { Metadata } from '../../common/constants/metadata';
+import { EconomicInformation } from '../../common/models/data.model';
+/* Servicios */
 import { StateService } from '../../common/services/status.service';
 import { DataInformation } from '../../common/services/basicInformation.service';
 import { DataEconomicInformation } from '../../common/services/economicInformation.service';
 import { FileService } from '../../common/services/file.service';
-import { Metadata } from '../../common/constants/metadata';
 import { InscriptionComplete } from '../../common/services/complete.service';
-import { EconomicInformation } from '../../common/models/data.model';
+
+/*Modelos:
+  Constants: Contiene URL de servicios de la OAS y de Apoyoalimentaroi_CRUD_API
+  Metadata: Es una cadena de caracteres que modela la información respectiva de cada documento
+  EconomicInformation: Es la estructura que se instancia para almacenar las respuestas dadas
+
+  Servicios:
+  StateService: Servicio que consulta el estado del estudiante en el Sistema de Gestión Academica
+  DataInformation: Servicio que trae la información básica del estudiante
+  DataEconomicInformation: Servicio que trae las respuestas del estudiante al formulario de inscripción
+  FileService: Servicio que trae la documentación adjuntada por el estudiante
+  InscriptionComplete: Es un servicio que valida si la inscripción fue terminada en su totalidad y envia la información economica */ 
 
 @Component({
   selector: 'app-data',
@@ -14,12 +28,12 @@ import { EconomicInformation } from '../../common/models/data.model';
   styleUrls: ['./data.component.css']
 })
 export class DataComponent {
-
   modelBasicInformation: {telefono: string, correo: string, nombre: string} = {telefono: '', correo: '', nombre: ''};
   modelInstitutionalInformation: {} = {};
   modelEconomicInformation: {mensaje:string, estadoprograma: number} = {mensaje:'', estadoprograma: 0};
   mensajesplit: string[];
 
+  /* Variables para acceder a los atributos y metodos de los servicios */
   constructor(private _constants: Constants,
               private _stateService: StateService, 
               private _dataInformation: DataInformation, 
@@ -35,35 +49,38 @@ export class DataComponent {
       this.modelBasicInformation = this._dataInformation.basicInformation;
       this.modelInstitutionalInformation = this._dataInformation.institutionalInformation;
     }
-    if (this._stateService.State == null){
+
+    if (this._stateService.State == null) {
       setTimeout(() => this._inscriptionComplete.waitService = true,0);
       this._stateService.GetInformationState().subscribe(
         data => {
           this._stateService.State = data;
           this._constants.initialStatus = data;
-          // 1: almuerzo
-          // 2: almuerzo y refrigerio
+          // Posibles estados del estudiante en el programa
+          // 1: almuerzo por defecto
+          // 2: puede escoger almuerzo o refrigerio 
           // 3: modificación por devolucion
           // -1: ya estan en proceso
           if (this._stateService.State == 1 || this._stateService.State == 2  || this._stateService.State == -1 || this._stateService.State == 3) {
-              this.CallServiceBasic();
-              
+            this.CallServiceBasic();
           } else {
-            this._stateService.onFail();
+            this._stateService.OnFail();
           } 
         },
         error => {
-            console.log(error);
-            this._stateService.onFail();
+          /* Muestra el error retornado por el CRUD_API y no permite el acceso */
+          console.log(error);
+          this._stateService.OnFail();
         }
         );
     }
-    if (this._stateService.State == 1 || this._stateService.State == 2){
+    if (this._stateService.State == 1 || this._stateService.State == 2) {
       this.modelBasicInformation = this._dataInformation.basicInformation;
       this.modelInstitutionalInformation = this._dataInformation.institutionalInformation;
     }
   }
 
+  /* obtiene la información básica e institucional del estudiante */
   private CallServiceBasic() {
     if (this._dataInformation.basicInformation == null){ 
       this._dataInformation.GetBasicInformation(this._constants.user)
@@ -74,8 +91,9 @@ export class DataComponent {
         } 
       },
       error => {
+        /* Muestra el error retornado por el CRUD_API y no permite el acceso */
         console.log(error);
-        this._stateService.onFail();
+        this._stateService.OnFail();
       });
     }
     if (this._dataInformation.institutionalInformation == null){ 
@@ -88,12 +106,14 @@ export class DataComponent {
         }
       },
       error => {
-          console.log(error);
-          this._stateService.onFail();
+        /* Muestra el error retornado por el CRUD_API y no permite el acceso */
+        console.log(error);
+        this._stateService.OnFail();
       });
     }       
   }
 
+  /* obtiene las respuestas del estudiante al formulario de inscripción */
   private CallServiceEconomic() {
     if (this._dataEconomicInformation.economicInformation == null){ 
       this._dataEconomicInformation.GetEconomicInformation(this._constants.user).subscribe(
@@ -102,14 +122,17 @@ export class DataComponent {
           this.modelEconomicInformation = data;
           this.mensajesplit = this.modelEconomicInformation.mensaje.split('\n');
           this.InitModelDocument();
-          this._fileService.evaluateInformation(this._dataEconomicInformation.economicInformation);
+          this._fileService.EvaluateInformation(this._dataEconomicInformation.economicInformation);
         },
         error => {
+          /* Muestra el error y prohibe el acceso */
           console.log(error);
-          this._stateService.onFail();
+          this._stateService.OnFail();
         });   
     }
   }
+
+  /* Inicializa un modelo vacion para los documentos que adjunte el estudiante */
   private InitModelDocument() {
     this._inscriptionComplete.CountCompletedFields();
     if (this._fileService.fileInformationLocal == null) {

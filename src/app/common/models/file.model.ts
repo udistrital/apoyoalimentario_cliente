@@ -1,3 +1,4 @@
+/* Estructura que se muestra en el componente de adjunción de documentos */
 export class FileMainInformation {
     constructor(
 
@@ -11,6 +12,8 @@ export class FileMainInformation {
     public required: string;
     public help: string;
 }
+
+/* Estructrua que almacena los documentos traidos de BD */
 export class FileDBData {
     constructor(
 

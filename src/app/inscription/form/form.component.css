@@ -1,6 +1,9 @@
+/* Override de class -form-control */
 .form-control {
     padding : 0;
 }
+
+/* Override de class .btn-help */
 .btn-help{
     width: 30px;
     height: 30px;
@@ -8,15 +11,19 @@
     padding: 0px;
 }
 
+/* Estilo de Cabecera */
 header {
     text-align: center;
     border-bottom: 1px solid #000000;
     margin: 10px;
 }
+
+/* Override de class moda-content  */
 .modal-content{
     top: 100px;
 }
-/*  radio   */
+
+/*  Estilos de radio button  */
 .container {
     display: table-cell;
     position: relative;
@@ -29,13 +36,13 @@ header {
     -ms-user-select: none;
     user-select: none;
 }
-
+/* Estilos de input de .container */
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
-
+/* Estilos de class .checkmark */
 .checkmark {
     position: absolute;
     top: 0;
@@ -45,25 +52,25 @@ header {
     background-color: #eee;
     border-radius: 50%;
 }
-
+/* Estilo de mouse hover */
 .container:hover input ~ .checkmark {
     background-color: #ccc;
 }
-
+/* Estilo de checked radio */
 .container input:checked ~ .checkmark {
     background-color: #2196F3;
 }
-
+/* Estilos de checked */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
-
+/* Estilo de input cheked */
 .container input:checked ~ .checkmark:after {
     display: block;
 }
-
+/* Estilo de checkmark after */
 .container .checkmark:after {
  	top: 9px;
 	left: 9px;
@@ -72,7 +79,8 @@ header {
 	border-radius: 50%;
 	background: white;
 }
-/*          AJUSTE DE COLUMNAS          */
+
+/*         ESTILO DE COLUMNAS          */
 .col1 {
     float: left;
     width: 50%;
@@ -112,10 +120,11 @@ header {
     color: red;
 }
 
+/* Estilo de alert */
 .alert {
     margin: 0 3em;
 }
-
+/* Estilo de input */
 input {
     margin-right: 10px;
 }
@@ -123,6 +132,8 @@ input {
     padding-right: 30px;
     padding-left: 30px;
 }
+
+/* Estilo Responsive */
 @media screen and (max-width: 500px){
     .main ,
     .col1{

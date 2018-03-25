@@ -1,244 +1,188 @@
+/* Estilo de la pagina general */
 div.wrapper {
-    margin: 0px;
-    width: 25%;
-    height: 500px;
-    box-sizing: border-box;
-    float: left;
-  }
-    
-  p {
-    font-family: georgia;
-    font-size: 1rem;
-    line-height: 25px;
-    margin: 24px 0;
-    text-align: center;
-  }
-    
-  nav.vertical {
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,.15);
-    overflow: hidden;
-    text-align: center;
-    left: 0;
-  }
-    
-  nav.vertical > ul {
-    list-style-type: none;
-  }
-    
-  nav.vertical > ul > li {
-    display: block;
-  }
-    
-  nav.vertical > ul > li > a {
-    border-bottom: 1px solid rgba(255,255,255,.1);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.1);
-    color: #000000;
-    display: block;
-    font-size: .85rem;
-    font-weight: 500;
-    height: 50px;
-    letter-spacing: .5rem;
-    line-height: 50px;
-    text-shadow: 0 1px 1px rgba(0,0,0,.1);
-    text-transform: uppercase;
-    transition: all .1s ease;
-    text-decoration: none;
-  }
-    
-  nv.vertical > ul > li > a:hover {
-    cursor: pointer;
-  }
-            
-  nav.vertical > ul > li > div {
-    background-color: rgb(255,255,255);
-  }
-     
-  nav.vertical > ul > li > div > ul {
-    list-style-type: none;
-  }
-    
-  nav.vertical > ul > li > div > ul > li > a {
-    background-color: rgb(255,255,255);
-    border-bottom: 1px solid rgba(0,0,0,.05);
-    color: #333331;
-    display: block;
-    font-size: 1.1rem;
-    padding: 10px 0;
-    text-decoration: none;
-    transition: all 0.15s linear;
-  }
-    
-  nav.vertical > ul > li > div > ul > li:hover > a {
-    background-color: lightBlue;
-    color: rgb(255,255,255);
-  }
-  
-  .interfaces {
-    height: 100%;
-    border: 1px solid black;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 74%; 
-  }
-
-  ::-webkit-scrollbar {
-    width: 5px;
+  margin: 0px;
+  width: 25%;
+  height: 500px;
+  box-sizing: border-box;
+  float: left;
 }
 
+/* Estilos de la barra lateral */
+nav.vertical {
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,.15);
+  overflow: hidden;
+  text-align: center;
+  left: 0;
+} 
+nav.vertical > ul {
+  list-style-type: none;
+}
+nav.vertical > ul > li {
+  display: block;
+}
+nav.vertical > ul > li > accordion {
+  height: 100%;
+  background-color: rgb(255,255,255);
+}
+/* Estilo active del menu lateral */
+.active {
+  background-color: #14CFFA;
+  color: black;
+}
+.panel-group {
+  margin: 0;
+  padding: 10px;
+}
+
+
+/* Estilo de panel de despliegue de componentes */
+.interfaces {
+  height: 100%;
+  border: 1px solid black;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 74%; 
+}
+
+/* Estilos de scroll lateral */
+::-webkit-scrollbar {
+  width: 5px;
+}
 ::-webkit-scrollbar-track {
     background-color: rgba(137, 137, 137, 1);
 } 
-
 ::-webkit-scrollbar-thumb {
     background-color: rgba(53, 53, 53, 1);
 } 
-
 ::-webkit-scrollbar-button {
     display: none;
 }
-
 ::-webkit-scrollbar-corner {
     background-color: black;
 }
-  
-  a, li {
-    text-decoration: none;
+
+/* Estilo de alerta error */
+.error {
+  position:fixed;
+  z-index: 1;
+  top: 0;
+  left: calc(27rem + 2px);
+}
+.error h6 {
+  clear: both;
+}
+.ins {
+  top: 150px;
+  left: calc(5em + 2px);
+  width: 90%;
+}
+
+/* Estilo de alert */
+.alert {
+  float: left;
+  width: 95%;
+  padding: 0 15px;
+
+}
+.alert h4 {
+  padding: 10px;
+}
+.alert-success h3 {
+  padding: 20px;
+}
+.close {
+  margin: 0 15px;
+}
+
+/* Barra responsive */
+.menu_bar {
+  display: none;
+}
+
+/* Estilo de confirmación de inscripción */
+.modal-content{
+  top: 100px;
+}
+
+/* Estilo de mensaje */
+.mensaje {
+  position: absolute;
+  top: 30px;
+  left: calc(5em + 2px);
+  width: 90%;
+}
+
+/* Estilo de contenido de modal */
+.content {
+  padding: 15px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+/* Estilos Responsive */
+@media screen and (max-width: 500px){
+                  
+  div.wrapper {
+    width: 100%;
+    height: auto;  
+    box-sizing: border-box;
+    clear: both;
+    float: none;
+  }
+
+  .vertical {
+    background-color: #CCC;
+    width: 90%;
     height: 100%;
-    padding: 0;
+    clear: both;
+    left: -100%;
+    position:fixed;
+    z-index: 1;
+    display: block;
+  }
+
+  .interfaces {
+    height: 95%;
+    border-top: 3px solid black;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    width: 100%;
+    clear: both;
+    z-index: 0;
   }
 
   .error {
-    position:fixed;
-    z-index: 1;
-    top: 0;
-    left: calc(27rem + 2px);
-  }
-  .error h6 {
-    clear: both;
-  }
-
-  .alert {
-    float: left;
-    width: 95%;
-    padding: 0 15px;
-
-  }
-
-  .alert-danger h4 {
-    padding: 10px;
-  }
-
-  .alert-success h3 {
-    padding: 20px;
-  }
-
-  .close {
-    margin: 0 15px;
-  }
-
-  li accordion .panel-group:hover {
-    background-color: lightblue;
+    width: 100%;
+    left: 0;
   }
 
   .menu_bar {
-    display: none;
+    display: block;
+    width: 100%;
+    background:#CCC;
   }
-  
+  .menu_bar .btn_menu {
+    display: block;
+    padding: 15px;
+    background-color: #D1D1D1;
+    color:#666666;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    box-sizing:border-box;
+  }
+  .menu_bar span {
+    float: right;
+  }
   .checkboxes {
     clear: both;
   }
-
-  .modal-content{
-    top: 100px;
-  }
-
-  .active {
-    background-color: #14CFFA;
-    color: black;
-  }
-
-  .mensaje {
-    position: absolute;
-    top: 30px;
-    left: calc(5em + 2px);
-    width: 90%;
-  }
-
-  .ins {
-    top: 150px;
-    left: calc(5em + 2px);
-    width: 90%;
-  }
+}
   
-  @media screen and (max-width: 500px){
-                    
-    div.wrapper {
-      width: 100%;
-      height: auto;  
-      box-sizing: border-box;
-      clear: both;
-      float: none;
-    }
 
-    .vertical {
-      background-color: #CCC;
-      width: 90%;
-      height: 100%;
-      clear: both;
-      left: -100%;
-      position:fixed;
-      z-index: 1;
-      display: block;
-    }
-  
-    .interfaces {
-      height: 95%;
-      border-top: 3px solid black;
-      border-right: none;
-      border-bottom: none;
-      border-left: none;
-      width: 100%;
-      clear: both;
-      z-index: 0;
-    }
-  
-    footer {
-      height: 15%;
-      border-top: 3px solid black;
-    }
-
-    .error {
-      width: 100%;
-      left: 0;
-    }
-
-    .menu_bar {
-      display: block;
-      width: 100%;
-      background:#CCC;
-    }
-
-    .menu_bar .btn_menu {
-      display: block;
-      padding: 15px;
-      background-color: #D1D1D1;
-      color:#666666;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 20px;
-      box-sizing:border-box;
-    }
-
-    .menu_bar span {
-      float: right;
-    }
-
-    .checkboxes {
-      clear: both;
-    }
-  }
-  
+/* Estilos div loading */
 .loading{
   position: absolute;
   width: 100%;
@@ -257,34 +201,6 @@ div.wrapper {
 /* -----------------------------------------
 =Default css to make the demo more pretty
 -------------------------------------------- */
-
-body {
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 1200px;
-  overflow-y: scroll;
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 400;
-  color: #777;
-  background-color: #f7f7f7;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-.content {
-  padding: 15px;
-  overflow: hidden;
-  background-color: transparent;
-}
-
-h1 {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #d8d8d8;
-  font-weight: 600;
-}
-
-h1 span {font-family: monospace,serif;}
 
 h3 {
 padding-bottom: 20px;
@@ -446,6 +362,7 @@ p {
 .l-8 {animation-delay: 1.32s;}
 .l-9 {animation-delay: 1.44s;}
 .l-10 {animation-delay: 1.56s;}
+.l-11 {animation-delay: 2.8s;}
 
 .load-7 .square {animation: loadingG 1.5s cubic-bezier(.17,.37,.43,.67) infinite;}
 

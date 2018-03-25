@@ -18,6 +18,7 @@ export class FacultyInformation {
     ngOnInit() {
     }
 
+    /* Obtiene el listado de facultades de la Universidad Distrital*/
     public GetFacultyInformation() {
         return this._http.get(this._constants.facultyInformation)
         .map((res: Response) => res.json());

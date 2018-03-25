@@ -1,59 +1,64 @@
 <div class="wrapper">
+  <!-- Barra Responsive -->
   <div class="menu_bar" (click)="main()">
       <a class="btn_menu"><span class="icon-menu"><img src="./assets/menuIcon.png"/></span>Opciones</a>
   </div>
+
+  <!-- Menu lateral -->
   <nav class="vertical">
     <div>
       <ul class="unordered" (click)="function()">
         <li class="active" routerLink="/configuration" *ngIf="_constants.rol === '1'">
-          <accordion>Configuración</accordion>
+          <div class="panel-group">Configuración</div>
         </li>
         <li routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" >
-          <accordion>Solicitudes</accordion>
+          <div class="panel-group">Solicitudes</div>
         </li>
         <li routerLink="/reports" *ngIf="_constants.rol === '1'">
-          <accordion>Reportes</accordion>
+          <div class="panel-group">Reportes</div>
         </li>
         <li class="active" routerLink="/data" *ngIf="_constants.rol === '3'">
-          <accordion>Datos de estudiante</accordion>
+          <div class="panel-group">Datos de estudiante</div>
         </li>
         <li routerLink="/form" *ngIf="_constants.rol === '3'">
-          <accordion>Formulario</accordion>
+          <div class="panel-group">Formulario</div>
         </li>
         <li routerLink="/documents" *ngIf="_constants.rol === '3'">
-          <accordion>Subir documentos</accordion>
+          <div class="panel-group">Subir documentos</div>
         </li>
         <li *ngIf="_constants.rol === '3'">
-          <accordion><a target="_blank" href="./assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></accordion>
+          <div class="panel-group"><a target="_blank" href="./assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></div>
         </li>
         <li>
           <button *ngIf="_constants.initialStatus !== -1" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal">INSCRIBIR</button>
         </li>
-        <!-- Confirmation Modal -->
+        <!-- Confirmation Modal para inscripción -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Apoyo Alimentario</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Al hacer click en <strong>Acepto</strong>, expresamente autorizo de manera voluntaria, informada e inequivoca a la Universidad Distrital Francisco José de Caldas para el tratamiento de datos personales referentes a mi informaicón personal y economica, la cual declaro la he suministrado de forma voluntaria y es completa, confiable, exacta y veridica.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PutValidationComponent()">Acepto</button>
-                </div>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Apoyo Alimentario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Al hacer click en <strong>Acepto</strong>, expresamente autorizo de manera voluntaria, informada e inequivoca a la Universidad Distrital Francisco José de Caldas para el tratamiento de datos personales referentes a mi informaicón personal y economica, la cual declaro la he suministrado de forma voluntaria y es completa, confiable, exacta y veridica.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PutValidationComponent()">Acepto</button>
               </div>
             </div>
           </div>
+        </div>
       </ul>
     </div>
+    <!-- Mensaje de administrador a estudiantes -->
     <div class="alert alert-info" *ngIf="_constants.rol === '3'">
       <strong>{{mensajeEstudiantes.mensajeestudiantes}}</strong>
     </div>
+    <!-- Recordatorio para administrador  -->
     <div class="alert alert-info" *ngIf="_constants.rol === '1' && (mensajeEstudiantes.reminder === (todayDate | date:'yyyy-MM-dd'))">
         <strong>El módulo se debe cerrar hoy</strong>
     </div>
@@ -69,65 +74,68 @@
     </form> 
   </div>
 </div>
-  <div class="interfaces">
+<div class="interfaces">
   <div *ngIf="_inscriptionComplete.waitService === true || _facultyInformation.waitService === true" class="loading">
-  
     <!-- 2 -->
-  <div class="content">
-    <div class="load-6">
-      <div class="letter-holder">
-        <div class="l-1 letter">L</div>
-        <div class="l-2 letter">o</div>
-        <div class="l-3 letter">a</div>
-        <div class="l-4 letter">d</div>
-        <div class="l-5 letter">i</div>
-        <div class="l-6 letter">n</div>
-        <div class="l-7 letter">g</div>
-        <div class="l-8 letter">.</div>
-        <div class="l-9 letter">.</div>
-        <div class="l-10 letter">.</div>
+    <div class="content">
+      <div class="load-6">
+        <div class="letter-holder">
+          <div class="l-1 letter">C</div>
+          <div class="l-2 letter">A</div>
+          <div class="l-3 letter">R</div>
+          <div class="l-4 letter">G</div>
+          <div class="l-5 letter">A</div>
+          <div class="l-6 letter">N</div>
+          <div class="l-7 letter">D</div>
+          <div class="l-8 letter">O</div>
+          <div class="l-9 letter">.</div>
+          <div class="l-10 letter">.</div>
+          <div class="l-11 letter">.</div>
+        </div>
       </div>
     </div>
-  </div>
   </div>  
-    <router-outlet></router-outlet>
-  </div>
+  <!-- Despliegue de selección del menu lateral -->
+  <router-outlet></router-outlet>
+</div>
 
-  <div class="error" *ngIf="_fileService.errorFile !== ''">
-      <div class="alert alert-danger alert-dismissable fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h6><strong>Error guardando:</strong></h6>
-        <span *ngFor="let item of _fileService.errorFileSplit">
-            &emsp;- {{item}}<br>
-        </span>
-        <h6><strong>El archivo debe ser en formato PDF y con un tamaño menor a 500 KB</strong></h6>
-        <h6><strong>Puede usar una herramienta online para comprimir los archivos PDF o guardarlo nuevamente con una calidad inferior</strong></h6>
-      </div>
-    </div>
-
-  <div class="error" *ngIf="response === 0">
-      <div class="alert alert-danger alert-dismissable fade show ins" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4><strong>Debe llenar todos los campos y adjuntar todos los documentos</strong></h4>
-      </div>
+<!-- Error para archivos erroneos -->
+<div class="error" *ngIf="_fileService.errorFile !== ''">
+  <div class="alert alert-danger alert-dismissable fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h6><strong>Error guardando:</strong></h6>
+    <span *ngFor="let item of _fileService.errorFileSplit">
+        &emsp;- {{item}}<br>
+    </span>
+    <h6><strong>El archivo debe ser en formato PDF y con un tamaño menor a 500 KB</strong></h6>
+    <h6><strong>Puede usar una herramienta online para comprimir los archivos PDF o guardarlo nuevamente con una calidad inferior</strong></h6>
   </div>
+</div>
+
+<!-- Error para inscripción incompleto -->
+<div class="error" *ngIf="response === 0">
+  <div class="alert alert-danger alert-dismissable fade show ins" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4><strong>Debe llenar todos los campos y adjuntar todos los documentos</strong></h4>
+  </div>
+</div>
   
 
-  <!--   -->
-  <div class="error" *ngIf="response === 1">
-      <div class="alert alert-success alert-dismissable fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3><strong>Su inscripción se ha completado satisfactoriamente</strong></h3>
-      </div>
-  </div>
+<!-- Inscripcion Exitosa  -->
+<div class="error" *ngIf="response === 1">
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h3><strong>Su inscripción se ha completado satisfactoriamente</strong></h3>
+    </div>
+</div>
 
-  <!-- Estudiante Inactivo o Plataforma Inactiva -->
+<!-- Estudiante Inactivo o Plataforma Inactiva -->
 <div class="alert alert-warning mensaje" *ngIf="_constants.initialStatus === 0">
   <h3>Señor ESTUDIANTE no puede acceder porque está fuera de los plazos de inscripción o usted se encuentra INACTIVO</h3>
 </div>

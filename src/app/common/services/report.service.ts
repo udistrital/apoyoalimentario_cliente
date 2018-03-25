@@ -8,22 +8,17 @@ import { Col, Report } from '../models/report.model';
 export class ReportService {
 
     headers: Headers;
-   
     columna: Array<Col>;
-    
-    
-   
-    constructor(private _http: Http, 
-                private _constants: Constants) {
-                    
-    }
 
-    
+    constructor(private _http: Http, 
+                private _constants: Constants) {        
+    }
 
     ngOnInit() {
     }
 
-    public cual() {
+    /* Genera los campos del reporte relacionados a un código */
+    public GenerateFields() {
         this.columna = new Array<Col>();
         this.columna.push(new Col(1,"Codigo de estudiante"));
         this.columna.push(new Col(2,"Fecha de inscripción"));
@@ -61,9 +56,8 @@ export class ReportService {
         this.columna.push(new Col(34,"Promedio"));
     }
 
-
+    /* Envia la petición al CRUD_API para generar el reporte */
     public GenerateReport(report: Report) {
-        console.log('change');
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
         let url = this._constants.pathReport;

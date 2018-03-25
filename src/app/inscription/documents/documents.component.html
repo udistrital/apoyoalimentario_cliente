@@ -1,32 +1,37 @@
+<!-- Cabecera de pagina -->
 <header name="arriba">
   <h1>Información Económica</h1>
 </header>
+
+<!-- Alert de instrucciones para el registro de documentos -->
 <div class="alert alert-warning">
-    <strong>Señor ESTUDIANTE</strong>
-    <p>LOS DOCUMENTOS DEBEN TENER LAS SIGUIENTES CARACTERISTICAS:</p>
-    <p>- FORMATO PDF <strong>LEGIBLES</strong></p>
-    <p>- TAMAÑO MENOR A 500 Kb</p><br>
-    <p>LOS CAMPOS MARCADOS CON <span>*</span> SON OBLIGATORIOS</p><br>
-    <p>RECUERDE QUE LA CARTA DE SOLICITUD, EL FORMULARIO, LA CERTIFICACIÓN LABORAL DEBEN <strong>ESTAR FIRMADAS.</strong></p>
-    <p>SI TIENE DUDAS ACERCA DE LA DOCUMENTACIÓN, PUEDE PASAR EL CURSOR SOBRE EL NOMBRE DEL DOCUMENTO, ESTO LO PROPORCIONARA UNA DESCRIPCIÓN DE ESTE</p>
+  <strong>Señor ESTUDIANTE</strong>
+  <p>LOS DOCUMENTOS DEBEN TENER LAS SIGUIENTES CARACTERISTICAS:</p>
+  <p>- FORMATO PDF <strong>LEGIBLES</strong></p>
+  <p>- TAMAÑO MENOR A 500 Kb</p><br>
+  <p>LOS CAMPOS MARCADOS CON <span>*</span> SON OBLIGATORIOS</p><br>
+  <p>RECUERDE QUE LA CARTA DE SOLICITUD, EL FORMULARIO, LA CERTIFICACIÓN LABORAL DEBEN <strong>ESTAR FIRMADAS.</strong></p>
+  <p>SI TIENE DUDAS ACERCA DE LA DOCUMENTACIÓN, PUEDE PASAR EL CURSOR SOBRE EL NOMBRE DEL DOCUMENTO, ESTO LO PROPORCIONARA UNA DESCRIPCIÓN DE ESTE</p>
 </div>
+
+<!-- Formulario para adjuntar documentos -->
 <form>
-<div class="main" *ngFor="let archives of fileInformationLocalComponent">
-  <div *ngIf="archives.required === 'si'" class="data">
-    <div class="main">
-      <div class="col1" data-toggle="tooltip" title={{archives.help}} data-placement="left">
+  <div class="main" *ngFor="let archives of fileInformationLocalComponent">
+    <div *ngIf="archives.required === 'si'" class="data">
+      <div class="main">
+        <div class="col1" data-toggle="tooltip" title={{archives.help}} data-placement="left">
           <a *ngIf="archives.name === 'FormatoInscripcion' && stateLocal !== -1" href="./assets/Formulario de Adjudicación Subsidio.pdf" download="Formulario de Adjudicación Subsidio.pdf"><img src="./assets/downloadIcon.png" title="Descargar Formulario de Adjudicación de Subsidio"></a>
           <p><span *ngIf="archives.name !== 'DocumentoAdicional'">* </span>{{archives.description}}</p>
-      </div>
-      <div class="col2">
-        <p><label class="import-file" *ngIf="stateLocal !== -1">
-            <input class="hidden from-control" type="file" (change)="upload($event,archives.name)">
-            <div class="btn btn-primary">Seleccione un archivo</div>
-        </label>
-        <strong>{{archives.filedb}}</strong></p>
+        </div>
+        <div class="col2">
+          <p><label class="import-file" *ngIf="stateLocal !== -1">
+              <input class="hidden from-control" type="file" (change)="Upload($event,archives.name)">
+              <div class="btn btn-primary">Seleccione un archivo</div>
+            </label>
+            <strong>{{archives.filedb}}</strong>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </form>

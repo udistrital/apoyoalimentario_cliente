@@ -31,6 +31,8 @@ export class InscriptionComplete {
         
     }
 
+    /* Cuenta los campos respondidos del formulario
+        Si estan respondido en totalidad el sistema lo sabrá */
     public CountCompletedFields() {      
         if (this._dataEconomicInformation.economicInformation.antiguedad != ''
         && this._dataEconomicInformation.economicInformation.estrato != ''
@@ -59,6 +61,7 @@ export class InscriptionComplete {
         }
     }
 
+    /* Cuenta los documentos adjuntados si, se llena en totalidad el sistema lo sabe */
     public CountDocumentUploaded() {
         if (this.selectorShowed <= this.documentUploaded) {
             this.documentsComplete = true;
@@ -67,6 +70,7 @@ export class InscriptionComplete {
         }
     }
 
+    /* Inserta la información economica del estudiante en BD (Respuestas del formulario) */
     public PutValidationInscription() {
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');

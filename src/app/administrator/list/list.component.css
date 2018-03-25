@@ -1,16 +1,11 @@
-header {
-    text-align: center;
-    border-bottom: 1px solid #000000;
-    margin: 10px;
-}
-
+/* Estilo de filas */
 .main {
     width: 100%;
     text-align: center;
     margin-bottom: 15px;
     clear: both;
 }
-
+/* Estilo de parrafos */
 p {
     box-sizing: border-box;
     width: 50%;
@@ -19,6 +14,7 @@ p {
     text-transform: uppercase;
 }
 
+/* Estilo de slección de sedes */
 .select {
     background-color: white;
     position: fixed;
@@ -27,7 +23,7 @@ p {
     z-index: 7;
 }
 
-/*      TABLE STYLES            */
+/*      Estilos de tablas            */
 .container tbody tr:hover td{
 background-color: rgb(128, 185, 250);
 color: rgb(243, 243, 234);
@@ -36,7 +32,6 @@ transition-delay: 0s;
     transition-property: all;
 transition-timing-function: line;
 }
-
 .sede {
     width: 70%;
     margin: 1em 1em 1em 1em;
@@ -44,32 +39,33 @@ transition-timing-function: line;
 .sede td {
     text-align: center;
 }
-
 .type {
     text-align: center;
 }
-
 .container {
     width: 100%;
 }
-/*      END TABLE STYLES        */
 
+/* Estilo de botones */
 .btn .btn-info .btn-lg, a{
     z-index: 1;
 }
 
+/* Estilo de contenedor de boton actualizar */
 .reload {
     right: calc(3em + 1px);
     position: fixed;
     top: calc(0.5em + 1px);
 }
 
+/* Estilo de contenedor de boton cambiar sedes */
 .change {
     right: calc(10em + 1px);
     position: fixed;
     top: calc(0.5em + 1px);
 }
 
+/* estilos responsive */
 @media screen and (max-width: 730px){
     p {
         width: 100%;
@@ -78,10 +74,4 @@ transition-timing-function: line;
         width: 50%;
         margin: auto;
     }
-}
-
-footer {
-    border-top: 1px solid #000000;
-    padding-left: 10%;
-    clear: both;
 }

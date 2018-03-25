@@ -23,17 +23,27 @@ export class StateService {
     ngOnInit() {
     }
 
+    /*Obtiene el estado del estudiante 
+        -2: Error de API
+        -1: Esta en proceso    
+        0: usuario inactivo o modulo inactivo
+        1: Almuerzo
+        2: Almuerzo y refrigerio
+        3: Devuleto para correciones
+        */
     public GetInformationState() {
         return this._http.get(this._constants.pathState + this._constants.user)
             .map((informacionArchivo) => informacionArchivo.json());     
     }
-    public onFail() {
+
+    /* Devulve al estudiante a interfaz de login */
+    public OnFail() {
         setTimeout(() => this._inscriptionComplete.waitService = false);
         this._router.navigate(['/login']);
     }
 
+    /* Cambia el estado del estudiante en el programa */
     public ChangeState() {
-        console.log('change');
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
         let url = this._constants.pathVerification + this._constants.userTemp;

@@ -7,9 +7,7 @@ import { EconomicInformation } from '../models/data.model';
 @Injectable()
 export class DataEconomicInformation {
    
-    
     public economicInformation: EconomicInformation;
-
 
     changeModel : boolean = false;
     headers: Headers;
@@ -20,15 +18,16 @@ export class DataEconomicInformation {
     ngOnInit() {
     }
 
+    /* Obtiene la informacion economica del estudiante (Respuestas del formulario) */
     public GetEconomicInformation(user: string) {
         return this._http.get(this._constants.pathInformation + user)
         .map((informacionArchivo) => informacionArchivo.json())
     }
     
+    /* Guarda la informacion economica del estudiante (Respuestas del formulario) */
     public PutEconomicInformation() {
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
-        console.log(this.economicInformation);
         let url = this._constants.pathInformation+this._constants.user;
         return this._http.put(url, this.economicInformation, {headers: this.headers});
     }

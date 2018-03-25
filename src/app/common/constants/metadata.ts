@@ -1,6 +1,6 @@
+/* Estrucutra que se parsea como JSON para los documentos */
 export class Metadata {
-  
-    uploadDocuments: string = '['+
+  uploadDocuments: string = '['+
         '{' +
         '"name": "FormatoInscripcion",' +
         '"type": "file",' +

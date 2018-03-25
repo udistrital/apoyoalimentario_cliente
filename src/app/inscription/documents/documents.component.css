@@ -1,67 +1,61 @@
+/* Estilo de cabecera */
 header {
     text-align: center;
     border-bottom: 1px solid #000000;
     margin: 10px;
 }
 
+/* Estilo de filas */
 .main {
     text-align: center;
     margin-bottom: 15px;
 }
 
+/* Estilo de columnas */
 .col1, .col2 {
     width: 50%;
     float: left;
-    /*padding: 0 0.5em;*/
 }
-
-.help {
-    display: none;
-    padding: 0 100em;
-    width: 90%;
-    text-align: center;
-}
-.help p {
-    width: 90%;
-}
-.data:hover .help{
-    display: initial
-}
-
+/* Estilo de parrafos en .col1 */
 .col1 p {
     box-sizing: border-box;
     width: 85%;
     float: left;
 }
+/* Estilo de img en .col1 */
+.col1 img {
+    width: 26px;
+    height: 26px;
+    float: left;
+}
+/* Estilo de span en .col2 */
+.col2 span {
+    width: 100%;
+}
 
+/* Estilo de alert */
 .alert {
     margin: 0 3em;
     padding: 0 5em;
 }
-
+/* Estilo de parrafo en .alert */
 .alert p {
     float: initial;
     width: 100%;
 }
 
-.col1 img {
-    width: 26px;
-    height: 26px;
-    float: left;
-  }
+/* Estilo de type file */
+input[type=file].hidden {
+    color: transparent;
+}
 
-  .col2 span {
-      width: 100%;
-  }
+/* Estilo de span */
+span {
+    color: red;
+}
 
-  input[type=file].hidden {
-      color: transparent;
-  }
 
-  span {
-      color: red;
-  }
-
+/* Estilos resposive */
 @media screen and (max-width: 730px){
     p {
         width: 100%;
@@ -76,8 +70,3 @@ header {
         padding: 0;
     }
 } 
-
-footer {
-    border-top: 1px solid #000000;
-    padding-left: 10%;
-}

@@ -1,3 +1,4 @@
+/* Estructura que tiene la configuración de correo electrónico del administrador */
 export class Email {
     server: string;
     port: number;
@@ -9,6 +10,7 @@ export class Email {
     text: string;
 }
 
+/* Esctructura que tiene las configuraciónes del mensaje como asunto, de, para */
 export class BodyEmail {
     ebody: string;
     etosend: string;

@@ -1,24 +1,27 @@
-<div class="main">
+
+ <!-- Seleccion de tipo de reporte -->
+ <div class="main">
     <p>Seleccione el tipo de reporte que desea generar</p>
-    <select class="form-control" (change)="saveType($event.target.value)">
+    <select class="form-control" (change)="SaveType($event.target.value)">
         <option value="0">Seleccione una opción</option>
         <option value="1">Reportes Genericos</option>
         <option value="2">Reportes Finales</option>
-        <option value="3">Otros</option>
+        <option value="3">Sisben - SPP - Finales</option>
     </select>
 </div>
 
+<!-- Seleccion de campos a incluir en el reporte -->
 <div class="main" *ngIf="report.typeReport === 1">
-        <p>Seleccione los campos que quiere incluir en el reporte</p>
+    <p>Seleccione los campos que quiere incluir en el reporte</p>
     <div class="main">
-        <select (change)="saveColumn($event.target.value)" class="form-control">
+        <select (change)="SaveColumn($event.target.value)" class="form-control">
             <option value="">Seleccione un campo</option>
             <option *ngFor="let item of _reportService.columna" class="form-control" value={{item.id}}>{{item.nombre}}</option>
         </select>
     </div>
     <div class="main">
-        <button class="btn btn-primary" (click)="addColumn()">AGREGAR</button>
-        <button class="btn btn-danger" (click)="removeColumn()">ELIMINAR</button>
+        <button class="btn btn-primary" (click)="AddColumn()">AGREGAR</button>
+        <button class="btn btn-danger" (click)="RemoveColumn()">ELIMINAR</button>
     </div>
     <div class="container">
         <table class="table table-bordered">
@@ -29,28 +32,27 @@
             </tbody>
         </table>
     </div>
-    <button class="btn btn-danger" (click)="removeAll()">BORRAR CAMPOS</button>
+    <button class="btn btn-danger" (click)="RemoveAll()">BORRAR CAMPOS</button>
 </div>
 
-
-
-
+<!-- Seleccion de sede de la cual se generan los reportes -->
 <div class="main">
     <p>Seleccione la sede de la cual desea sacar los reportes</p>
-    <select (change)="saveFaculty($event.target.value)" [(ngModel)]="report.tsede" [ngModelOptions]="{standalone: true}" class="form-control">
+    <select (change)="SaveFaculty($event.target.value)" [(ngModel)]="report.tsede" [ngModelOptions]="{standalone: true}" class="form-control">
         <option selected="selected" value="">Seleccione una sede</option>
         <option value="ALL">Todas las sedes</option>
         <option *ngFor="let item of modelFacultyInformation" class="form-control">{{item.facultad}}</option>
     </select>
 </div>
 
+<!-- Seleccion del año y semestre del cual se va generar el reporte -->
 <div class="main">
     <p>Escriba el año y semestre del cual va generar el reporte</p>
     <div class="col1">
         <input type="number" placeholder="Año" class="form-control" [(ngModel)]="report.periodo">
     </div>
     <div class="col1">
-        <select class="form-control" (change)="saveSemester($event.target.value)">
+        <select class="form-control" (change)="SaveSemester($event.target.value)">
             <option value="">Seleccione el semestre</option>
             <option value="1">1</option>
             <option value="3">3</option>
@@ -58,11 +60,13 @@
     </div>
 </div>
 
+<!-- Escribir nombre del archivo -->
 <div class="main container">
-        <p>Escriba el nombre del archivo a generar <strong>Max. 30 caracteres</strong></p>
-    <input type="text" [(ngModel)]="report.nameSheet" (change)="savenameSheet($event.target.value)" class="form-control">
+    <p>Escriba el nombre del archivo a generar <strong>Max. 30 caracteres</strong></p>
+    <input type="text" [(ngModel)]="report.nameSheet" (change)="SavenameSheet($event.target.value)" class="form-control">
 </div>
 
+<!-- boton generar reporte -->
 <div class="main">
-    <button class="btn btn-primary" (click)="send()">GENERAR</button>
+    <button class="btn btn-primary" (click)="Send()">GENERAR</button>
 </div>

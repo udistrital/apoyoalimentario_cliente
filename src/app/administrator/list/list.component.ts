@@ -23,7 +23,6 @@ export class ListComponent implements OnInit {
   contador: number = 0;
   user: string;
 
-
   modelFacultyInformation:string[];
   facultyVerifier: string[];
   
@@ -54,14 +53,15 @@ export class ListComponent implements OnInit {
     this.dataInformationIncompleteLocal = null;
   }
 
-  selectFaculty(faculty: string) {
+  /* Remplaza '/' por '-' e y llama otras funciones */
+  SelectFaculty(faculty: string) {
     this.facultySelected = faculty.replace('/','-');
     this._facultyInformation.facultySelected = faculty.replace('/','-');
     this.Initialize();
     this.Reload();
   }
   
-
+  /* Obtiene la información de la facultad seleccionada */
   Initialize() {
     if(this._facultyInformation.facultySelected != null) {
       this.GetAllInfo();
@@ -70,6 +70,7 @@ export class ListComponent implements OnInit {
     }
   }
 
+  /* Llena las listas de solicitudes nuevas, completas e incompletas */
   GetAllInfo() {
     if(this._information.dataInformationNew == null) {
       setTimeout(() => this._facultyInformation.waitService = true,0);
@@ -114,21 +115,19 @@ export class ListComponent implements OnInit {
     }
   }
 
-  redirect(e: string) {
+  /* Abre la interfaz para revisar la inscripción del estudiante */
+  Redirect(e: string) {
     this._constants.userTemp = e;
     this._routerEvent.navigate(['/verification']);
   }
 
+  /* Organizar las listas por sus campos */
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
   }
 
-
-
-
-
-
+  /* Actualizar las listas */
   Reload() {
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._information.GetInformation(this._constants.pathNew + this.facultySelected)
@@ -153,7 +152,7 @@ export class ListComponent implements OnInit {
         }
       });
 
-      this._information.GetInformation(this._constants.pathIncomplete + this.facultySelected)
+    this._information.GetInformation(this._constants.pathIncomplete + this.facultySelected)
       .subscribe(data => {
         this._information.dataInformationIncomplete = data;
         this.dataInformationIncompleteLocal = data;
@@ -165,11 +164,8 @@ export class ListComponent implements OnInit {
       });
   }
 
-
-  
-
+  /* Llena la lista de sedes disponibles para el usuario */
   private CallServiceFaculty() {
-    
     setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._facultyInformation.facultyInformation == null){ 
       this._facultyInformation.GetFacultyInformation()
@@ -184,9 +180,7 @@ export class ListComponent implements OnInit {
         console.log(error);
       });
     }  else {
-      console.log("El else");
       this.modelFacultyInformation = this._facultyInformation.facultyInformation;
-      console.log(this._facultyInformation.facultyInformation);
       setTimeout(() => this._facultyInformation.waitService = false,0);
       if (this.facultySelected != '') {
         this.GetAllInfo();

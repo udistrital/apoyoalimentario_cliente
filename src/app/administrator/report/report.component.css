@@ -1,3 +1,4 @@
+/* Estilo de filas */
 .main {
     width: 100%;
     text-align: center;
@@ -7,17 +8,20 @@
     text-align: center;
 }
 
+/* Override de clase .form-control */
 .form-control {
     padding : 0;
     width: 90%;
     margin: 0;
 }
 
+/* Estilo de columna */
 .col1 {
     width: 50%;
     float: left;
 }
 
+/* Override de clase .container */
 .container {
     width: 100%;
 }

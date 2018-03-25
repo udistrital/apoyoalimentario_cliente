@@ -1,3 +1,4 @@
+/* Estrucutra que tiene la configuración del módulo de inscripción */
 export class ProcessConfiguration {
     constructor() {
         this.configuracionverificadores = new Array<Sede>();
@@ -11,6 +12,7 @@ export class ProcessConfiguration {
     public salariominimo: number;
 }
 
+/* Estructura que tiene el listado de sedes con sus respectivos verificadores */
 export class Sede {
     constructor(_sede: string, _verificador: string) {
         this.nombre = _sede;

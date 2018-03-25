@@ -8,7 +8,6 @@ import { Email, BodyEmail } from '../models/email.model';
 @Injectable()
 export class EmailConfiguration {
    
-    
     public email: Email;
     public bodyEmail: BodyEmail;
     public i: number;
@@ -21,21 +20,21 @@ export class EmailConfiguration {
     ngOnInit() {
     }
     
+    /* Guarda la configuración de correo electronico establecida por el administrador */
     public PutConfiguration(_email: Email, _url: string) {
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
         _email.text = _email.text.replace('\n','<br>');
-        console.log(_email.text);
         return this._http.put(_url, _email, {headers: this.headers});
     }
 
-    
-
+    /* Obtiene la configuración de correo electronio */
     public GetAdminInformation() {
-        return this._http.get(this._constants.pathEmail)
+        return this._http.get(this._constants.pathEmailConfiguration)
             .map((res: Response) => res.json());
     }
     
+    /* Enviar correo electrónico al estudiante */
     public SendEmail(_bodyemail: BodyEmail) {
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');

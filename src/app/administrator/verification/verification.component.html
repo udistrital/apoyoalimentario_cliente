@@ -1,143 +1,144 @@
 <ngb-tabset>
+  <!-- Pestaña de información basica del estudiante -->
   <ngb-tab title="Información Basica">
-      <ng-template ngbTabContent>
-          <div class="main">
-              <a><p><strong>Nombres y Apellidos</strong></p></a>
-              <a><p>{{modelBasicInformation.nombre}}</p></a>
-            </div>
-                
-            <div class="main">
-              <a><p><strong>Numero de Documento</strong></p></a>
-              <a><p>{{modelBasicInformation.numero_documento}}</p></a>
-            </div>
-                
-            <div class="main">
-              <a><p><strong>Proyecto Curricular</strong></p></a>
-              <a><p>{{modelInstitutionalInformation.proyecto}}</p></a>
-            </div>
-                
-            <div class="main">
-              <a><p><strong>Facultad</strong></p></a>
-              <a><p>{{modelInstitutionalInformation.facultad}}</p></a>
-            </div>
-                
-            <div class="main">
-              <a><p><strong>Dirección de Residencia</strong></p></a>
-              <a><p>{{modelBasicInformation.direccion}}</p></a>
-            </div>
-                
-            <div class="main">
-              <a><p><strong>Localidad</strong></p></a>
-              <a><p>{{modelBasicInformation.localidad}}</p></a>
-            </div>
-                
-            <div class="main">
-              <a><p><strong>Correo Electronico</strong></a>
-              <a><p>{{modelBasicInformation.correo}}</p></a>
-            </div>
-        
-            <div class="main">
-              <a><p><strong>Telefono</strong></p></a>
-              <a><p>{{modelBasicInformation.telefono}}</p></a>
-            </div>
-          <!-- <p *ngIf="countInformationViewedLocal !== 0">{{countInformationViewedLocal}}</p> -->
-      </ng-template>
+    <ng-template ngbTabContent>
+      <div class="main">
+        <a><p><strong>Nombres y Apellidos</strong></p></a>
+        <a><p>{{modelBasicInformation.nombre}}</p></a>
+      </div>
+          
+      <div class="main">
+        <a><p><strong>Numero de Documento</strong></p></a>
+        <a><p>{{modelBasicInformation.numero_documento}}</p></a>
+      </div>
+          
+      <div class="main">
+        <a><p><strong>Proyecto Curricular</strong></p></a>
+        <a><p>{{modelInstitutionalInformation.proyecto}}</p></a>
+      </div>
+          
+      <div class="main">
+        <a><p><strong>Facultad</strong></p></a>
+        <a><p>{{modelInstitutionalInformation.facultad}}</p></a>
+      </div>
+          
+      <div class="main">
+        <a><p><strong>Dirección de Residencia</strong></p></a>
+        <a><p>{{modelBasicInformation.direccion}}</p></a>
+      </div>
+          
+      <div class="main">
+        <a><p><strong>Localidad</strong></p></a>
+        <a><p>{{modelBasicInformation.localidad}}</p></a>
+      </div>
+          
+      <div class="main">
+        <a><p><strong>Correo Electronico</strong></a>
+        <a><p>{{modelBasicInformation.correo}}</p></a>
+      </div>
+  
+      <div class="main">
+        <a><p><strong>Telefono</strong></p></a>
+        <a><p>{{modelBasicInformation.telefono}}</p></a>
+      </div>
+    </ng-template>
   </ngb-tab>
 
+  <!-- Pestaña de información economica del estudiante -->
   <ngb-tab title="Información Economica">
-      <ng-template ngbTabContent>
-          <div class="main">
-            <a><p><strong>Estrato socioeconomico</strong></p></a>
-            <a><p>{{economicInformationLocal.estrato}}</p></a>
-          </div>
-                    
-          <div class="main">
-            <a><p><strong>Valor de ingresos propios o familiares</strong></p></a>
-            <a><p>{{Transform()}}</p></a>
-          </div>
+    <ng-template ngbTabContent>
+      <div class="main">
+        <a><p><strong>Estrato socioeconomico</strong></p></a>
+        <a><p>{{economicInformationLocal.estrato}}</p></a>
+      </div>
+                
+      <div class="main">
+        <a><p><strong>Valor de ingresos propios o familiares</strong></p></a>
+        <a><p>{{Transform()}}</p></a>
+      </div>
 
-          <div class="main">
-            <a><p><strong>Valor de matricula (sin sistematización ni seguro)</strong></p></a>
-            <a><p>{{economicInformationLocal.matricula}}</p></a>
-          </div>
-                    
-          <div class="main">
-            <a><p><strong>Como estudiante se sostiene economicamente a si mismo</strong></p></a>
-            <a><p>{{economicInformationLocal.sostenibilidadpropia}}</p></a>
-          </div>
-                    
-          <div class="main">
-            <a><p><strong>Como estudiante sostiene el hogar el vive?</strong></p></a>
-            <a><p>{{economicInformationLocal.sostenibilidadhogar}}</p></a>
-          </div>
-                    
-          <div class="main">
-            <a><p><strong>Vive fuera de su nucleo familiar de origen</strong></p></a>
-            <a><p>{{economicInformationLocal.nucleofamiliar}}</p></a>
-          </div>
-                    
-          <div class="main">
-            <a><p><strong>Como estudiante tiene personas a cargo</strong></p></a>
-            <a><p>{{economicInformationLocal.personasacargo}}</p></a>
-          </div>
-                    
-          <div class="main">
-            <a><p><strong>Vive en casa del empleador o paga arriendo</strong></p></a>
-            <a><p>{{economicInformationLocal.empleadoroarriendo}}</p></a>
-          </div>
-      
-          <div class="main">
-            <a><p><strong>Proviene de ciudades o municiíos distintos a bogota</strong> </p></a>
-            <a><p>{{economicInformationLocal.provienefuerabogota}} <strong>({{economicInformationLocal.ciudad}})</strong></p></a>
-          </div>
-      
-          <div class="main">
-              <a><p><strong>Usted o su grupo famliar estan certificados como población especial</strong> </p></a>
-              <a><p>{{Transform()}}</p></a>
-          </div>
-      
-          <div class="main">
-              <a><p><strong>Presenta algun tipo de discapacidad fisica o mental</strong> </p></a>
-              <a><p>{{economicInformationLocal.discapacidad}}</p></a>
-          </div>
-      
-          <div class="main">
-              <a><p><strong>Presenta alguna patología relacionada con la alimentación y la alimentación</strong> </p></a>
-              <a><p>{{economicInformationLocal.patologiaalimenticia}}</p></a>
-          </div>
-      
-          <div class="main">
-              <a><p><strong>Pertenece a Ser Pilo Paga</strong> </p></a>
-              <a><p>{{economicInformationLocal.serpilopaga}}</p></a>
-          </div>
-      
-          <div class="main">
-              <a><p><strong>Pertenece al sisben</strong> </p></a>
-              <a><p>{{economicInformationLocal.sisben}}</p></a>
-          </div>
+      <div class="main">
+        <a><p><strong>Valor de matricula (sin sistematización ni seguro)</strong></p></a>
+        <a><p>{{economicInformationLocal.matricula}}</p></a>
+      </div>
+                
+      <div class="main">
+        <a><p><strong>Como estudiante se sostiene economicamente a si mismo</strong></p></a>
+        <a><p>{{economicInformationLocal.sostenibilidadpropia}}</p></a>
+      </div>
+                
+      <div class="main">
+        <a><p><strong>Como estudiante sostiene el hogar el vive?</strong></p></a>
+        <a><p>{{economicInformationLocal.sostenibilidadhogar}}</p></a>
+      </div>
+                
+      <div class="main">
+        <a><p><strong>Vive fuera de su nucleo familiar de origen</strong></p></a>
+        <a><p>{{economicInformationLocal.nucleofamiliar}}</p></a>
+      </div>
+                
+      <div class="main">
+        <a><p><strong>Como estudiante tiene personas a cargo</strong></p></a>
+        <a><p>{{economicInformationLocal.personasacargo}}</p></a>
+      </div>
+                
+      <div class="main">
+        <a><p><strong>Vive en casa del empleador o paga arriendo</strong></p></a>
+        <a><p>{{economicInformationLocal.empleadoroarriendo}}</p></a>
+      </div>
+  
+      <div class="main">
+        <a><p><strong>Proviene de ciudades o municiíos distintos a bogota</strong> </p></a>
+        <a><p>{{economicInformationLocal.provienefuerabogota}} <strong>({{economicInformationLocal.ciudad}})</strong></p></a>
+      </div>
+  
+      <div class="main">
+          <a><p><strong>Usted o su grupo famliar estan certificados como población especial</strong> </p></a>
+          <a><p>{{Transform()}}</p></a>
+      </div>
+  
+      <div class="main">
+          <a><p><strong>Presenta algun tipo de discapacidad fisica o mental</strong> </p></a>
+          <a><p>{{economicInformationLocal.discapacidad}}</p></a>
+      </div>
+  
+      <div class="main">
+          <a><p><strong>Presenta alguna patología relacionada con la alimentación y la alimentación</strong> </p></a>
+          <a><p>{{economicInformationLocal.patologiaalimenticia}}</p></a>
+      </div>
+  
+      <div class="main">
+          <a><p><strong>Pertenece a Ser Pilo Paga</strong> </p></a>
+          <a><p>{{economicInformationLocal.serpilopaga}}</p></a>
+      </div>
+  
+      <div class="main">
+          <a><p><strong>Pertenece al sisben</strong> </p></a>
+          <a><p>{{economicInformationLocal.sisben}}</p></a>
+      </div>
 
-          <div class="main">
-              <a><p><strong>Numero telefonico</strong> </p></a>
-              <a><p>{{economicInformationLocal.telefono}}</p></a>
-          </div>
+      <div class="main">
+          <a><p><strong>Numero telefonico</strong> </p></a>
+          <a><p>{{economicInformationLocal.telefono}}</p></a>
+      </div>
 
-          <div class="main">
-              <a><p><strong>Correo electronico</strong> </p></a>
-              <a><p>{{economicInformationLocal.correo}}</p></a>
-          </div>
-      </ng-template>
+      <div class="main">
+          <a><p><strong>Correo electronico</strong> </p></a>
+          <a><p>{{economicInformationLocal.correo}}</p></a>
+      </div>
+    </ng-template>
   </ngb-tab>
 
-
+  <!-- Pestaña de documentos adjuntados por el estudiante -->
   <ngb-tab title="Documentos Adjuntados">
     <ng-template ngbTabContent>
       <div class="main2">
         <div class="col1">
           <ul>
             <li>
-              <ul href="#" *ngFor="let archives of fileDBInformation" (click)="select(archives.nombre)" [ngClass]="{active: isActive(archives.nombre)}">
+              <ul href="#" *ngFor="let archives of fileDBInformation" (click)="Select(archives.nombre)" [ngClass]="{active: IsActive(archives.nombre)}">
                 <li>
-                    <div class="list" (click)="showPdf(archives.url)"><span >{{archives.nombre}}</span></div>
+                    <div class="list" (click)="ShowPdf(archives.url)"><span >{{archives.nombre}}</span></div>
                 </li>
               </ul>
             </li>
@@ -155,6 +156,7 @@
     </ng-template>
   </ngb-tab>
 
+  <!-- Pestaña de resultado del estudiante -->
   <ngb-tab title="Resultado">
     <ng-template ngbTabContent>
       <div class="main">
@@ -189,7 +191,6 @@
         <span *ngFor="let item of mensaje">
             &emsp;<strong>- {{item}}</strong><br>
         </span>
-          <!-- <strong>{{economicInformationLocal.mensaje}}</strong> -->
       </div>
 
       <div class="main">

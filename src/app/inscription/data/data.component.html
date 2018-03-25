@@ -1,95 +1,57 @@
+<!-- Cabecera de pagina -->
 <header>
   <h1>Información Básica</h1>
 </header>
 
+<!-- Campos de nombre y apellidos de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Nombres y Apellidos</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelBasicInformation.nombre}}</p>
-  </a>
+  <a><p><strong>Nombres y Apellidos</strong></p></a>
+  <a><p>{{modelBasicInformation.nombre}}</p></a>
 </div>
 
+<!-- Campos de numero de documentos de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Numero de Documento</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelBasicInformation.numero_documento}}</p>
-  </a>
+  <a><p><strong>Numero de Documento</strong></p></a>
+  <a><p>{{modelBasicInformation.numero_documento}}</p></a>
 </div>
 
+<!-- Campos de proyecto curricular de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Proyecto Curricular</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelInstitutionalInformation.proyecto}}</p>
-  </a>
+  <a><p><strong>Proyecto Curricular</strong></p></a>
+  <a><p>{{modelInstitutionalInformation.proyecto}}</p></a>
 </div>
 
+<!-- Campos de facultad de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Facultad</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelInstitutionalInformation.facultad}}</p>
-  </a>
+  <a><p><strong>Facultad</strong></p></a>
+  <a><p>{{modelInstitutionalInformation.facultad}}</p></a>
 </div>
 
+<!-- Campos de dirección de residencia de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Dirección de Residencia</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelBasicInformation.direccion}}</p>
-  </a>
+  <a><p><strong>Dirección de Residencia</strong></p></a>
+  <a><p>{{modelBasicInformation.direccion}}</p></a>
 </div>
 
+<!-- Campos de localidas de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Localidad</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelBasicInformation.localidad}}</p>
-  </a>
+  <a><p><strong>Localidad</strong></p></a>
+  <a><p>{{modelBasicInformation.localidad}}</p></a>
 </div>
 
+<!-- Campos de correo electronico de estudiante -->
 <div class="main">
-  <a>
-    <p>
-      <strong>Correo Electronico</strong>
-    </p>
-  </a>
-  <a>
-    <p>{{modelBasicInformation.correo}}</p>
-  </a>
-</div>
-<div class="main">
-  <a>
-    <p>
-      <strong>Telefono</strong> 
-    </p>
-  </a>
-  <a>
-    <p>{{modelBasicInformation.telefono}}</p>
-  </a>
+  <a><p><strong>Correo Electronico</strong></p></a>
+  <a><p>{{modelBasicInformation.correo}}</p></a>
 </div>
 
-<!-- Solicitud Rechazada -->
+<!-- Campos de telefono de estudiante -->
+<div class="main">
+  <a><p><strong>Telefono</strong></p></a>
+  <a><p>{{modelBasicInformation.telefono}}</p></a>
+</div>
+
+<!-- Alert para Solicitud Rechazada -->
 <div class="alert alert-danger mensaje" *ngIf="modelEconomicInformation.estadoprograma === 4">
   <h4>Solicitud Devuelta</h4>
   <p>Su solicitud fue devuelta por los siguiente motivos:</p>
@@ -100,7 +62,7 @@
   <p>PD: Si desea adjuntar un documento nuevamente o un documento faltante debe hacerlo en el apartado "Subir documentos" en la opción "Documentos adicionales"</p>
 </div> 
 
-<!-- En Verificación -->
+<!-- Alert para solicitud en proceso -->
 <div class="alert alert-info mensaje" *ngIf="modelEconomicInformation.estadoprograma === 1 || modelEconomicInformation.estadoprograma === 2">
   <h4>Su solicitud se encuentra en proceso</h4>
 </div>

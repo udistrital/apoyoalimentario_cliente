@@ -58,18 +58,15 @@ export class VerificationComponent implements OnInit {
     this.pdf="";
   }
 
-  //        Basic Information
+  // Obtiene la informacón básica e institucional del estudiante
   private CallServiceBasic() {
-    
     setTimeout(() => this._facultyInformation.waitService = true,0);
     if (this._dataInformation.basicInformation == null){ 
       this._dataInformation.GetBasicInformation(this._constants.userTemp)
       .subscribe(data => {
         if(data.datosCollection.datos.length > 0) {
-          console.log("Informacion basica");
           this.modelBasicInformation =  data.datosCollection.datos[0]; 
           this._dataInformation.basicInformation = this.modelBasicInformation;
-          console.log(this.modelBasicInformation);
           this.contador++;
           if(this.contador == 3) {
             setTimeout(() => this._facultyInformation.waitService = false,0);
@@ -84,11 +81,9 @@ export class VerificationComponent implements OnInit {
     if (this._dataInformation.institutionalInformation == null){ 
       this._dataInformation.GetInstitutionalInformation(this._constants.userTemp)
       .subscribe(data2 => {
-        console.log("Informacion institucional");
         if(data2.infoInstitucionalColleccion.infoInstitucional.length > 0) {
           this.modelInstitutionalInformation =  data2.infoInstitucionalColleccion.infoInstitucional[0];
           this._dataInformation.institutionalInformation = this.modelInstitutionalInformation;
-          console.log(this.modelInstitutionalInformation);
           this.contador++;
           if(this.contador == 3) {
             setTimeout(() => this._facultyInformation.waitService = false,0);
@@ -103,23 +98,22 @@ export class VerificationComponent implements OnInit {
     }       
   }
 
-  //    Economic Information
+  // Obtiene la información economica del estudiante (Respuestas del formulario)
   private CallServiceEconomic() { 
-      this._dataEconomicInformation.GetEconomicInformation(this._constants.userTemp).subscribe(
-        data => {
-          console.log("")
-          this._dataEconomicInformation.economicInformation = data;
-          this.economicInformationLocal = data;
-          this.mensaje = this.economicInformationLocal.mensaje.split('\n');
-          this.InitModelDocument();
-          console.log(this.economicInformationLocal);
-          this.GetDocuments();
-        },
-        error => {
-          console.log(error);
-        });   
+    this._dataEconomicInformation.GetEconomicInformation(this._constants.userTemp).subscribe(
+      data => {
+        this._dataEconomicInformation.economicInformation = data;
+        this.economicInformationLocal = data;
+        this.mensaje = this.economicInformationLocal.mensaje.split('\n');
+        this.InitModelDocument();
+        this.GetDocuments();
+      },
+      error => {
+        console.log(error);
+    });   
   }
 
+  /* Transforma la información obtenida de base de datos referente a poblacón especial */
   Transform() {
     switch(this.economicInformationLocal.poblacionespecial) {
       case "N":
@@ -137,7 +131,7 @@ export class VerificationComponent implements OnInit {
     }
   }
 
-  /* Razones de devolucón */
+  /* transforma la información obtenida de base de datos referente Razones de devolucón */
   Transform2() {
     switch(this.economicInformationLocal.tiposubsidio) {
       case "ss":
@@ -151,6 +145,7 @@ export class VerificationComponent implements OnInit {
     }
   }
 
+  /* transforma la informacion obtenida de base de datos referente a quien verificó  */
   Transform3() {
     if(this.economicInformationLocal.verificadopor == 'A') 
       return "Administrador";
@@ -158,10 +153,9 @@ export class VerificationComponent implements OnInit {
       return this.economicInformationLocal.verificadopor;
   }
 
-
+  /* Inicializa el modelo donde se guardan los documentos adjuntados por el estudiante */
   private InitModelDocument() {
     if (this._fileService._fileInfo == null) {
-      //setTimeout(() => this._inscriptionComplete.waitService = false,0);
       if (this._dataInformation.basicInformation == null){
         this._dataInformation.basicInformation = {telefono: '', correo: '', nombre: '' };
         this._dataInformation.institutionalInformation ={ proyecto: '' }; 
@@ -169,14 +163,12 @@ export class VerificationComponent implements OnInit {
     }
   }
 
-  //    Documents
+  // Obtiene los documentos adjuntados por el estudiante
   private GetDocuments() {
     this._fileService.GetFiles(this._constants.userTemp).subscribe(
       data => {
         this._fileService._fileInfo = data;
         this.fileDBInformation = data;
-        console.log(this.fileDBInformation);
-        console.log(3);
         this.contador++;
         if(this.contador == 3) {
           setTimeout(() => this._facultyInformation.waitService = false,0);
@@ -188,22 +180,24 @@ export class VerificationComponent implements OnInit {
       });
   }
   
-  showPdf(url: string){
+  /* Muestra el documento seleccionado por el usuario */
+  ShowPdf(url: string){
     this.SelectedArchive = true;
     this.pdf = url;
   }
 
-  select(item) {
+  /* Selecciona el archivo que se debe mostrar */
+  Select(item) {
         this.selected = item; 
   };
 
-  isActive(item) {
+  /* Establece la clase active en documento seleccionado */
+  IsActive(item) {
         return this.selected === item;
   };
 
-  //    CHange Student State to Verificated
+  /* Actualiza el estado de un estudiante verificado correctamente */
   StudentComplete() {
-    console.log(this._dataEconomicInformation.economicInformation.verificadopor);
     this._dataEconomicInformation.economicInformation.estadoprograma = 3;
     this._dataEconomicInformation.economicInformation.verificadopor = this._constants.user;
     this._stateService.ChangeState().subscribe((data) => {
@@ -214,16 +208,13 @@ export class VerificationComponent implements OnInit {
     });
   }
 
+  /* Actualiza el estado de un estudiante verificado incorrectamente */
   StudentIncomplete() {
-    console.log(this._dataEconomicInformation.economicInformation.verificadopor);
     this.contador = 0;
-    // console.log(e);
-    /* NO ES FAKE */
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this.emailtoSend.ebody = this._dataEconomicInformation.economicInformation.mensaje;
-    
     this.emailtoSend.ename = this.modelBasicInformation.nombre;
-    /* ES FAKE */
+    // Aqui se inserta el correo electronico del estudiante (this.modelBasicInformation.correo;)
     this.emailtoSend.etosend = 'davinci1996@live.com';
 
 
@@ -234,7 +225,6 @@ export class VerificationComponent implements OnInit {
         setTimeout(() => this._facultyInformation.waitService = false,0);
         this.contador = 0;
       }
-      console.log(data);
     });
 
     this._dataEconomicInformation.economicInformation.estadoprograma = 4;
@@ -250,7 +240,5 @@ export class VerificationComponent implements OnInit {
       }
       this._routerEvent.navigate(['/list']);
     });
-  }
-
-  
+  }  
 }

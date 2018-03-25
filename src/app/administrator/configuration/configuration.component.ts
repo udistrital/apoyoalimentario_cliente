@@ -44,26 +44,25 @@ export class ConfigurationComponent implements OnInit {
               private _dataInformation: DataInformation,
               private _facultyInformation: FacultyInformation,
               private _emailConfiguration: EmailConfiguration,
-              private _constants: Constants) { 
-        this.CallServiceFaculty();
-      this.testMessage = null;
-      setTimeout(() => this._facultyInformation.waitService = true,0);
-      this._emailConfiguration.GetAdminInformation().subscribe( data => {
-        this.email = data;
-        this._emailConfiguration.email = data;
-        for(this.i = 0; this.i <= this.email.text.length; this.i++) {
-          this.email.text = this.email.text.replace('<br>','\n');
+              private _constants: Constants) 
+  {
+    this.CallServiceFaculty();
+    this.testMessage = null;
+    setTimeout(() => this._facultyInformation.waitService = true,0);
+    this._emailConfiguration.GetAdminInformation().subscribe( data => {
+      this.email = data;
+      this._emailConfiguration.email = data;
+      for(this.i = 0; this.i <= this.email.text.length; this.i++) {
+        this.email.text = this.email.text.replace('<br>','\n');
       }
-        setTimeout(() => this._facultyInformation.waitService = false,0);
-        console.log(data);
-      });
+      setTimeout(() => this._facultyInformation.waitService = false,0);
+    });
 
-      this._dataConfiguration.GetVerifier().subscribe( data => {
-        this._dataConfiguration.sede = data;
-        this.configurationLocal.configuracionverificadores = data;
-        console.log(this._dataConfiguration.sede);
-      });
-              }
+    this._dataConfiguration.GetVerifier().subscribe( data => {
+      this._dataConfiguration.sede = data;
+      this.configurationLocal.configuracionverificadores = data;
+    });
+  }
               
 
   ngOnInit() {
@@ -72,38 +71,38 @@ export class ConfigurationComponent implements OnInit {
   }
 
   /*      AGREGAR Y ELIMINAR SEDES DE REFRIGERIO NOCTURNO */
-
-  saveFaculty(deviceValue) {
+  // Guardar Facultad en variable local
+  SaveFaculty(deviceValue) {
     if(deviceValue == "FACULTAD DE TECNOLOGIA - POLITECNICA / TECNOLOGICA") {
       deviceValue = "FACULTAD DE TECNOLOGIA - POLITECNICA - TECNOLOGICA";
     }
     this.facultySelected = deviceValue;
   }
-
-  addFaculty() {
+  // Agregar facultad a lista
+  AddFaculty() {
     if(this.facultySelected != "") {
       if(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected) == -1 && this.facultySelected != undefined) {
         this.configurationLocal.refrigerionocturno.push(this.facultySelected);
       }
     }
+    this.facultySelected = '';
   }
-
-  removeFaculty() {
+  // Eliminar facultad de lista
+  RemoveFaculty() {
     if(this.facultySelected != "") {
       if(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected) > -1 && this.facultySelected != undefined) {
         this.configurationLocal.refrigerionocturno.splice(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected),1);
       }
     }
+    this.facultySelected = '';
   }
-
   /*      AGREGAR O ELIMNAR VERIFICADORES DE SEDES    */
-
-  saveVerifier(deviceValue) {
+  // Guardar Verificador en variable
+  SaveVerifier(deviceValue) {
     this.verifierSelected = deviceValue;
   }
-
-  addVerifier() {
-    console.log(this.configurationLocal.configuracionverificadores);
+  // Agregar verificador a la lista
+  AddVerifier() {
     if (this.facultySelected != undefined && this.facultySelected != '' && this.verifierSelected != undefined && this.verifierSelected != '') {
       if (this.configurationLocal.configuracionverificadores == undefined || this.configurationLocal.configuracionverificadores == null){
         this.configurationLocal.configuracionverificadores = new Array<Sede>();
@@ -141,9 +140,10 @@ export class ConfigurationComponent implements OnInit {
         }
       }
     }
+    this.facultySelected = '';
   }
-
-  removeVerifier() {
+  // Eliminar verificador de lista
+  RemoveVerifier() {
     this.findFaculty = false;
     this.findVerifier = false;
     if(this.facultySelected != undefined && this.verifierSelected != undefined) {
@@ -177,15 +177,15 @@ export class ConfigurationComponent implements OnInit {
         }
       }
     }
+    this.facultySelected = '';
   }
 
-  /*    ACTUALIZAR  */
-  putVerifier() {
-    console.log(this.configurationLocal.configuracionverificadores);
+  /*    Guardar verificadore en BD  */
+  PutVerifier() {
     this._dataConfiguration.PutVerifier(this.configurationLocal).subscribe();
   }
 
-  /*      EMAIL CONFIG START      */
+  /*      Probrar conexion de correo      */
   TestConnection() {
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._emailConfiguration.PutConfiguration(this.email, this._constants.pathTestConnection).subscribe((data) => {
@@ -193,31 +193,29 @@ export class ConfigurationComponent implements OnInit {
       setTimeout(() => this._facultyInformation.waitService = false,0);
     });
   }
-
+  /* Guardar configuración de Email */
   SaveEmailConfiguration() {
     setTimeout(() => this._facultyInformation.waitService = true,0);
-    this._emailConfiguration.PutConfiguration(this.email, this._constants.pathSaveEmailConfiguration).subscribe((data) => {
+    this._emailConfiguration.PutConfiguration(this.email, this._constants.pathEmailConfiguration).subscribe((data) => {
       this.testMessage = data;
       setTimeout(() => this._facultyInformation.waitService = false,0);
     });
   }
   /*      EMAIL CONFIG END        */
 
-  /*   RECORDTAORIO   */
-  getDate(deviceValue){
-    console.log(deviceValue);
-  }
+  /* Organizar elementos de listas */
   trackByIndex(index: number, obj: any): any {
     return index;
   }
 
+  /* Guardar configuración de módulo de inscripción */
   putConfiguration() {
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._dataConfiguration.configuration = this.configurationLocal;
     this._dataConfiguration.PutConfiguration()
       .subscribe((datad)=>{
         this.testMessage = datad;
-        this.putVerifier();
+        this.PutVerifier();
               setTimeout(() => this._facultyInformation.waitService = false,0);
           });
   }

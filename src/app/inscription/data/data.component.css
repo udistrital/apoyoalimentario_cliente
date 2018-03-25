@@ -1,15 +1,18 @@
+/* Estilo de cabecera de pagina */
 header {
     text-align: center;
     border-bottom: 1px solid #000000;
     margin: 10px;
 }
 
+/* Estilo de filas */
 .main {
     text-align: center;
     margin-bottom: 15px;
     clear: both;
 }
 
+/* Estilo de parrafos */
 p {
     box-sizing: border-box;
     width: 50%;
@@ -17,27 +20,20 @@ p {
     margin-bottom: 15px;
     text-transform: uppercase;
 }
+/* Estilo para los parrafos de alert */
 .mensaje p {
     width: 100%;
 }
-
+/* Estilo para alert */
 .mensaje {
     margin-top: 50px;
     padding-bottom: 10%;
 }
 
+/* Espacio para estilos responsive */
 @media screen and (max-width: 730px){
+    /* Estilo responsive para parrafos */
     p {
         width: 100%;
     }
-    select {
-        width: 50%;
-        margin: auto;
-    }
-}
-
-footer {
-    border-top: 1px solid #000000;
-    padding-left: 10%;
-    clear: both;
 }

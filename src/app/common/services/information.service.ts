@@ -16,6 +16,7 @@ export class Information {
     ngOnInit() {
     }
 
+    /* Obtiene el listado de solicitudes, nuevas completas e incompletas */
     public GetInformation(url: string) {
         return this._http.get(url)
         .map((res: Response) => res.json());

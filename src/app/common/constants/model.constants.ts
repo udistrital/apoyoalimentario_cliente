@@ -1,5 +1,6 @@
 import { EconomicInformation } from "../models/data.model";
 
+/* URLs usadas en los servicios al CRUD_API y a la BD de la universidad */
 export class Constants {
     // Data
     user: string = '';
@@ -24,9 +25,8 @@ export class Constants {
     pathIncomplete: string ='http://192.168.1.43:8086/v1/admin/4/';
     pathVerification: string = 'http://192.168.1.43:8086/v1/admin/verification/';
     pathReport: string = 'http://192.168.1.43:8086/v1/admin/report';
-    pathEmail: string = 'http://192.168.1.43:8086/v1/email/';
     pathTestConnection: string = 'http://192.168.1.43:8086/v1/email/test';
-    pathSaveEmailConfiguration: string = 'http://192.168.1.43:8086/v1/email';
+    pathEmailConfiguration: string = 'http://192.168.1.43:8086/v1/email';
     pathSendEmail: string = 'http://192.168.1.43:8086/v1/email/send';
     pathVerifier: string = 'http://192.168.1.43:8086/v1/admin/verifier/';
 }
