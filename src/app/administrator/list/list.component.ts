@@ -58,7 +58,7 @@ export class ListComponent implements OnInit {
     this.facultySelected = faculty.replace('/','-');
     this._facultyInformation.facultySelected = faculty.replace('/','-');
     this.Initialize();
-    this.Reload();
+    // this.Reload();
   }
   
   /* Obtiene la información de la facultad seleccionada */
@@ -72,7 +72,6 @@ export class ListComponent implements OnInit {
 
   /* Llena las listas de solicitudes nuevas, completas e incompletas */
   GetAllInfo() {
-    if(this._information.dataInformationNew == null) {
       setTimeout(() => this._facultyInformation.waitService = true,0);
       //    Solicitudes Nuevas
       this._information.GetInformation(this._constants.pathNew + this.facultySelected)
@@ -107,12 +106,6 @@ export class ListComponent implements OnInit {
           this.contador = 0;
         }
       });
-    } else {
-      this.dataInformationNewLocal = this._information.dataInformationNew;
-      this.dataInformationCompleteLocal =  this._information.dataInformationComplete;
-      this.dataInformationIncompleteLocal =  this._information.dataInformationIncomplete;
-      this._facultyInformation.waitService = false;
-    }
   }
 
   /* Abre la interfaz para revisar la inscripción del estudiante */

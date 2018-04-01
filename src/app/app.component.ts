@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { DataEconomicInformation } from './common/services/economicInformation.service';
 import { Constants } from './common/constants/model.constants';
 import { FileService } from './common/services/file.service';
@@ -53,6 +53,11 @@ export class AppComponent {
     }   
   } 
 
+  ngOnDestroy() {
+    this._fileService.errorFile = '';
+    console.log(this._fileService.errorFile);
+  }
+
   private PutValidationComponent() {
     this.response = 10;
     if(this._fileService.formDataFiles != null && this._fileService.formDataFiles != undefined) {
@@ -60,16 +65,20 @@ export class AppComponent {
         setTimeout(() => this._inscriptionComplete.waitService = true,0);
       this._fileService.PotsFiles().subscribe(
         data => {
-          this._fileService.formDataFiles = new FormData(),
-          this._inscriptionComplete.PutValidationInscription().subscribe((datad)=>{
+          debugger;
+          if (this._fileService.errorFile == '' || this._fileService.errorFile == null) {
+            this._fileService.formDataFiles = new FormData(),
+            this._inscriptionComplete.PutValidationInscription().subscribe((datad)=>{
               this.response = datad.json();
-              //
               setTimeout(() => this._inscriptionComplete.waitService = false,0);
               if(this.response == 1) {
                 this._Router.navigate(['/login']);
               }
-          });
-          });
+            });
+          } else {
+            setTimeout(() => this._inscriptionComplete.waitService = false,0);
+          }
+        });
       } else {
         this.response = 0;
       }
@@ -96,7 +105,7 @@ export class AppComponent {
   }
 
   function() {
-    $('.unordered li accordion').click(function(e) {
+    $('.unordered li div').click(function(e) {
       e.preventDefault();
       var $this = $(this);
       $this.closest('ul').children('li').removeClass('active');
