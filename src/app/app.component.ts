@@ -55,7 +55,6 @@ export class AppComponent {
 
   ngOnDestroy() {
     this._fileService.errorFile = '';
-    console.log(this._fileService.errorFile);
   }
 
   private PutValidationComponent() {
