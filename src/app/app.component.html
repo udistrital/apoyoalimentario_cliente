@@ -30,7 +30,7 @@
           <div class="panel-group"><a target="_blank" href="./assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></div>
         </li>
         <li>
-          <button *ngIf="_constants.initialStatus !== -1" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal">INSCRIBIR</button>
+          <button *ngIf="_constants.initialStatus !== -1" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal" (click)="_constants.salario = mensajeEstudiantes.salariominimo">INSCRIBIR</button>
         </li>
         <!-- Confirmation Modal para inscripción -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,7 +115,7 @@
 </div>
 
 <!-- Error para inscripción incompleto -->
-<div class="error" *ngIf="response === 0">
+<div class="error" *ngIf="CRUDResponse === 0">
   <div class="alert alert-danger alert-dismissable fade show ins" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
       <span aria-hidden="true">&times;</span>
@@ -126,7 +126,7 @@
   
 
 <!-- Inscripcion Exitosa  -->
-<div class="error" *ngIf="response === 1">
+<div class="error" *ngIf="CRUDResponse === 1 && MIDResponse === 1">
     <div class="alert alert-success alert-dismissable fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="_fileService.errorFile = ''">
         <span aria-hidden="true">&times;</span>

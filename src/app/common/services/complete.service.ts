@@ -15,6 +15,7 @@ export class InscriptionComplete {
     documentUploaded: number;
     selectorShowed: number;
     headers: Headers;
+    salarioMinimo: number;
 
     constructor(private _http: Http, 
                 private _constants : Constants, 
@@ -72,9 +73,18 @@ export class InscriptionComplete {
 
     /* Inserta la información economica del estudiante en BD (Respuestas del formulario) */
     public PutValidationInscription() {
+        console.log(this._constants.salario);
         this.headers= new Headers;
         this.headers.append('Content-Type', 'application/json');
         let url = this._constants.pathState + this._constants.user;
         return this._http.put(url, this._dataEconomicInformation.economicInformation , {headers: this.headers});
+    }
+
+    /* Envia los datos al MID API para calcular el puntaje de estudiante y tipo de subsidio */
+    public CallRuler() {
+        this.headers = new Headers;
+        this.headers.append('Content-Type', 'application/json');
+        let url = this._constants.pathRuler + this._constants.salario + '/' + this._constants.user;
+        return this._http.put(url, this._dataEconomicInformation.economicInformation, {headers: this.headers});
     }
 }

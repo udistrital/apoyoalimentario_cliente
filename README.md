@@ -1,27 +1,16 @@
 # apoyoalimentario_CLIENTE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
-## Development server
+Esta aplicación sirve para realizar la inscripción al Apoyo Alimentario de la Universidad Distrital Francisco José de Caldas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Para desplegar
 
-## Code scaffolding
+Debe ejecutar el comando `npm install` para instalar las dependencias necesarias en el proyecto.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ejecute el comando `ng serve` o `npm start` para ejecutarlo en un servidor local, la aplicación corre por defecto en `http://localhost:4200/.`
+
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Ejecute `ng build` para hacer el build del proyecto. El build se guarda en la carpeta `dist/`

@@ -25,7 +25,8 @@ export class AppComponent {
   menu: number;
   title = 'app';
   igual: boolean = null;
-  response: number = 10;
+  CRUDResponse: number = 10;
+  MIDResponse: number;
   mensajeEstudiantes: {} = {};
   todayDate: string;
 
@@ -58,20 +59,29 @@ export class AppComponent {
   }
 
   private PutValidationComponent() {
-    this.response = 10;
+    this.CRUDResponse = 10;
     if(this._fileService.formDataFiles != null && this._fileService.formDataFiles != undefined) {
       if (this._dataEconomicInformation.economicInformation.ingresos >= 100000 && this._dataEconomicInformation.economicInformation.ingresos != null) {
         setTimeout(() => this._inscriptionComplete.waitService = true,0);
       this._fileService.PotsFiles().subscribe(
         data => {
-          debugger;
           if (this._fileService.errorFile == '' || this._fileService.errorFile == null) {
             this._fileService.formDataFiles = new FormData(),
             this._inscriptionComplete.PutValidationInscription().subscribe((datad)=>{
-              this.response = datad.json();
-              setTimeout(() => this._inscriptionComplete.waitService = false,0);
-              if(this.response == 1) {
-                this._Router.navigate(['/login']);
+              this._dataEconomicInformation.economicInformation = datad.json();
+              if(this._dataEconomicInformation.economicInformation != null) {
+                this.CRUDResponse = 1;
+                this._inscriptionComplete.CallRuler().subscribe((data) => {
+                  this.MIDResponse = data.json();
+                  console.log(this.MIDResponse);
+                  setTimeout(() => this._inscriptionComplete.waitService = false,0);
+                  if (this.MIDResponse == 1) {
+                    this._Router.navigate(['/login']);
+                  }
+                })
+              } else {
+                this.CRUDResponse = 0;
+                setTimeout(() => this._inscriptionComplete.waitService = false,0);
               }
             });
           } else {
@@ -79,7 +89,7 @@ export class AppComponent {
           }
         });
       } else {
-        this.response = 0;
+        this.MIDResponse = 0;
       }
     }
   }
