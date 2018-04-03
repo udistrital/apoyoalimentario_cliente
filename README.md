@@ -12,7 +12,7 @@ Es necesario que se tenga el `CRUD_API` y `MID_API`
 
 Modifique todos las propiedades llamadas `Path` del archivo `model.constants.ts` que está ubicado en `src/app/common/constants/model.constants.ts`.
 
-Ingrese la dirección IP del equipo en el que está ubicados el `CRUD_API` y `MID_API`.
+Ingrese la dirección IP del equipo en el que están ubicados el `CRUD_API` y `MID_API`.
 
 ## Para desplegar
 
