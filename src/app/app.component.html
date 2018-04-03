@@ -7,23 +7,23 @@
   <!-- Menu lateral -->
   <nav class="vertical">
     <div>
-      <ul class="unordered" (click)="function()">
-        <li class="active" routerLink="/configuration" *ngIf="_constants.rol === '1'">
+      <ul class="unordered">
+        <li routerLink="/configuration" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_constants.rol === '1'">
           <div class="panel-group">Configuración</div>
         </li>
-        <li routerLink="/list" *ngIf="_constants.rol === '1' || _constants.rol === '2'" >
+        <li routerLink="/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_constants.rol === '1' || _constants.rol === '2'" >
           <div class="panel-group">Solicitudes</div>
         </li>
-        <li routerLink="/reports" *ngIf="_constants.rol === '1'">
+        <li routerLink="/reports" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_constants.rol === '1'">
           <div class="panel-group">Reportes</div>
         </li>
-        <li routerLink="/data" *ngIf="_constants.rol === '3'">
+        <li routerLink="/data" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_constants.rol === '3'">
           <div class="panel-group">Datos de estudiante</div>
         </li>
-        <li routerLink="/form" *ngIf="_constants.rol === '3'">
+        <li routerLink="/form" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_constants.rol === '3'">
           <div class="panel-group">Formulario</div>
         </li>
-        <li routerLink="/documents" *ngIf="_constants.rol === '3'">
+        <li routerLink="/documents" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_constants.rol === '3'">
           <div class="panel-group">Subir documentos</div>
         </li>
         <li *ngIf="_constants.rol === '3'">
