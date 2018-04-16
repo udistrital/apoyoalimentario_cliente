@@ -10,7 +10,7 @@
 </div>
 
 <!-- Formulario de inscripción -->
-<form ngNativeValidate>
+<form ngNativeValidate name="InscriptionForm">
   <!--      almuerzo o refrigerio     -->
   <div class="main" *ngIf="stateLocal === 2">
     <div class="col1">Tipo de Apoyo Alimentario</div>
@@ -279,8 +279,8 @@
   <div class="main">
     <div class="col1">¿Como estudiante sostiene el lugar en donde vive?</div>
     <div class="col2" *ngIf="stateLocal !== -1">
-      <select name="sostiene" [(ngModel)]="economicInformationLocal.sostenibilidadhogar" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}" required
-      class="form-control">
+      <select name="sostiene" [(ngModel)]="economicInformationLocal.sostenibilidadhogar" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}" 
+      class="form-control" required>
         <option value="">Seleccione su respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
@@ -328,8 +328,8 @@
   <div class="main">
     <div class="col1">¿Vive fuera de su núcleo familiar de origen? (Papá, Mamá, Hermanos)</div>
     <div class="col2" *ngIf="stateLocal !== -1">
-      <select name="nucleo" [(ngModel)]="economicInformationLocal.nucleofamiliar" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
-      class="form-control">
+      <select name="nucleo" [(ngModel)]="economicInformationLocal.nucleofamiliar" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}" class="formText"
+      class="form-control" required>
         <option value="">Seleccion su respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
@@ -377,8 +377,8 @@
   <div class="main">
     <div class="col1">¿Como estudiante tiene personas a cargo?</div>
     <div class="col2" *ngIf="stateLocal !== -1">
-      <select name="cargo" [(ngModel)]="economicInformationLocal.personasacargo" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}" required class="formText"
-      class="form-control">
+      <select name="cargo" [(ngModel)]="economicInformationLocal.personasacargo" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}" class="formText"
+      class="form-control" required>
         <option value="">Selccione su respuesta</option>
         <option value="si">Si</option>
         <option value="no">No</option>
@@ -737,7 +737,7 @@
       <p>{{economicInformationLocal.sisben}}</p>
     </div>
     <div class="col3" *ngIf="stateLocal !== -1">
-      <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal13">
+      <button type="button" class="btn btn-primary btn-help" data-toggle="modal" data-target="#exampleModal13" required>
         ?
       </button>
       <!-- Modal de ayuda de pertenece al sisben -->
@@ -799,7 +799,7 @@
         <a><p><strong>Numero Telefonico:</strong></p></a>
       </div>
       <div class="col2">
-        <input type="text" min="1000000" [(ngModel)]="economicInformationLocal.telefono" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.telefono}}/>
+        <input type="number" min="1000000" [(ngModel)]="economicInformationLocal.telefono" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.telefono}} required/>
       </div>
     </div>
     <div class="main">
@@ -807,7 +807,7 @@
         <a><p><strong>Correo Electronico:</strong></p></a>
       </div>
       <div class="col2">
-        <input type="text" [(ngModel)]="economicInformationLocal.correo" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.correo}}/>
+        <input type="email" [(ngModel)]="economicInformationLocal.correo" (change)="ChangeModel()" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder={{modelBasicInformation.correo}} required/>
       </div>
     </div>
   </div>

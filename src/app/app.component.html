@@ -30,7 +30,7 @@
           <div class="panel-group"><a target="_blank" href="./assets/res_2015-450.pdf" title="Resolucion 450 de 2015">Resolución 450 de 2015</a></div>
         </li>
         <li>
-          <button *ngIf="_constants.initialStatus !== -1" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal" (click)="_constants.salario = mensajeEstudiantes.salariominimo">INSCRIBIR</button>
+          <button type="submit" *ngIf="_constants.initialStatus !== -1" [disabled]="_inscriptionComplete.formComplete === false || _inscriptionComplete.documentsComplete === false" id="enviar" class="btn btn-success" data-toggle="modal" data-target="#confirmationModal" (click)="_constants.salario = mensajeEstudiantes.salariominimo" form="InscriptionForm">INSCRIBIR</button>
         </li>
         <!-- Confirmation Modal para inscripción -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

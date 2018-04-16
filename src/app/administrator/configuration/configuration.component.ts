@@ -19,6 +19,7 @@ export class ConfigurationComponent implements OnInit {
   email: Email;
   bodyEmail: BodyEmail;
   testMessage: any;
+  saveMessage: any;
   configuracionVerificadores: Sede;
   modelFacultyInformation: {} = {};
   facultySelected: string;
@@ -73,9 +74,7 @@ export class ConfigurationComponent implements OnInit {
   /*      AGREGAR Y ELIMINAR SEDES DE REFRIGERIO NOCTURNO */
   // Guardar Facultad en variable local
   SaveFaculty(deviceValue) {
-    if(deviceValue == "FACULTAD DE TECNOLOGIA - POLITECNICA / TECNOLOGICA") {
-      deviceValue = "FACULTAD DE TECNOLOGIA - POLITECNICA - TECNOLOGICA";
-    }
+    deviceValue = deviceValue.replace("/","-");
     this.facultySelected = deviceValue;
   }
   // Agregar facultad a lista
@@ -85,7 +84,6 @@ export class ConfigurationComponent implements OnInit {
         this.configurationLocal.refrigerionocturno.push(this.facultySelected);
       }
     }
-    this.facultySelected = '';
   }
   // Eliminar facultad de lista
   RemoveFaculty() {
@@ -94,7 +92,6 @@ export class ConfigurationComponent implements OnInit {
         this.configurationLocal.refrigerionocturno.splice(this.configurationLocal.refrigerionocturno.indexOf(this.facultySelected),1);
       }
     }
-    this.facultySelected = '';
   }
   /*      AGREGAR O ELIMNAR VERIFICADORES DE SEDES    */
   // Guardar Verificador en variable
@@ -140,7 +137,6 @@ export class ConfigurationComponent implements OnInit {
         }
       }
     }
-    this.facultySelected = '';
   }
   // Eliminar verificador de lista
   RemoveVerifier() {
@@ -177,7 +173,6 @@ export class ConfigurationComponent implements OnInit {
         }
       }
     }
-    this.facultySelected = '';
   }
 
   /*    Guardar verificadore en BD  */
@@ -186,18 +181,31 @@ export class ConfigurationComponent implements OnInit {
   }
 
   /*      Probrar conexion de correo      */
-  TestConnection() {
+  TestConnection(action: string) {
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._emailConfiguration.PutConfiguration(this.email, this._constants.pathTestConnection).subscribe((data) => {
-      this.testMessage = data;
-      setTimeout(() => this._facultyInformation.waitService = false,0);
+    if (action == "Test") {
+      // debugger;
+      if (data.json() == 1) {
+        this.testMessage = 1;
+      } else {
+        this.testMessage = data;
+      }
+    } else if (action == "Save") {
+      if (data.json() == 1) {
+        this.SaveEmailConfiguration(); 
+      } else {
+        this.saveMessage = "No se guardaron los cambios   " + data.json();
+      }
+    }
+    setTimeout(() => this._facultyInformation.waitService = false,0);
     });
   }
   /* Guardar configuración de Email */
   SaveEmailConfiguration() {
     setTimeout(() => this._facultyInformation.waitService = true,0);
     this._emailConfiguration.PutConfiguration(this.email, this._constants.pathEmailConfiguration).subscribe((data) => {
-      this.testMessage = data;
+      this.saveMessage = data.json();
       setTimeout(() => this._facultyInformation.waitService = false,0);
     });
   }

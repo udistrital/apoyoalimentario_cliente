@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 /* Modelos */
 import { Constants } from '../../common/constants/model.constants';
 import { Metadata } from '../../common/constants/metadata';

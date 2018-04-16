@@ -10,6 +10,8 @@ import { FileService } from '../../common/services/file.service';
 import { InscriptionComplete } from '../../common/services/complete.service';
 import { StateService } from '../../common/services/status.service';
 import { DataInformation } from '../../common/services/basicInformation.service';
+/* Formularios */ 
+import { NG_VALIDATORS } from '@angular/forms';
 
 /*Estilos:
   NgbModal, ModalDismissReasons: Clases de bootstrap para gestionar los modales de ayuda
