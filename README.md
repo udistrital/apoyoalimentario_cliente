@@ -8,6 +8,8 @@ Esta aplicación sirve para realizar la inscripción al Apoyo Alimentario de la 
 
 Es necesario que se tenga el `CRUD_API` y `MID_API`
 
+Para enviar correo debe modificar el valor de la variable `emailtoSend.etosend` por `modelBasicInformation.correo`
+
 ## Configuración de IP
 
 Modifique todos las propiedades llamadas `Path` del archivo `model.constants.ts` que está ubicado en `src/app/common/constants/model.constants.ts`.
