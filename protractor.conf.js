@@ -12,7 +12,7 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://10.20.0.254/apoyo_alimentario_cliente/',
+  baseUrl: './',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
